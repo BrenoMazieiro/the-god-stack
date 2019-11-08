@@ -1,0 +1,103 @@
+version: '3'
+services:
+
+  proxy.local.thegodstack.com:
+    container_name: proxy.local.thegodstack.com
+    image: jwilder/nginx-proxy:latest
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    networks:
+      main:
+        aliases:
+          - proxy.local.thegodstack.com
+
+  mariadb.local.thegodstack.com:
+    container_name: mariadb.local.thegodstack.com
+    image: mariadb:10.2.19
+    volumes:
+      - "./.data:/var/lib/mysql"
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: 'thegodstackpass'
+    restart: unless-stopped
+    networks:
+      main:
+        aliases:
+          - mariadb.local.thegodstack.com
+
+  api.local.thegodstack.com:
+    container_name: api.local.thegodstack.com
+    image: thegodstack-nodejs
+    restart: always
+    volumes:
+      - "./api/:/opt/app-root/src/:rw"
+    ports:
+      - 80
+    environment:
+      VIRTUAL_HOST: 'api.local.thegodstack.com'
+      PORT: 80
+      GRAPHQL_URI: 'http://api.local.thegodstack.com/'
+      GRAPHQL_LISTEN_PORT: 80
+      
+      ENV_ALIAS: 'development'
+      APP_ENV: 'development'
+      NODE_ENV: 'development'
+
+      HASH_SECRET: 'someserioussupersecrethash'
+      JWT_SECRET: 'jwtverydificultsecret'
+      TOKEN_EXPIRE_IN: '48h'
+
+      ADMIN_EMAIL: "admin@thegodstack.com"
+      ADMIN_PASSWORD: "thegodstack"
+      
+      WORKER: "on"
+      WORKER_EMAIL: "worker@thegodstack.com"
+      WORKER_PASSWORD: "thegodstack"
+      
+      MARIAHOST: "mariadb.local.thegodstack.com"
+      MARIAUSER: "root"
+      MARIADATABASE: "thegodstack"
+      MARIAPASSWORD: "thegodstackpass"
+      
+      MARIAHOSTMIGRATIONS: "mariadb.local.thegodstack.com"
+      MARIAUSERMIGRATIONS: "root"
+      MARIADATABASEMIGRATIONS: "thegodstack"
+      MARIAPASSWORDMIGRATIONS: "thegodstackpass"
+      
+      MARIAPORT: "3306"
+      DEBUG: 'True'
+    # command: sleep 5d
+    command: ['./wait-for-it.sh', '-t', '0', 'mariadb.local.thegodstack.com:3306', '--', '.s2i/bin/assemble']
+    networks:
+      main:
+        aliases:
+          - api.local.thegodstack.com
+
+  spa.local.thegodstack.com:
+    container_name: spa.local.thegodstack.com
+    image: thegodstack-nodejs
+    restart: always
+    ports:
+      - 80
+    volumes:
+      - "./spa:/opt/app-root/src:rw"
+    environment:
+      VIRTUAL_HOST: 'spa.local.thegodstack.com'
+      VIRTUAL_PORT: 80
+      PORT: 80
+      APP_ENV: 'development'
+      ENV_ALIAS: 'development'
+      NODE_ENV: 'development'
+      API_URL: 'http://api.local.thegodstack.com/'
+    command: ['./wait-for-it.sh', '-t', '0', 'api.local.thegodstack.com:80', '--', '.s2i/bin/assemble']
+    networks:
+      main:
+        aliases:
+          - spa.local.thegodstack.com
+
+networks:
+  main:

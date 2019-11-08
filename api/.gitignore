@@ -1,0 +1,17 @@
+.cache
+.config
+.npm
+.pki
+.npm-global
+.bash_history
+.v8flags*
+node_modules
+/.babel.json
+.idea
+yarn.lock
+.babel.json
+.yarnrc
+.vscode
+default.log
+public
+yarn-error.log

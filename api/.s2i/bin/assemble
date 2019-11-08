@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# If there is any error in the building process stop
+set -e
+# Move hidden files aswel
+shopt -s dotglob
+
+# If is not development environment mv from clone folder to actual directory
+# This is used in the building process in servers like openshift
+if [ ! $APP_ENV == 'development' ]; then
+  echo "---> Installing application source..."
+  mv /tmp/src/* ./
+fi
+
+npm install -g yarn
+npm install -g knex
+
+# If there is package.json instal dependencies
+if [ -f package.json ]; then
+  echo "### Found package.json, installing the dependencies"
+  if [ $APP_ENV == 'development' ]; then
+    # I'm making sure we're in a development environment
+    yarn install --production=false
+  else
+    # I'm making sure we're in a production environment
+    yarn install --production=false
+  fi
+fi
+
+# if [ $WORKER == 'true' ]; then
+  echo "### Runing migrations"
+  knex migrate:latest
+# fi
+
+# When we are local, it is needed to go to deploy
+# but it is not needed when you are in a server like openshift.
+if [ $APP_ENV == 'development' ]; then
+  .s2i/bin/run
+else
+  echo "### Removing trash"
+  rm .cache/ .config/ -Rf
+  echo "### Fixing permissions"
+  fix-permissions ./
+  echo "### My job here is done, openshift I choose you..."
+fi

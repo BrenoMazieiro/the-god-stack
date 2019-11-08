@@ -1,0 +1,2 @@
+yarn.lock merge=ours
+package-lock.json merge=ours

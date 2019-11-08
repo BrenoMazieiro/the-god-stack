@@ -1,0 +1,59 @@
+{
+  "name": "godstack",
+  "version": "0.0.1",
+  "description": "API app for GodStack",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_OPTIONS='--max-old-space-size=4096' ./node_modules/.bin/nodemon -e js,graphql --exec babel-node .",
+    "start-dev": "./node_modules/.bin/nodemon -e js,graphql --inspect=9229 --exec babel-node .",
+    "seedDb": "./node_modules/.bin/babel-node src/seed/seed-db.js",
+    "lint": "eslint src "
+  },
+  "author": "Breno Mazieiro",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-boost": "^0.4.4",
+    "apollo-cache-inmemory": "^1.6.3",
+    "apollo-client": "^2.6.4",
+    "apollo-link-http": "^1.5.16",
+    "apollo-server": "^2.9.7",
+    "express": "^4.17.1",
+    "graphql": "^14.5.8",
+    "graphql-constraint-directive": "^1.4.1",
+    "graphql-tag": "^2.10.1",
+    "graphql-tools": "^4.0.6",
+    "graphql-upload": "^8.1.0",
+    "jsdom": "^15.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.20.1",
+    "knexnest": "^1.0.0",
+    "moment": "^2.24.0",
+    "mysql": "^2.17.1",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^6.6.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
+    "nodemon": "^1.19.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md,graphql": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
