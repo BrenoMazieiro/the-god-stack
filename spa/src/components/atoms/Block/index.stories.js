@@ -28,7 +28,7 @@ storiesOf('Block', module)
     </Block>
   ))
   .add('palette danger opaque', () => (
-    <Block palette="danger" opaque >
+    <Block palette="danger" opaque>
       Officia aliqua reprehenderit fugiat occaecat quis non eiusmod.
     </Block>
   ))

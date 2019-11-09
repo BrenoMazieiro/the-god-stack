@@ -1,5 +1,5 @@
 // https://github.com/diegohaz/arc/wiki/Example-app
-import { hot } from 'react-hot-loader/root';
+import { hot } from 'react-hot-loader/root'
 import 'babel-polyfill'
 import React, { Suspense } from 'react'
 import { render } from 'react-dom'
@@ -22,5 +22,4 @@ const renderApp = () => (
 )
 const root = document.getElementById('app')
 render(renderApp(), root)
-export default hot(renderApp);
-
+export default hot(renderApp)

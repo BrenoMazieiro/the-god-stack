@@ -2,7 +2,7 @@
 import React from 'react'
 
 import {
-  PageTemplate, Header, Hero, Footer, FeatureList, IsLoggedIn
+  PageTemplate, Header, Hero, Footer, FeatureList, IsLoggedIn,
 } from 'components'
 
 const HomePage = () => {

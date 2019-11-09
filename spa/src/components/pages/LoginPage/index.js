@@ -12,7 +12,7 @@ const LoginPage = ({ history }) => {
   const [password, setPassword] = useState(null)
   const [isValid, setIsValid] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
-  
+
   const handleSubmit = (e, client) => {
     e.preventDefault()
     setSubmitting(true)
@@ -20,22 +20,22 @@ const LoginPage = ({ history }) => {
       query: UserLogin,
       variables: { email, password },
     })
-    .then((data) => {
-      setSubmitting(false)
-      localStorage.setItem('token', data.data.UserLogin.token)
-      history.push('/')
-    })
-    .catch((error) => {
-      setSubmitting(false)
-      if (error && error.graphQLErrors && error.graphQLErrors[0].code === 'user_or_password_incorrect') {
-        setIsValid(false)
-        setErrorMessage(error.graphQLErrors[0].message)
-      }
-    })
+      .then((data) => {
+        setSubmitting(false)
+        localStorage.setItem('token', data.data.UserLogin.token)
+        history.push('/')
+      })
+      .catch((error) => {
+        setSubmitting(false)
+        if (error && error.graphQLErrors && error.graphQLErrors[0].code === 'user_or_password_incorrect') {
+          setIsValid(false)
+          setErrorMessage(error.graphQLErrors[0].message)
+        }
+      })
   }
 
-  if(email && password) {
-    if(!isValid) setIsValid(true)
+  if (email && password) {
+    if (!isValid) setIsValid(true)
   }
 
   return (
@@ -44,8 +44,8 @@ const LoginPage = ({ history }) => {
       footer={<Footer />}
     >
       <ApolloConsumer>
-      {
-        client => (
+        {
+        (client) => (
           <PostForm
             handleSubmit={handleSubmit}
             submitting={submitting}
