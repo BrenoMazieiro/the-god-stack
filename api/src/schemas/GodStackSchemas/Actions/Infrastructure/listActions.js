@@ -6,6 +6,7 @@ const listActions = (ctx) => {
       'a.id_user_action as _id',
       'a.name as _name',
       'a.description as _description',
+      'a.type as _type',
     )
   return (
     ctx.knexnest(sql)

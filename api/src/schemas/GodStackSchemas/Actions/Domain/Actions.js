@@ -4,6 +4,7 @@ type Action {
   id: Int
   name: String!
   description: String!
+  type: String!
 }
 `
 
