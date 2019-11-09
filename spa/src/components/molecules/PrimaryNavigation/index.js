@@ -2,10 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { palette } from 'styled-theme'
-import { ApolloConsumer } from 'react-apollo'
-import { withRouter } from 'react-router-dom'
 
-import { Link, IsLoggedIn } from 'components'
+import { Link } from 'components'
 
 const Nav = styled.nav`
   display: flex;
@@ -23,34 +21,16 @@ const Nav = styled.nav`
   }
 `
 
-const PrimaryNavigation = ({history, ...props}) => {
-  const logout = async (e, client) => {
-    e.preventDefault()
-    localStorage.clear()
-    client.resetStore()
-    history.push('/')
-  }
+const PrimaryNavigation = ({ ...props }) => {
   return (
-    <ApolloConsumer>
-      {
-        client => (
-          <Nav {...props}>
-            <li><Link to="/" exact activeClassName="active">Home</Link></li>
-            {
-              IsLoggedIn() ?
-              <li><Link onClick={e => logout(e, client)} activeClassName="active">Logout</Link></li> :
-              <li><Link to="/login" activeClassName="active">Login</Link></li>
-            }
-          </Nav>
-        )
-      }
-    </ApolloConsumer>
+    <Nav {...props}>
+      <li><Link to="/" exact activeClassName="active">Home</Link></li>
+    </Nav>
   )
 }
 
 PrimaryNavigation.propTypes = {
   reverse: PropTypes.bool,
-  history: PropTypes.object.isRequired,
 }
 
-export default withRouter(PrimaryNavigation)
+export default PrimaryNavigation

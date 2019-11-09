@@ -2,7 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { size } from 'styled-theme'
 
-import { IconLink, PrimaryNavigation, Block } from 'components'
+import {
+  IconLink, PrimaryNavigation, Block, LoginLogoutButton,
+} from 'components'
 
 const Wrapper = styled(Block)`
   display: flex;
@@ -33,6 +35,7 @@ const Header = (props) => {
       <InnerWrapper>
         <IconLink to="/" icon="tgs" height={120} />
         <StyledPrimaryNavigation reverse />
+        <LoginLogoutButton />
       </InnerWrapper>
     </Wrapper>
   )
