@@ -16,6 +16,7 @@ const listUSers = (ctx, params, listDeleted=false) => {
       'a.id_user_action as _profiles__actions__id',
       'a.name as _profiles__actions__name',
       'a.description as _profiles__actions__description',
+      'a.type as _profiles__actions__type',
     )
     .join('users_profiles as p', 'u.id_user_profile', '=', 'p.id_user_profile')
     .join('profiles_actions_users as pivot', 'pivot.id_user_profile', 'p.id_user_profile')
