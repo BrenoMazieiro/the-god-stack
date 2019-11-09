@@ -91,13 +91,97 @@ const email = (email) => {
   return false
 }
 
-const cpfCnpj = (value) => {
+const cpf = (value) => {
   if (required(value)) {
     return false
   }
   const clearValue = value.replace(/[^0-9]/g, '')
+
+  if (clearValue.length != 11 || 
+		clearValue == "00000000000" || 
+		clearValue == "11111111111" || 
+		clearValue == "22222222222" || 
+		clearValue == "33333333333" || 
+		clearValue == "44444444444" || 
+		clearValue == "55555555555" || 
+		clearValue == "66666666666" || 
+		clearValue == "77777777777" || 
+		clearValue == "88888888888" || 
+		clearValue == "99999999999")
+      return false
+   
+  var add = 0	
+  
+  for (var i=0; i < 9; i ++)		
+    add += parseInt(clearValue.charAt(i)) * (10 - i)
+    var rev = 11 - (add % 11)
+    if (rev == 10 || rev == 11)		
+      rev = 0
+      if (rev != parseInt(clearValue.charAt(9)))		
+         return false	
+      add = 0
+      for (i = 0; i < 10; i ++)		
+         add += parseInt(clearValue.charAt(i)) * (11 - i)
+         rev = 11 - (add % 11)	
+      if (rev == 10 || rev == 11)	
+         rev = 0
+      if (rev != parseInt(clearValue.charAt(10)))
+        return false	    
+
   if (clearValue.length === 14 || clearValue.length === 11) return true
   return false
+}
+
+const cnpj = (value) => {
+
+  var cnpj = value.replace(/[^\d]+/g,'')
+ 
+    if(cnpj == '') return false
+
+  if (cnpj.length != 14)
+  return false
+
+  // Elimina CNPJs invalidos conhecidos
+  if (cnpj == "00000000000000" || 
+    cnpj == "11111111111111" || 
+    cnpj == "22222222222222" || 
+    cnpj == "33333333333333" || 
+    cnpj == "44444444444444" || 
+    cnpj == "55555555555555" || 
+    cnpj == "66666666666666" || 
+    cnpj == "77777777777777" || 
+    cnpj == "88888888888888" || 
+    cnpj == "99999999999999")
+    return false
+    
+    var cnpjLength = cnpj.length - 2
+    var numbers = cnpj.substring(0,cnpjLength)
+    var digits = cnpj.substring(numbers)
+    var sum = 0
+    var pos = cnpjLength - 7
+    for (var i = cnpjLength; i >= 1; i--) {
+        sum += numbers.charAt(cnpjLength - i) * pos--
+    if (pos < 2)
+        pos = 9
+    }
+    var result = sum % 11 < 2 ? 0 : 11 - sum % 11
+    if (result != digits.charAt(0))
+      return false
+    
+      cnpjLength = cnpjLength + 1
+      numbers = cnpj.substring(0,cnpjLength)
+      sum = 0
+      pos = cnpjLength - 7
+      for (i = cnpjLength; i >= 1; i--) {
+        sum += numbers.charAt(cnpjLength - i) * pos--
+        if (pos < 2)
+          pos = 9
+        }
+        result = sum % 11 < 2 ? 0 : 11 - sum % 11
+        if (result != digits.charAt(1))
+          return false
+        
+    return true
 }
 
 const validationField = (value, test) => {
@@ -109,21 +193,23 @@ const validationField = (value, test) => {
       const [minValue, maxValue] = params
       switch (method) {
         case 'max':
-          return max(value, params) ? `Valor deve ter no máximo ${maxValue}` : null
+          return max(value, params) ? `The max value lenght should be ${maxValue}` : null
         case 'min':
-          return min(value, params) ? `Valor deve ter no mínimo ${minValue}` : null
+          return min(value, params) ? `The max value lenght should be ${minValue}` : null
         case 'length':
-          return length(value, minValue, maxValue) ? `Valor deve ter o tamanho entre ${minValue} e ${maxValue}` : null
+          return length(value, minValue, maxValue) ? `The value lenght should be between ${minValue} and ${maxValue}` : null
         case 'enum':
-          return enumValue(value, params) ? 'Valor enum inesperado' : null
+          return enumValue(value, params) ? 'An enum value was expected' : null
         case 'number':
-          return numberValue(value) ? 'Número inválido' : null
+          return numberValue(value) ? 'An number was expected' : null
         case 'email':
-          return email(value) ? 'Email inválido' : null
+          return email(value) ? 'Invalid Email' : null
         case 'required':
-          return required(value) ? 'Campo obrigatório' : null
-        case 'cpfCnpj':
-          return !cpfCnpj(value) ? 'CPF/CNPJ inválido' : null
+          return required(value) ? 'Required Field' : null
+        case 'cpf':
+          return !cpf(value) ? 'Invalid CPF' : null
+        case 'cnpj':
+          return !cnpj(value) ? 'Invalid CNPJ' : null  
         default:
           return null
       }
@@ -167,7 +253,7 @@ export default (value, rules) => {
     .filter(error => error !== null)
 
   if (errors.length) {
-    throw new ApolloError('Houveram erros validando os parametros!', 'form_arguments_invalid', errors)
+    throw new ApolloError('There was error(s) validating the params!', 'form_arguments_invalid', errors)
   }
 
   return true
