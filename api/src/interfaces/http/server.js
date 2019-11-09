@@ -21,12 +21,12 @@ const server = new ApolloServer({
     const token = checkToken()
     let user = tokenVerifier(token)
 
-    let allows = action => {
+    let allows = (action, type) => {
       /** Case anyone need to change perfil, just refactor the line above 0 is going to be the choosen perfil
        * and got to listaUsuários and changes the line about where perfil
       */
      console.log(user.profiles[0].actions)
-      const hasAction = user.profiles[0].actions.find(actionUser => actionUser.name === action)
+      const hasAction = user.profiles[0].actions.find(actionUser => actionUser.name === action && actionUser.type == type )
       return (user) && (hasAction)
     }
     return { user, knexnest, knex, allows, authorization, validation, moment}
