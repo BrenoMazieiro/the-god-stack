@@ -1,10 +1,10 @@
-# The God Stack Starter - GraphQl NODEjs React and Apollo
+# The God Stack Starter - Docker Graphql Nodejs React and Apollo
 
 This is a boilerplate! =)
 
-The GodStack is a joke with the fullStack idea (Front+back)
+The name GodStack is a joke with the fullStack idea (Front+back)
 
-GodStack should be something like (DBA+Devops+back+front)... maybe more... why not?
+GodStack should be something like (DBA+Devops+back+front)... maybe more... why not? ;)
 
 ## Devops instructions
 
