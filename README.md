@@ -32,7 +32,11 @@ Databases available in this project at the moment:
 
 ## BackEnd instructions
 
-This is not an Rest API, it is an GraphQl, so there is NO routes, just Qls.
+**Pattern**: Domain Driven Design (DDD)
+
+More about it: https://bit.ly/2O14Ddp (it will download a pdf)
+
+This is not an Rest API, it is an GraphQl, so there is NO routes, just Qls. (Keep that in your mind!)
 
 Any doubts abou the qls? just go to: https://graphql.org/
 
@@ -40,8 +44,11 @@ Apollo server: https://www.apollographql.com/docs/apollo-server/
 
 ## FrontEnd instructions
 
-Again, this is not and Rest, so we do not need Redux!
-Apollo Client will take care of this things for us.
+**Pattern**: Atomic Design
+
+More about it: https://bradfrost.com/blog/post/atomic-web-design/
+
+Apollo Client will take care of this things for us, this is why we are not using redux or axios.
 And we are using hooks.
 
 Any Doubts go to:
