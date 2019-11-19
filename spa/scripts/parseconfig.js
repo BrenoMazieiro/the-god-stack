@@ -3,8 +3,9 @@
 const fs = require('fs')
 
 const projectVars = [
-  'API_URL',
+  'API_URL', 'WS_URL'
 ]
+
 const configFileContent = projectVars.map((entry) => {
   let envEntry = process.env[entry]
 

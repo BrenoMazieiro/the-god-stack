@@ -93,6 +93,7 @@ services:
       ENV_ALIAS: 'development'
       NODE_ENV: 'development'
       API_URL: 'http://api.local.thegodstack.com/'
+      WS_URL: 'ws://api.local.thegodstack.com/graphql'
     command: ['./wait-for-it.sh', '-t', '0', 'api.local.thegodstack.com:80', '--', '.s2i/bin/assemble']
     networks:
       main:
