@@ -22,8 +22,8 @@ const LoginLogoutButton = ({ history }) => {
           <Block>
             {
               IsLoggedIn()
-                ? <li><Button onClick={(e) => logout(e, client)} activeClassName="active">Logout</Button></li>
-                : <li><Button to="/login" activeClassName="active">Login</Button></li>
+                ? <li><Button onClick={(e) => logout(e, client)} activeclassname="active">Logout</Button></li>
+                : <li><Button to="/login" activeclassname="active">Login</Button></li>
             }
           </Block>
         )
