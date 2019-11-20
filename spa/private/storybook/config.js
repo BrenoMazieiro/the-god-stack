@@ -1,10 +1,11 @@
-// https://github.com/diegohaz/arc/wiki/Storybook
-import React from 'react'
+import React, { Suspense } from 'react'
 import { configure, addDecorator } from '@storybook/react'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import theme from 'components/themes/default'
 import { withInfo } from '@storybook/addon-info'
+import { ApolloProvider } from 'react-apollo'
+import { client } from '../../src/apolloConfig'
 
 const req = require.context('components', true, /.stories.js$/)
 
@@ -13,9 +14,13 @@ function loadStories() {
 }
 
 addDecorator((story) => (
-  <BrowserRouter>
-    <ThemeProvider theme={theme}>{story()}</ThemeProvider>
-  </BrowserRouter>
+  <Suspense fallback={<h1>Loading...</h1>}>
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>{story()}</ThemeProvider>
+      </BrowserRouter>
+    </ApolloProvider>
+  </Suspense>
 ))
 addDecorator(
   withInfo({
