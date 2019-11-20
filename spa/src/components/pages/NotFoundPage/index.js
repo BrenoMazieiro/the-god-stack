@@ -6,7 +6,7 @@ import {
 
 const NotFoundPage = () => {
   return (
-    <GenericTemplate >
+    <GenericTemplate>
       <Heading>404 Not Found</Heading>
     </GenericTemplate>
   )
