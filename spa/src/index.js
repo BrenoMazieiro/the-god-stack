@@ -5,18 +5,15 @@ import React, { Suspense } from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { ApolloProvider } from 'react-apollo'
-import { ApolloProvider as ApolloHooksProvider } from 'react-apollo-hooks'
 import App from 'components/App'
 import { client } from './apolloConfig'
 
 const renderApp = () => (
   <Suspense fallback={<h1>Loading...</h1>}>
     <ApolloProvider client={client}>
-      <ApolloHooksProvider client={client}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ApolloHooksProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ApolloProvider>
   </Suspense>
 )
