@@ -1,14 +1,14 @@
 import React from 'react'
 
 import {
-  PageTemplate, Header, Footer, Heading,
+  GenericTemplate, Heading,
 } from 'components'
 
 const NotFoundPage = () => {
   return (
-    <PageTemplate header={<Header />} footer={<Footer />}>
+    <GenericTemplate >
       <Heading>404 Not Found</Heading>
-    </PageTemplate>
+    </GenericTemplate>
   )
 }
 
