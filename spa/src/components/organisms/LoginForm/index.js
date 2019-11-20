@@ -13,7 +13,7 @@ const Form = styled.form`
   padding: 1rem;
 `
 
-const PostForm = ({
+const LoginForm = ({
   handleSubmit, submitting, setEmail, setPassword, isValid, client, errorMessage,
 }) => {
   return (
@@ -39,7 +39,7 @@ const PostForm = ({
   )
 }
 
-PostForm.propTypes = {
+LoginForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool,
   setEmail: PropTypes.func.isRequired,
@@ -49,4 +49,4 @@ PostForm.propTypes = {
   errorMessage: PropTypes.string,
 }
 
-export default PostForm
+export default LoginForm

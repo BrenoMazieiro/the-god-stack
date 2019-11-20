@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { ApolloConsumer } from 'react-apollo'
 import { UserLogin } from 'mutations'
 import {
-  PageTemplate, Header, Footer, PostForm,
+  PageTemplate, Header, Footer, LoginForm,
 } from 'components'
 
 const LoginPage = ({ history }) => {
@@ -46,7 +46,7 @@ const LoginPage = ({ history }) => {
       <ApolloConsumer>
         {
         (client) => (
-          <PostForm
+          <LoginForm
             handleSubmit={handleSubmit}
             submitting={submitting}
             setEmail={setEmail}

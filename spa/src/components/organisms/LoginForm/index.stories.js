@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { PostForm } from 'components'
+import { LoginForm } from 'components'
 
-storiesOf('PostForm', module)
+storiesOf('LoginForm', module)
   .add('default', () => (
-    <PostForm />
+    <LoginForm />
   ))
