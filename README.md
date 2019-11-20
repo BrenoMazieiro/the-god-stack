@@ -88,7 +88,7 @@ You need to go to your **/etc/hosts** file and ADD the lines below:
 
 Now it will be possible to use a real full address, and not the old (and lame) **'localhost:port'**
 
-P.S.: There is this file on windows aswell, but I do not now where, try google! =)
+P.S.: There is an hosts file on windows aswell, but I do not know where, try google! =)
 
 ###  **STEP 4 - Starting everything!**
 
