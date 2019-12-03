@@ -3,9 +3,12 @@ import { ApolloServer } from 'apollo-server'
 import moment from 'moment'
 import { knexnest, knex } from '../../infra/databases/database'
 import { schema } from '../../schemas'
-import tokenVerifier from './utils/tokenVerifier'
-import authorization from './utils/authorization'
-import validation from './utils/validation'
+import { 
+  tokenVerifier, 
+  authorization, 
+  validation, 
+  checkToken,
+} from './utils'
 
 const PORT = process.env.GRAPHQL_LISTEN_PORT || 4000
 
@@ -13,12 +16,7 @@ const server = new ApolloServer({
   schema: schema,
   context: ({ req, connection }) => {
     // get the user token from the headers
-    const checkToken = () => {
-      if (connection) return connection.context.token
-      const token = req.headers.authorization || ""
-      return token
-    }
-    const token = checkToken()
+    const token = checkToken(req, connection)
     let user = tokenVerifier(token)
 
     let allows = (action, type) => {

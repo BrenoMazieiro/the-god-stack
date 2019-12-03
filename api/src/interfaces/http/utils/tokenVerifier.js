@@ -1,7 +1,7 @@
 import { ApolloError } from 'apollo-server'
 import jwt from 'jsonwebtoken'
 
-const tokenVerifier = (token) => {
+export const tokenVerifier = (token) => {
   let decoded = false
   if (token) {
     try {
@@ -21,5 +21,3 @@ const tokenVerifier = (token) => {
     }
   }
 }
-
-export default tokenVerifier
