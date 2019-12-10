@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { palette, size } from 'styled-theme'
+import { useTranslation } from 'react-i18next'
 
 import {
   Block,
@@ -10,6 +11,7 @@ import {
   Heading,
   Tooltip,
   LogoImage,
+  getLoggedUser,
 } from 'components'
 
 const Wrapper = styled(Block)`
@@ -82,6 +84,8 @@ const Instructions = styled.div`
 `
 
 const Hero = (props) => {
+  const user = getLoggedUser()
+  const { t } = useTranslation()
   return (
     <Wrapper opaque reverse {...props}>
       <InnerWrapper>
@@ -102,11 +106,13 @@ const Hero = (props) => {
         </Section>
         <Section>
           <Text>
+            {user && `${t('organisms.Hero.welcome')}, ${user.givenName} ${user.familyName}!`}
             <br />
             <br />
-            <strong>The God Stack</strong>
+            <strong>The God Stack </strong>
             {' '}
-is a Full Stack starter based ARC atomic design, Apollo client, React, Graphql, Apollo Server, Nodejs, and much more.
+            {t('organisms.Hero.description')}
+            {}
           </Text>
           <Instructions>
             <Heading level={2} reverse>Install</Heading>

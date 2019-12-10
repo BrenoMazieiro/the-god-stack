@@ -24,7 +24,7 @@ const Nav = styled.nav`
 const PrimaryNavigation = ({ ...props }) => {
   return (
     <Nav {...props}>
-      <li><Link to="/" exact activeclassname="active">Home</Link></li>
+      <Link to="/" exact activeclassname="active">Home</Link>
     </Nav>
   )
 }

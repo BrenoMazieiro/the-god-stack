@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { ApolloConsumer } from 'react-apollo'
+import { useTranslation } from 'react-i18next'
 
 import {
   Button, IsLoggedIn, Block,
@@ -15,6 +16,8 @@ const LoginLogoutButton = ({ history }) => {
     history.push('/')
   }
 
+  const { t } = useTranslation()
+
   return (
     <ApolloConsumer>
       {
@@ -22,8 +25,8 @@ const LoginLogoutButton = ({ history }) => {
           <Block>
             {
               IsLoggedIn()
-                ? <li><Button onClick={(e) => logout(e, client)} activeclassname="active">Logout</Button></li>
-                : <li><Button to="/login" activeclassname="active">Login</Button></li>
+                ? <li><Button onClick={(e) => logout(e, client)} activeclassname="active">{t('molecules.LoginLogoutButton.logout')}</Button></li>
+                : <li><Button to="/login" activeclassname="active">{t('molecules.LoginLogoutButton.login')}</Button></li>
             }
           </Block>
         )
