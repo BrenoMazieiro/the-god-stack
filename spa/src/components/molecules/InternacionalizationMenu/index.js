@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import {
-  Block
+  Block,
 } from 'components'
 
 const Wrapper = styled(Block)`
@@ -36,11 +36,9 @@ const InternacionalizationMenu = ({ ...props }) => {
   }
   return (
     <Wrapper>
-      <Text onClick={() => changeLanguage('ptBR')} {...props} >PT</Text>
-      {/* <Text {...props} >|</Text> */}
-      <Text onClick={() => changeLanguage('enUS')} {...props} >EN</Text>
-      {/* <Text {...props} >|</Text> */}
-      <Text onClick={() => changeLanguage('esES')} {...props} >ES</Text>
+      <Text onClick={() => changeLanguage('ptBR')} {...props}>PT</Text>
+      <Text onClick={() => changeLanguage('enUS')} {...props}>EN</Text>
+      <Text onClick={() => changeLanguage('esES')} {...props}>ES</Text>
     </Wrapper>
   )
 }
