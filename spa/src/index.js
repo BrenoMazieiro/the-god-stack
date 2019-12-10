@@ -5,6 +5,7 @@ import React, { Suspense } from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { ApolloProvider } from 'react-apollo'
+import './i18n'
 import App from 'components/App'
 import { client } from './apolloConfig'
 
