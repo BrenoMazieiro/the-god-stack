@@ -239,7 +239,7 @@ const getValueObject = (key, value) => {
 * Verifica o valor máximo permitido
 * Retorna false quando não passa em alguma validação
 */
-export default (value, rules) => {
+export const validation = (value, rules) => {
   if (rules === undefined) {
     return true
   }
