@@ -8,6 +8,7 @@ const listUSers = (ctx, params, listDeleted=false) => {
       'u.givenName as _givenName',
       'u.familyName as _familyName',
       'u.password as password',
+      'u.language as language',
       'u.deleted as _deleted',
       'u.active as _active',
       'p.id_user_profile as _profiles__id',

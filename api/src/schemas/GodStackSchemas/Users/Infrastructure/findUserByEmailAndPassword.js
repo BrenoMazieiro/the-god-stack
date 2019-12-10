@@ -8,6 +8,7 @@ const findUserByEmailAndPassword = (ctx, email, password) => {
       'u.familyName as _familyName',
       'u.email as _email',
       'u.password as _password',
+      'u.language as _language',
       'u.active as _active',
       'p.id_user_profile as _profiles__id',
       'p.name as _profiles__name',

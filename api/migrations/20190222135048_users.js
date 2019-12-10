@@ -5,6 +5,7 @@ exports.up = function(knex) {
         id_user_profile INT UNSIGNED NOT NULL,
         givenName VARCHAR(50) NOT NULL,
         familyName VARCHAR(50) NOT NULL,
+        language ENUM('ptBR', 'enUS', 'esES'),
         email VARCHAR(100) NOT NULL,
         password VARCHAR(64) NOT NULL,
         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),

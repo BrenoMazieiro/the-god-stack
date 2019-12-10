@@ -10,6 +10,7 @@ const alterarUsuario = ({userData,id}, ctx) => {
         familyName: userData.familyName,
         email: userData.email,
         password: userData.password && crypto.createHmac('sha256', process.env.HASH_SECRET).update(userData.password).digest('hex'),
+        language: userData.language,
         id_user_profile: userData.id_user_profile,
         updated_by: ctx.user.id,
         deleted: 0,

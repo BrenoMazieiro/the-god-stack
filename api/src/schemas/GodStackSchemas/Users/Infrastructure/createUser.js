@@ -11,6 +11,7 @@ const createUser = ({ userData }, ctx) => {
         familyName: userData.familyName,
         email: userData.email,
         password: crypto.createHmac('sha256', process.env.HASH_SECRET).update(userData.password).digest('hex'),
+        language: userData.language,
         id_user_profile: userData.id_user_profile,
         created_by: ctx.user.id,
         updated_by: ctx.user.id,

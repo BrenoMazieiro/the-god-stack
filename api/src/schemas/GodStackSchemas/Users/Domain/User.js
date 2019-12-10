@@ -4,11 +4,18 @@ type User {
   id: Int
   givenName: String!
   familyName: String!
+  lamguage: EnumLanguage
   email: String!
   password: String! @hideTheField
   deleted: Boolean!
   active: Boolean!
   profiles: [Profile]
+}
+
+enum EnumLanguage {
+  ptBR
+  enUS
+  esES
 }
 
 type UserLogin {
@@ -70,6 +77,7 @@ input userData {
   familyName: String!
   email: String!
   password: String!
+  language: EnumLanguage!
   id_user_profile: Int!
   active: Boolean!
 }
