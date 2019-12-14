@@ -3,9 +3,10 @@ services:
 
   proxy.local.thegodstack.com:
     container_name: proxy.local.thegodstack.com
-    image: jwilder/nginx-proxy:latest
+    image: jwilder/nginx-proxy:alpine
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "./proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
     ports:
       - "80:80"
     restart: unless-stopped
@@ -31,7 +32,7 @@ services:
 
   api.local.thegodstack.com:
     container_name: api.local.thegodstack.com
-    image: thegodstack-nodejs
+    image: thegodstack-nodejs-knex
     restart: always
     volumes:
       - "./api/:/opt/app-root/src/:rw"
@@ -79,7 +80,7 @@ services:
 
   spa.local.thegodstack.com:
     container_name: spa.local.thegodstack.com
-    image: thegodstack-nodejs
+    image: thegodstack-nodejs-knex
     restart: always
     ports:
       - 80
