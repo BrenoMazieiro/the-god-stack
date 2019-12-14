@@ -69,6 +69,8 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar \
   && apk del .build-deps-yarn
 RUN apk add --no-cache bash
 
+RUN npm install -g knex
+
 WORKDIR /opt/app-root/src
 
 CMD [ "node" ]

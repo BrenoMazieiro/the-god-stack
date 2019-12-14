@@ -12,8 +12,8 @@ if [ ! $APP_ENV == 'development' ]; then
   mv /tmp/src/* ./
 fi
 
-echo "### Installing yarn globally..."
-npm install -g yarn
+# If you are using a raw nodejs image add the line above
+# yarn install -g knex
 
 echo "### Creating config.js..."
 node scripts/parseconfig.js
