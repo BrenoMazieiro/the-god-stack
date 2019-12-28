@@ -29,7 +29,7 @@ const findUserByEmailAndPassword = (ctx, email, password) => {
     ctx.knexnest(sql).then((data) => {
       return data
     })
-    .catch((e) => {throw new ApolloError('knexnest_error', 400, [`Error nesting findUserByEmailAndPassword: ${e.code} - ${e.message}`])})
+    .catch((e) => {throw new ApolloError(`Error nesting findUserByEmailAndPassword: ${e.code} - ${e.message}`, 'knexnest_error')})
   )
 }
 

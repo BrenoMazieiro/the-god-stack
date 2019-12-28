@@ -10,8 +10,6 @@ import {
   checkToken,
 } from './utils'
 
-const PORT = process.env.GRAPHQL_LISTEN_PORT || 4000
-
 const server = new ApolloServer({
   schema: schema,
   context: ({ req, connection }) => {
@@ -20,9 +18,6 @@ const server = new ApolloServer({
     let user = tokenVerifier(token)
 
     let allows = (action, type) => {
-      /** Case anyone need to change perfil, just refactor the line above 0 is going to be the choosen perfil
-       * and got to listaUsuários and changes the line about where perfil
-      */
       const hasAction = user.profiles[0].actions.find(actionUser => actionUser.name === action && actionUser.type == type )
       return (user) && (hasAction)
     }
@@ -43,9 +38,6 @@ const server = new ApolloServer({
     return response
   },
   uploads: {
-    // Limits here should be stricter than config for surrounding
-    // infrastructure such as Nginx so errors can be handled elegantly by
-    // graphql-upload:
     // https://github.com/jaydenseric/graphql-upload#type-uploadoptions
     maxFileSize: 100000000, // 100 MB
     maxFiles: 20,
@@ -65,7 +57,7 @@ const server = new ApolloServer({
 server.init = function () {
   server.listen(process.env.GRAPHQL_LISTEN_PORT, '0.0.0.0').then(() => {
     console.log('\x1b[36m%s\x1b[0m', `[${moment().format("YYYY-MM-DD h:mm:ss")}] SERVERINIT: 👍  GraphQL API ready at http://${process.env.VIRTUAL_HOST}:${process.env.GRAPHQL_LISTEN_PORT} 👍`)
-    console.log('\x1b[37m%s\x1b[0m', `[${moment().format("YYYY-MM-DD HH:mm:ss")}] SERVERINIT: 🚀 Subscriptions ready at ws://${process.env.VIRTUAL_HOST}:${PORT}${server.subscriptionsPath} 🚀`)
+    console.log('\x1b[37m%s\x1b[0m', `[${moment().format("YYYY-MM-DD HH:mm:ss")}] SERVERINIT: 🚀 Subscriptions ready at ws://${process.env.VIRTUAL_HOST}:${process.env.GRAPHQL_LISTEN_PORT || 4000}${server.subscriptionsPath} 🚀`)
   })
 }
 

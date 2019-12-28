@@ -12,7 +12,7 @@ export default (obj, params, ctx) => {
       const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: process.env.TOKEN_EXPIRE_IN })
       return { token: token }
     } else {
-      throw new ApolloError('This is not a User I Know!', 'unknown_user')
+      throw new ApolloError('Now you are just somebody that I used to know!', 'unknown_user')
     }
   })
 }

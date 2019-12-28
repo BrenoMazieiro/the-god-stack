@@ -23,8 +23,8 @@ const createUser = ({ userData }, ctx) => {
         return listUsers(ctx, params)
       })
       .catch(e => {
-        if (e.code === 'ER_DUP_ENTRY') { throw new ApolloError('This user is already registered!', 'duplicated', [e.sqlMessage]) }
-        throw new ApolloError(`Something went wrong with db: ${e.code} - ${e.message}`, 'database_error')
+        if (e.code === 'ER_DUP_ENTRY') { throw new ApolloError('createUser: This user is already registered!', 'duplicated', [e.sqlMessage]) }
+        throw new ApolloError(`createUser: Something went wrong with db: ${e.code} - ${e.message}`, 'database_error')
       })
   )
 }

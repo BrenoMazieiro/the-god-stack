@@ -1,12 +1,12 @@
 import { ApolloError } from 'apollo-server'
 const moment = require('moment')
 
-/* Verifica se o valor esta setado */
+/* Checks for required values */
 const required = (value) => {
   return !value
 }
 
-/* Verifica o valor maximo permitido */
+/* Checks max value allowed */
 const max = (value, max) => {
   if (required(value)) {
     return false
@@ -26,7 +26,7 @@ const max = (value, max) => {
   return false
 }
 
-/* Verifica o valor minimo permitido */
+/* Checks min value allowed */
 const min = (value, min) => {
   if (required(value)) {
     return false
@@ -46,7 +46,7 @@ const min = (value, min) => {
   return false
 }
 
-/* Verifica se o valor e um numero */
+/* Checks if number */
 const numberValue = (value) => {
   if (required(value)) {
     return false
@@ -54,7 +54,7 @@ const numberValue = (value) => {
   return isNaN(value)
 }
 
-/* Verifica o valor minimo e maximo permitido */
+/* Checks for min and max */
 const length = (value, minimo, maximo) => {
   return !required(value) && (min(value, minimo) || max(value, maximo))
 }
@@ -64,7 +64,7 @@ const enumValue = (value, enums) => {
   return enums.find(e => e === value) === undefined
 }
 
-/* Verifica o valor minimo e maximo permitido */
+/* Checks for email */
 const email = (email) => {
   if (!email || email.length > 254){
     return true
@@ -91,6 +91,7 @@ const email = (email) => {
   return false
 }
 
+/* Chekcs for brazilian personal ID */
 const cpf = (value) => {
   if (required(value)) {
     return false
@@ -132,11 +133,12 @@ const cpf = (value) => {
   return false
 }
 
+/*Checks for brazilian company ID */
 const cnpj = (value) => {
 
   var cnpj = value.replace(/[^\d]+/g,'')
  
-    if(cnpj == '') return false
+  if(cnpj == '') return false
 
   if (cnpj.length != 14)
   return false
@@ -236,8 +238,7 @@ const getValueObject = (key, value) => {
 }
 
 /*
-* Verifica o valor máximo permitido
-* Retorna false quando não passa em alguma validação
+* It will throw an ApolloError if an erron was found
 */
 export const validation = (value, rules) => {
   if (rules === undefined) {

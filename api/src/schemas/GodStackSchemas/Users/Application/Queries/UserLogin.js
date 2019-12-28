@@ -13,7 +13,7 @@ export default (obj, params, ctx) => {
       const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: process.env.TOKEN_EXPIRE_IN })
       return { token }
     } else {
-      throw new ApolloError('User or password is incorrect', 'user_or_password_incorrect')
+      throw new ApolloError('User or password is incorrect!', 'user_or_password_incorrect')
     }
   })
 }

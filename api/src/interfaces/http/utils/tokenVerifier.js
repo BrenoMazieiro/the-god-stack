@@ -7,10 +7,10 @@ export const tokenVerifier = (token) => {
     try {
       decoded = jwt.verify(token, process.env.JWT_SECRET)
     } catch (e) {
-      throw new ApolloError('invalid_token', 401, ['Token is not valid!'])
+      throw new ApolloError('This is not a valid token!', 'invalid_token')
     }
     if (!decoded.id) {
-      throw new ApolloError('invalid_token', 401, ['Token is not valid!'])
+      throw new ApolloError('This is not a valid token!', 'invalid_token')
     } else {
       return decoded
     }

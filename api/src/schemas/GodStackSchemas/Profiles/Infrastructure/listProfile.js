@@ -10,8 +10,8 @@ const listaPerfis = (ctx) => {
       'a.name as _actions__name',
       'a.description as _actions__description',
     )
-    .join('profiles_actions_users as pivot', 'pivot.id_user_profile', 'p.id_user_profile')
-    .join('users_actions as a', 'pivot.id_user_action', 'a.id_user_action')
+    .join('profiles_actions_users as pau', 'pau.id_user_profile', 'p.id_user_profile')
+    .join('users_actions as a', 'pau.id_user_action', 'a.id_user_action')
   return (
     ctx.knexnest(sql).then((data) => {
       return data

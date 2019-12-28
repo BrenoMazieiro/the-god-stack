@@ -1,7 +1,7 @@
 import { ApolloError } from 'apollo-server'
 import consultaUsuarioPorId from './consultaUsuarioPorId'
 
-const alterarUsuario = (params, ctx) => {
+const toggleUserStatus = (params, ctx) => {
   return (
     ctx.knex('usuarios')
       .update({ativo: ctx.knex.raw('!ativo')})
@@ -14,4 +14,4 @@ const alterarUsuario = (params, ctx) => {
   )
 }
 
-export default alterarUsuario
+export default toggleUserStatus

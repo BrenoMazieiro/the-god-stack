@@ -2,7 +2,7 @@ import { ApolloError } from 'apollo-server'
 import crypto from 'crypto'
 import listUsers from './listUsers'
 
-const alterarUsuario = ({userData,id}, ctx) => {
+const updateUser = ({userData,id}, ctx) => {
   return (
     ctx.knex('users')
       .update({
@@ -21,8 +21,8 @@ const alterarUsuario = ({userData,id}, ctx) => {
         const params = {filters: {id}}
         return listUsers(ctx, params)
       })
-      .catch((e) => {throw new ApolloError(`Something went wrong with db: ${e.code} - ${e.message}`, 'database_error')})
+      .catch((e) => {throw new ApolloError(`updateUser: Something went wrong with db: ${e.code} - ${e.message}`, 'database_error')})
   )
 }
 
-export default alterarUsuario
+export default updateUser
