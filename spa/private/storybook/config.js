@@ -13,6 +13,11 @@ function loadStories() {
   req.keys().forEach((filename) => req(filename))
 }
 
+addDecorator(
+  withInfo({
+    header: false, // Global configuration for the info addon across all of your stories.
+  }),
+)
 addDecorator((story) => (
   <Suspense fallback={<h1>Loading...</h1>}>
     <ApolloProvider client={client}>
@@ -22,10 +27,5 @@ addDecorator((story) => (
     </ApolloProvider>
   </Suspense>
 ))
-addDecorator(
-  withInfo({
-    header: false, // Global configuration for the info addon across all of your stories.
-  }),
-)
 
 configure(loadStories, module)
