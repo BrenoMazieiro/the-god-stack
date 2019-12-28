@@ -113,7 +113,7 @@ Starting everything:
 ### **STEP 7 - Running Test**
 
 * BackEnd (soon): `docker exec -it api.local.thegodstack.com yarn test`
-* FrontEdn: `docker exec -it spa.local.thegodstack.com yarn test`
+* FrontEnd: `docker exec -it spa.local.thegodstack.com yarn test`
 
 ### **Step 8 - Insomnia (GraphQl)**
 
