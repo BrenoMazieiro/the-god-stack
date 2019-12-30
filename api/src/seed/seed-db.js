@@ -12,7 +12,7 @@ const normalUserPass = crypto.createHmac('sha256', process.env.HASH_SECRET).upda
 console.log('\n\n\ud83d\udd0c   Begining Database seeding...  \ud83d\udd0c\n\n')
 
 // add test user on profile 1 (super)
-var users = [
+const users = [
   {
     givenName: 'Super',
     familyName: 'User',

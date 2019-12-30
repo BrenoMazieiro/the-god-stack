@@ -1,7 +1,7 @@
 import { ApolloError } from 'apollo-server'
 
 const listActions = (ctx) => {
-  var sql = ctx.knex('users_actions as a')
+  const sql = ctx.knex('users_actions as a')
     .select(
       'a.id_user_action as _id',
       'a.name as _name',

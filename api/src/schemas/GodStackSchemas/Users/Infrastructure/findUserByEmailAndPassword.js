@@ -1,7 +1,7 @@
 import { ApolloError } from 'apollo-server'
 
 const findUserByEmailAndPassword = (ctx, email, password) => {
-  var sql = ctx.knex('users as u')
+  const sql = ctx.knex('users as u')
     .select(
       'u.id_user as _id',
       'u.givenName as _givenName',

@@ -111,11 +111,11 @@ const cpf = (value) => {
 		clearValue == "99999999999")
       return false
    
-  var add = 0	
+  let add = 0	
   
-  for (var i=0; i < 9; i ++)		
+  for (let i=0; i < 9; i ++)		
     add += parseInt(clearValue.charAt(i)) * (10 - i)
-    var rev = 11 - (add % 11)
+    let rev = 11 - (add % 11)
     if (rev == 10 || rev == 11)		
       rev = 0
       if (rev != parseInt(clearValue.charAt(9)))		
@@ -136,7 +136,7 @@ const cpf = (value) => {
 /*Checks for brazilian company ID */
 const cnpj = (value) => {
 
-  var cnpj = value.replace(/[^\d]+/g,'')
+  const cnpj = value.replace(/[^\d]+/g,'')
  
   if(cnpj == '') return false
 
@@ -156,17 +156,17 @@ const cnpj = (value) => {
     cnpj == "99999999999999")
     return false
     
-    var cnpjLength = cnpj.length - 2
-    var numbers = cnpj.substring(0,cnpjLength)
-    var digits = cnpj.substring(numbers)
-    var sum = 0
-    var pos = cnpjLength - 7
-    for (var i = cnpjLength; i >= 1; i--) {
+    let cnpjLength = cnpj.length - 2
+    let numbers = cnpj.substring(0,cnpjLength)
+    let digits = cnpj.substring(numbers)
+    let sum = 0
+    let pos = cnpjLength - 7
+    for (let i = cnpjLength; i >= 1; i--) {
         sum += numbers.charAt(cnpjLength - i) * pos--
     if (pos < 2)
         pos = 9
     }
-    var result = sum % 11 < 2 ? 0 : 11 - sum % 11
+    let result = sum % 11 < 2 ? 0 : 11 - sum % 11
     if (result != digits.charAt(0))
       return false
     
