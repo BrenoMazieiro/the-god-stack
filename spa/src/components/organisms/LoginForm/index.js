@@ -34,7 +34,7 @@ const LoginForm = ({
       />
       {errorMessage && <Block palette="danger">{errorMessage}</Block>}
       {submitting && <Button type="submit" disabled>Submitting...</Button>}
-      {!submitting && <Button type="submit" disabled={!isValid}>Login</Button>}
+      {!submitting && <Button id="login" type="submit" disabled={!isValid}>Login</Button>}
     </Form>
   )
 }

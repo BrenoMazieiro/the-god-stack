@@ -6,3 +6,5 @@ node_modules
 coverage
 webpack/webpack-assets.json
 .cache
+cypress/videos
+cypress/screenshots

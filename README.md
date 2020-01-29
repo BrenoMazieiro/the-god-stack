@@ -75,7 +75,7 @@ Grab a beer, wine or juice, because it is just an automated task. =)
 
 With docker and docker-compose installed jut go to the **ROOT** project folder:
 
-`docker build -t thegodstack-nodejs-knex registry-thegodstack/nodejs-knex` 
+`docker build -t thegodstack-nodejs-knex registry-thegodstack/nodejs-knex`
 
 #### **STEP 3 - Changing your hosts (MAC AND LINUX)   ==> (MANDATORY) <==**
 You need to go to your **/etc/hosts** file and ADD the lines below:  
