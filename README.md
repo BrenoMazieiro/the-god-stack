@@ -95,7 +95,7 @@ P.S.: There is an hosts file on windows aswell, but I do not know where, try goo
 Creating database:
 
 - MariaDb:  
-`docker-compose up -d mariadb.local.thegodstack.com && docker exec -it mariadb.local.thegodstack.com /bin/sh -c "mysql -uroot -pthegodstackpass -hlocalhost -e 'CREATE DATABASE thegodstack'"`
+`docker-compose up -d mariadb.local.thegodstack.com && sleep 20s && docker exec -it mariadb.local.thegodstack.com /bin/sh -c "mysql -uroot -pthegodstackpass -hlocalhost -e 'CREATE DATABASE thegodstack'"`
 
 Starting everything:
 
