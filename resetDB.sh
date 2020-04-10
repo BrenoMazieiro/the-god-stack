@@ -1,6 +1,6 @@
-echo "### Dropping leadsales"
+echo "### Dropping database"
 docker exec -it mariadb.local.thegodstack.com /bin/sh -c "mysql -uroot -pthegodstackpass -hlocalhost -e 'DROP DATABASE thegodstack'"
-echo "### Creating leadsales"
+echo "### Creating database"
 docker exec -it mariadb.local.thegodstack.com /bin/sh -c "mysql -uroot -pthegodstackpass -hlocalhost -e 'CREATE DATABASE thegodstack'"
 echo "### RollingBack"
 docker exec -it api.local.thegodstack.com knex migrate:rollback --all
