@@ -15,7 +15,7 @@ fi
 # If you are using a raw nodejs image add the line above
 # yarn install -g knex
 
-echo "### Creating config.js..."
+echo "### Creating environment.js..."
 node scripts/parseconfig.js
 
 # If there is package.json instal dependencies

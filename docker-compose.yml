@@ -1,8 +1,8 @@
 version: '3'
 services:
 
-  proxy.local.thegodstack.com:
-    container_name: proxy.local.thegodstack.com
+  proxy:
+    container_name: ${PROXY_URL}
     image: jwilder/nginx-proxy:alpine
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
@@ -15,10 +15,10 @@ services:
     networks:
       main:
         aliases:
-          - proxy.local.thegodstack.com
+          - ${PROXY_URL}
 
-  mariadb.local.thegodstack.com:
-    container_name: mariadb.local.thegodstack.com
+  mariadb:
+    container_name: ${DB_URL}
     image: mariadb:10.2.19
     volumes:
       - "./.data:/var/lib/mysql"
@@ -30,78 +30,78 @@ services:
     networks:
       main:
         aliases:
-          - mariadb.local.thegodstack.com
+          - ${DB_URL}
 
-  api.local.thegodstack.com:
-    container_name: api.local.thegodstack.com
+  api:
+    container_name: ${API_URL}
     image: thegodstack-nodejs-knex
     restart: always
     volumes:
       - "./api/:/opt/app-root/src/:rw"
     ports:
-      - 80
+      - ${CONTAINER_PORT}
     environment:
-      VIRTUAL_HOST: 'api.local.thegodstack.com'
-      PORT: 80
-      GRAPHQL_URI: 'http://api.local.thegodstack.com/'
-      GRAPHQL_LISTEN_PORT: 80
+      VIRTUAL_HOST: '${API_URL}'
+      PORT: ${CONTAINER_PORT}
+      GRAPHQL_URI: 'http://${API_URL}/'
+      GRAPHQL_LISTEN_PORT: ${CONTAINER_PORT}
       
-      ENV_ALIAS: 'development'
-      APP_ENV: 'development'
-      NODE_ENV: 'development'
+      ENV_ALIAS: "${ENVIRONMENT}"
+      APP_ENV: "${ENVIRONMENT}"
+      NODE_ENV: "${ENVIRONMENT}"
 
-      HASH_SECRET: 'someserioussupersecrethash'
-      JWT_SECRET: 'jwtverydificultsecret'
-      TOKEN_EXPIRE_IN: '48h'
+      HASH_SECRET: "${HASH_SECRET}"
+      JWT_SECRET: "${JWT_SECRET}"
+      TOKEN_EXPIRE_IN: "${TOKEN_EXPIRE_IN}"
 
-      ADMIN_EMAIL: "admin@thegodstack.com"
-      ADMIN_PASSWORD: "thegodstack"
+      ADMIN_EMAIL: "${ADMIN_EMAIL}"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD}"
       
-      WORKER: "on"
-      WORKER_EMAIL: "worker@thegodstack.com"
-      WORKER_PASSWORD: "thegodstack"
+      WORKER: "${WORKER}"
+      WORKER_EMAIL: "${WORKER_EMAIL}"
+      WORKER_PASSWORD: "${WORKER_PASSWORD}"
       
-      MARIAHOST: "mariadb.local.thegodstack.com"
-      MARIAUSER: "root"
-      MARIADATABASE: "thegodstack"
-      MARIAPASSWORD: "thegodstackpass"
+      MARIAHOST: "${DB_URL}"
+      MARIAUSER: "${MARIAUSER}"
+      MARIADATABASE: "${MARIADATABASE}"
+      MARIAPASSWORD: "${MARIAPASSWORD}"
       
-      MARIAHOSTMIGRATIONS: "mariadb.local.thegodstack.com"
-      MARIAUSERMIGRATIONS: "root"
-      MARIADATABASEMIGRATIONS: "thegodstack"
-      MARIAPASSWORDMIGRATIONS: "thegodstackpass"
+      MARIAHOSTMIGRATIONS: "${DB_URL}"
+      MARIAUSERMIGRATIONS: "${MARIAUSERMIGRATIONS}"
+      MARIADATABASEMIGRATIONS: "${MARIADATABASEMIGRATIONS}"
+      MARIAPASSWORDMIGRATIONS: "${MARIAPASSWORDMIGRATIONS}"
       
-      MARIAPORT: "3306"
-      DEBUG: 'True'
+      MARIAPORT: "${MARIAPORT}"
+      DEBUG: "${DEBUG}"
     # command: sleep 5d
-    command: ['./wait-for-it.sh', '-t', '0', 'mariadb.local.thegodstack.com:3306', '--', '.s2i/bin/assemble']
+    command: ['./wait-for-it.sh', '-t', '0', '${DB_URL}:3306', '--', '.s2i/bin/assemble']
     networks:
       main:
         aliases:
-          - api.local.thegodstack.com
+          - ${API_URL}
 
-  spa.local.thegodstack.com:
-    container_name: spa.local.thegodstack.com
+  spa:
+    container_name: ${SPA_URL}
     image: thegodstack-nodejs-knex
     restart: always
     ports:
-      - 80
+      - ${CONTAINER_PORT}
     volumes:
       - "./spa:/opt/app-root/src:rw"
     environment:
-      VIRTUAL_HOST: 'spa.local.thegodstack.com'
-      VIRTUAL_PORT: 80
-      PORT: 80
-      APP_ENV: 'development'
-      ENV_ALIAS: 'development'
-      NODE_ENV: 'development'
-      API_URL: 'http://api.local.thegodstack.com/'
-      WS_URL: 'ws://api.local.thegodstack.com/graphql'
-    command: ['./wait-for-it.sh', '-t', '0', 'api.local.thegodstack.com:80', '--', '.s2i/bin/assemble']
+      VIRTUAL_HOST: '${SPA_URL}'
+      VIRTUAL_PORT: ${CONTAINER_PORT}
+      PORT: ${CONTAINER_PORT}
+      APP_ENV: "${ENVIRONMENT}"
+      ENV_ALIAS: "${ENVIRONMENT}"
+      NODE_ENV: "${ENVIRONMENT}"
+      API_URL: 'http://${API_URL}/'
+      WS_URL: 'ws://${API_URL}/graphql'
+    command: ['./wait-for-it.sh', '-t', '0', '${API_URL}:${CONTAINER_PORT}', '--', '.s2i/bin/assemble']
     networks:
       main:
         aliases:
-          - spa.local.thegodstack.com
+          - ${SPA_URL}
 
 networks:
   main:
