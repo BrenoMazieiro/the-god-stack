@@ -1,0 +1,29 @@
+{
+  "name": "spathegodstack",
+  "version": "1.0.0",
+  "description": "This is the single page application for the god stack",
+  "main": "src/index.js",
+  "author": "Breno Mazieiro e Raphael Peruzzolo",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --mode development"
+  },
+  "dependencies": {
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.5.1",
+    "file-loader": "^6.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "style-loader": "^1.1.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
