@@ -32,8 +32,8 @@ export default async (_, { token }, ctx) => {
             ),
           },
           sub: user.id,
-          iss: process.env.JWT_ISS || 'nodejsApiBackoffice',
-          aud: process.env.JWT_AUD || 'vigil',
+          iss: process.env.JWT_ISS || 'thegodstackapi',
+          aud: process.env.JWT_AUD || 'thegodstack',
         },
       )
     ),
