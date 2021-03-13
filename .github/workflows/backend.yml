@@ -6,8 +6,6 @@ name: Node.js Graphql CI
 on:
   push:
     branches: [ '**' ]
-    paths:
-      - 'backend/*'
   pull_request:
     branches: [ '**' ]
 
@@ -15,6 +13,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
 
     strategy:
       matrix:
