@@ -6,6 +6,8 @@ name: Node.js Graphql CI
 on:
   push:
     branches: [ '**' ]
+    paths:
+      - 'frontend/*'
   pull_request:
     branches: [ '**' ]
 
@@ -28,7 +30,6 @@ jobs:
       with:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-    - run: cd backend
     - run: yarn install
     - run: yarn lint
     - run: yarn test
