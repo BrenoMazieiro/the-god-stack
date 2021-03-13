@@ -1,107 +1,105 @@
 version: '3'
+networks:
+  main:
+
 services:
 
   proxy:
-    container_name: ${PROXY_URL}
+    networks:
+      main:
+        aliases:
+          - "${PROXY_URL}"
+    container_name: "${PROXY_URL}"
     image: jwilder/nginx-proxy:alpine
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
       - "./proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
-      - "./nginx/certs:/etc/nginx/certs:ro"
     ports:
       - "80:80"
       - "443:443"
     restart: unless-stopped
-    networks:
-      main:
-        aliases:
-          - ${PROXY_URL}
 
-  mariadb:
-    container_name: ${DB_URL}
-    image: mariadb:10.2.19
-    volumes:
-      - "./.data:/var/lib/mysql"
-    ports:
-      - '3306:3306'
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    restart: unless-stopped
+  db:
     networks:
       main:
         aliases:
-          - ${DB_URL}
+          - "${DB_HOST}"
+    container_name: "${DB_HOST}"
+    image: postgres:12.4-alpine
+    volumes:
+      - "./.data:/var/lib/postgresql/data:rw"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "${DB_NAME}"
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${DB_PASS}"
+    restart: unless-stopped
 
   api:
-    container_name: ${API_URL}
-    image: thegodstack-nodejs-knex
-    restart: always
-    volumes:
-      - "./api/:/opt/app-root/src/:rw"
-    ports:
-      - ${CONTAINER_PORT}
-    environment:
-      VIRTUAL_HOST: '${API_URL}'
-      PORT: ${CONTAINER_PORT}
-      GRAPHQL_URI: 'http://${API_URL}/'
-      GRAPHQL_LISTEN_PORT: ${CONTAINER_PORT}
-      
-      ENV_ALIAS: "${ENVIRONMENT}"
-      APP_ENV: "${ENVIRONMENT}"
-      NODE_ENV: "${ENVIRONMENT}"
-
-      HASH_SECRET: "${HASH_SECRET}"
-      JWT_SECRET: "${JWT_SECRET}"
-      TOKEN_EXPIRE_IN: "${TOKEN_EXPIRE_IN}"
-
-      ADMIN_EMAIL: "${ADMIN_EMAIL}"
-      ADMIN_PASSWORD: "${ADMIN_PASSWORD}"
-      
-      WORKER: "${WORKER}"
-      WORKER_EMAIL: "${WORKER_EMAIL}"
-      WORKER_PASSWORD: "${WORKER_PASSWORD}"
-      
-      MARIAHOST: "${DB_URL}"
-      MARIAUSER: "${MARIAUSER}"
-      MARIADATABASE: "${MARIADATABASE}"
-      MARIAPASSWORD: "${MARIAPASSWORD}"
-      
-      MARIAHOSTMIGRATIONS: "${DB_URL}"
-      MARIAUSERMIGRATIONS: "${MARIAUSERMIGRATIONS}"
-      MARIADATABASEMIGRATIONS: "${MARIADATABASEMIGRATIONS}"
-      MARIAPASSWORDMIGRATIONS: "${MARIAPASSWORDMIGRATIONS}"
-      
-      MARIAPORT: "${MARIAPORT}"
-      DEBUG: "${DEBUG}"
-    # command: sleep 5d
-    command: ['./wait-for-it.sh', '-t', '0', '${DB_URL}:3306', '--', '.s2i/bin/assemble']
     networks:
       main:
         aliases:
-          - ${API_URL}
+          - "${API_URL}"
+    container_name: "${API_URL}"
+    build: ./registry/backend/${ENVIRONMENT}/
+    volumes:
+      - "./backend:/opt/app-root/src:rw"
+    ports:
+      - ${HTTP_PORT}
+    environment:
+      VIRTUAL_HOST: "${API_URL}"
+      VIRTUAL_PORT: ${HTTP_PORT}
+      PORT: ${HTTP_PORT}
+      APP_ENV: "${ENVIRONMENT}"
+      NODE_ENV: "${ENVIRONMENT}"
+
+      HASH_SECRET: ${HASH_SECRET}
+      JWT_SECRET: ${JWT_SECRET}
+      TOKEN_EXPIRE_IN: ${TOKEN_EXPIRE_IN}
+      REFRESHTOKEN_EXPIRE_IN_DAYS: ${REFRESHTOKEN_EXPIRE_IN_DAYS}
+      SIMPLE_USER: "${SIMPLE_USER}"
+      SYSTEM_USER: "${SYSTEM_USER}"
+      COMPANY_DOMAIN: "thegodstack.com"
+      JWT_AUD: ${JWT_AUD}
+      JWT_ISS: ${JWT_ISS}
+
+      EMAIL_FROM: ${EMAIL_FROM}
+      SENDGRID_API_KEY: ${SENDGRID_API_KEY}
+      
+      SPA_URL: ${SPA_URL}
+
+      DB_PORT: "${DB_PORT}"
+      DB_HOST: "${DB_HOST}"
+      DB_USER: "${DB_USER}"
+      DB_PASS: "${DB_PASS}"
+      DB_DATABASE: "${DB_NAME}"
+
+      DEBUG: "true"
+    command: ['./wait-for-it.sh', '-t', '0', '${DB_HOST}:5432', '--', '.s2i/bin/assemble']
+    restart: unless-stopped
 
   spa:
-    container_name: ${SPA_URL}
-    image: thegodstack-nodejs-knex
-    restart: always
-    ports:
-      - ${CONTAINER_PORT}
-    volumes:
-      - "./spa:/opt/app-root/src:rw"
-    environment:
-      VIRTUAL_HOST: '${SPA_URL}'
-      VIRTUAL_PORT: ${CONTAINER_PORT}
-      PORT: ${CONTAINER_PORT}
-      APP_ENV: "${ENVIRONMENT}"
-      ENV_ALIAS: "${ENVIRONMENT}"
-      NODE_ENV: "${ENVIRONMENT}"
-      API_URL: 'http://${API_URL}/'
-      WS_URL: 'ws://${API_URL}/graphql'
-    command: ['./wait-for-it.sh', '-t', '0', '${API_URL}:${CONTAINER_PORT}', '--', '.s2i/bin/assemble']
     networks:
       main:
         aliases:
-          - ${SPA_URL}
+          - "${SPA_URL}"
+    container_name: "${SPA_URL}"
+    build: ./registry/frontend/${ENVIRONMENT}/
+    volumes:
+      - "./frontend:/opt/app-root/src:rw"
+    ports:
+      - ${HTTP_PORT}
+    environment:
+      VIRTUAL_HOST: "${SPA_URL}"
+      VIRTUAL_PORT: ${HTTP_PORT}
+      PORT: ${HTTP_PORT}
+      APP_ENV: "${ENVIRONMENT}"
+      NODE_ENV: "${ENVIRONMENT}"
+      HTTP_API_URL: 'http://${API_URL}/'
+      WS_API_URL: 'ws://${API_URL}/graphql'
+      CLIENT: "${CLIENT}"
 
-networks:
-  main:
+      DEBUG: "true"
+    command: ['./wait-for-it.sh', '-t', '0', '${API_URL}:${HTTP_PORT}', '--', '.s2i/bin/assemble']
+    restart: unless-stopped

@@ -25,8 +25,8 @@ Just find yours googling: docker install < DISTRO NAME >
 ## Database instructions
 
 Databases available in this project at the moment:
-- Mariadb (as a docker container)
-- Postgres (soon)
+- Mariadb (soon)
+- Postgres (as a docker container)
 - MongoDb (soon)
 - Neo4j (soon)
 
@@ -63,78 +63,34 @@ Take a look at: https://github.com/trojanowski/react-apollo-hooks
 &nbsp;  
 &nbsp;  
 
-## Install Instructions - Lets do IT!
+# Install
 
-###  **STEP 1 - Soul preparation**
-
-Grab a beer, wine or juice, because it is just an automated task. =)
-
-###  **STEP 2 - Devops (this may take a bit to complete!)**
-
-####  Build nodejs image (depending on your hardware this may take a while, be **patient!**):
-
-With docker and docker-compose installed jut go to the **ROOT** project folder:
-
-`docker build -t thegodstack-nodejs-knex registry-thegodstack/nodejs-knex`
-
-#### **STEP 3 - Changing your hosts (MAC AND LINUX)   ==> (MANDATORY) <==**
-You need to go to your **/etc/hosts** file and ADD the lines below:  
-```
-127.0.0.1   proxy.local.thegodstack.com 
-127.0.0.1   mariadb.local.thegodstack.com
-127.0.0.1   api.local.thegodstack.com
-127.0.0.1   spa.local.thegodstack.com
-```
-
-Now it will be possible to use a real full address, and not the old (and lame) **'localhost:port'**
-
-P.S.: There is an hosts file on windows aswell, but I do not know where, try google! =)
-
-###  **STEP 4 - Starting everything!**
-
-Creating database:
-
-- MariaDb:  
-`docker-compose up -d mariadb && sleep 20s && docker exec -it mariadb.local.thegodstack.com /bin/sh -c "mysql -uroot -pthegodstackpass -hlocalhost -e 'CREATE DATABASE thegodstack'"`
-
-Starting everything:
+run
 
 `docker-compose up`
 
-### **STEP 5 - Seeding**
+# Utils (not mandatory, just a little help!)
 
-`docker exec -it api.local.thegodstack.com yarn seedDb`
+## Clean docker
+`docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)`
 
-### **STEP 6 - Access Urls**
+## execute api bash 
+`docker exec -it api.local.thegodstack.com bash`
 
-* API: api.local.thegodstack.com
-* SPA: spa.local.thegodstack.com
+## execute spa bash 
+`docker exec -it spa.local.thegodstack.com bash`
 
-### **STEP 7 - Running Test**
+## Create migration
+`docker exec -it api.local.thegodstack.com knex migrate:make --migrations-directory migrations <TABLE>`
 
-* BackEnd (soon): `docker exec -it api.local.thegodstack.com yarn test`
-* FrontEnd: `docker exec -it spa.local.thegodstack.com yarn test`
+## Run migration
+`docker exec -it api.local.thegodstack.com knex migrate:latest --knexfile knexfile.cjs --esm`
 
-### **Step 8 - Insomnia (GraphQl)**
+## RollBack migration
+`docker exec -it api.local.thegodstack.com knex migrate:down --knexfile knexfile.cjs --esm`
 
-We are using GraphQl so Postman is not a good call, but we have insomnia to help us:
+## Change file owner
+`sudo chown <USER>:<USER> <FILE>`
 
-Download it here: https://insomnia.rest/download/
-
-If you are using any kind of Linux that is not Ubuntu I strongly recomend to Download the AppImage package.
-
-Here: https://github.com/getinsomnia/insomnia/releases/
-
-ex: Insomnia-7.0.3.AppImage or Insomnia-<LAST_VERSION>.AppImage
-
-Open insomnia and import the confs from: api/docs
-
-
-## **Extra Info**
-
-As you can figure it out by docker-compose.yml, there is this variables
-  - ADMIN_NAME: "Breno Mazieiro"
-  - ADMIN_EMAIL: "admin@thegodstack.com"
-  - ADMIN_PASS: "thegodstack"
-
-It will be used on seeding!
+## change file permission to executable
+`sudo chmod +x install.sh`
