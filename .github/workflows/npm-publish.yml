@@ -6,6 +6,8 @@ name: Node.js Graphql CI
 on:
   push:
     branches: [ '**' ]
+    paths:
+      - 'backend/*'
   pull_request:
     branches: [ '**' ]
 
