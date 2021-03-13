@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# If there is any error in the building process stop
+set -e
+# Move hidden files aswel
+shopt -s dotglob
+
+# If there is package.json instal dependencies
+if [ -f package.json ]; then
+  echo "### Found package.json, installing the dependencies..."
+  yarn install
+fi
+
+# echo "### Linting..."
+# yarn lint
+
+node scripts/parseconfig.js
+
+# When we are local, it is needed to go to deploy
+# but it is not needed when you are in a server like openshift.
+if [ $APP_ENV == 'development' ]; then
+  .s2i/bin/run
+else
+  echo "### Removing trash"
+  rm .cache/ .config/ -Rf
+  echo "### Build process success!"
+  .s2i/bin/run
+fi
