@@ -1,7 +1,6 @@
 import createUser from '../../Infrastructure/createUser.js'
 import updateUser from '../../Infrastructure/updateUser.js'
 import deleteUser from '../../Infrastructure/deleteUser.js'
-import sendVerificationEmailToUser from '../../Infrastructure/sendVerificationEmailToUser.js'
 import validator from '../_validators/index.js'
 
 export default async (_, { id, deleteIt, userData }, ctx) => {
@@ -17,8 +16,7 @@ export default async (_, { id, deleteIt, userData }, ctx) => {
     /** Will create user */
     validator(ctx, userData)
     const approvalToken = ctx.core.encrypt.weak.encrypt(userData.email)
-    const user = await createUser(ctx, { ...userData, approvalToken })
-    return sendVerificationEmailToUser(ctx, user, approvalToken)
+    return createUser(ctx, { ...userData, approvalToken })
   }
 
   /** Will delete user */

@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon ./src/index.js",
     "lint": "eslint src/** migrations/**",
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest --verbose"
   },

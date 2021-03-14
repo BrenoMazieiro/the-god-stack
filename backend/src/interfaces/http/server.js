@@ -34,4 +34,4 @@ server.init = () => {
   })
 }
 
-export default server
+export { server }

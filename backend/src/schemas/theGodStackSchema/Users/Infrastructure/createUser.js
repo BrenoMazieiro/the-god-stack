@@ -1,6 +1,7 @@
 import readRoleByName from './readRoleByName.js'
 import readUserByUsername from './readUserByUsername.js'
 import readUsers from './readUsers.js'
+import addUserToEmailQueue from './addUserToEmailQueue.js'
 
 export default async (ctx, userData) => {
   const role = await readRoleByName(ctx, process.env.SIMPLE_USER || 'Employee')
@@ -17,9 +18,10 @@ export default async (ctx, userData) => {
       created_by: user.id,
       updated_by: user.id,
     }, 'id')
-    .then((data) => {
-      if (!data[0]) return null
-      return readUsers(ctx, { id: data[0] })
+    .then((createdUser) => {
+      if (!createdUser[0]) return null
+      addUserToEmailQueue(ctx, createdUser[0], 'approval_token')
+      return readUsers(ctx, { id: createdUser[0] })
     })
     .catch((error) => {
       if (error.constraint === 'users_email_unique') {

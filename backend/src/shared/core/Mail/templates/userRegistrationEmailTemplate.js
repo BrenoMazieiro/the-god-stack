@@ -7,7 +7,7 @@ const userRegistrationEmailTemplateText = (code) => `
 `
 
 const userRegistrationEmailTemplateSubject = () => `
- User Registration - BackOffice Vigil
+ User Registration - TheGodStack
 `
 
 export {
