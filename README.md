@@ -65,8 +65,14 @@ Take a look at: https://github.com/trojanowski/react-apollo-hooks
 
 # Install
 
-run
+## .env file
 
+Create a .env file in the root folder with the .env_example variables  
+Add a sendgrid apikey on the .env (in order to send emails)  
+If you dont the system works but you will not receive a email on user create.
+
+## Running
+run
 `docker-compose up`
 
 # Utils (not mandatory, just a little help!)
