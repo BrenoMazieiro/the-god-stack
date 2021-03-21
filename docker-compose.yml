@@ -12,15 +12,10 @@ services:
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.${ENTRYPOINT}.address=:${HTTP_PROTOCOL_PORT}"
-      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      #- "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
-      - "--certificatesresolvers.myresolver.acme.email=${CERTIFICATE_EMAIL}"
-      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
       - "${HTTP_PROTOCOL_PORT}:${HTTP_PROTOCOL_PORT}"
       - "8080:8080"
     volumes:
-      - "./letsencrypt:/letsencrypt"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   db:
@@ -39,7 +34,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.postgres.rule=Host(`${DB_HOST}`)"
       - "traefik.http.routers.postgres.entrypoints=${ENTRYPOINT}"
-      - "traefik.http.routers.postgres.tls.certresolver=myresolver"
 
   api:
     container_name: "${API_URL}"
@@ -81,7 +75,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.api.rule=Host(`${API_URL}`)"
       - "traefik.http.routers.api.entrypoints=${ENTRYPOINT}"
-      - "traefik.http.routers.api.tls.certresolver=myresolver"
 
   spa:
     container_name: "${SPA_URL}"
@@ -104,4 +97,3 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.spa.rule=Host(`${SPA_URL}`)"
       - "traefik.http.routers.spa.entrypoints=${ENTRYPOINT}"
-      - "traefik.http.routers.spa.tls.certresolver=myresolver"
