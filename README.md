@@ -69,7 +69,21 @@ Take a look at: https://github.com/trojanowski/react-apollo-hooks
 
 Create a .env file in the root folder with the .env_example variables  
 Add a sendgrid apikey on the .env (in order to send emails)  
-If you dont the system works but you will not receive a email on user create.
+If you don't do that the system will work, but you will not receive an email on user create.
+
+## hosts file (Mandatory)
+
+Change your **/etc/hosts** file and ADD the lines below:  
+```
+127.0.0.1   proxy.local.thegodstack.com 
+127.0.0.1   mariadb.local.thegodstack.com
+127.0.0.1   api.local.thegodstack.com
+127.0.0.1   spa.local.thegodstack.com
+```
+
+Now it will be possible to use a real full address, and not the old (and lame) **'localhost:port'**
+
+P.S.: There is an hosts file on windows aswell, but I do not know where, try google! =)
 
 ## Running
 run
