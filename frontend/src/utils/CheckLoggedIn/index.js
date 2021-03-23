@@ -9,4 +9,4 @@ const CheckLoggedInn = () => {
   return true
 }
 
-export { CheckLoggedInn }
+export default CheckLoggedInn

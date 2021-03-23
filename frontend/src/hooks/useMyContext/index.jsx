@@ -16,4 +16,4 @@ const useMyContext = () => {
   }
 }
 
-export { useMyContext }
+export default useMyContext

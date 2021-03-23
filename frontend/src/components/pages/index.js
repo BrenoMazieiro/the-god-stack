@@ -1,3 +1,3 @@
-export * from './HomePage'
-export * from './LoginPage'
-export * from './LoggedPage'
+export { default as HomePage } from './HomePage'
+export { default as LoginPage } from './LoginPage'
+export { default as LoggedPage } from './LoggedPage'
