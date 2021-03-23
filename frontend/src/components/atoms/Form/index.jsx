@@ -20,4 +20,4 @@ Form.propTypes = {
   children: PropTypes.any.isRequired,
 }
 
-export { Form }
+export default Form

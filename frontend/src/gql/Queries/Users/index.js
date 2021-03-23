@@ -31,4 +31,4 @@ query Users($id: ID, $deleted: Boolean, $offset: Int, $limit: Int){
 }
 `
 
-export { Users }
+export default Users

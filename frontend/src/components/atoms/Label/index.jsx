@@ -26,4 +26,4 @@ Label.propTypes = {
   id: PropTypes.string.isRequired,
 }
 
-export { Label }
+export default Label

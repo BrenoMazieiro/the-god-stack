@@ -26,4 +26,4 @@ MainTemplate.propTypes = {
   footer: PropTypes.node.isRequired,
 }
 
-export { MainTemplate }
+export default MainTemplate

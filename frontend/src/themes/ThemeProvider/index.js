@@ -22,4 +22,4 @@ ThemeProvider.propTypes = {
   children: PropTypes.any.isRequired,
 }
 
-export { ThemeProvider }
+export default ThemeProvider

@@ -35,4 +35,4 @@ LabeledInput.propTypes = {
   label: PropTypes.node.isRequired,
 }
 
-export { LabeledInput }
+export default LabeledInput

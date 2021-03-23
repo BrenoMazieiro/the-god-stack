@@ -25,4 +25,4 @@ GenericTemplate.propTypes = {
   children: PropTypes.any.isRequired,
 }
 
-export { GenericTemplate }
+export default GenericTemplate

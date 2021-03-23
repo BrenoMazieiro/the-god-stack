@@ -1,6 +1,6 @@
 /** Mutations */
-export { RefreshUserToken } from './Mutations/RefreshUserToken'
-export { UserLogin } from './Mutations/UserLogin'
+export { default as RefreshUserToken } from './Mutations/RefreshUserToken'
+export { default as UserLogin } from './Mutations/UserLogin'
 
 /** Queries */
-export { Users } from './Queries/Users'
+export { default as Users } from './Queries/Users'

@@ -45,4 +45,4 @@ LoginForm.propTypes = {
   errorMessage: PropTypes.string,
 }
 
-export { LoginForm }
+export default LoginForm

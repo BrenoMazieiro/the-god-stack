@@ -15,4 +15,4 @@ Input.propTypes = {
   type: PropTypes.string.isRequired,
 }
 
-export { Input }
+export default Input

@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { Div } from '.'
+import Div from '.'
 
 const wrap = ({ id, children }) => shallow(<Div id={id}>{children}</Div>)
 
