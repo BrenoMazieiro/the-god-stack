@@ -26,4 +26,4 @@ Button.propTypes = {
   size: PropTypes.string,
 }
 
-export { Button }
+export default Button

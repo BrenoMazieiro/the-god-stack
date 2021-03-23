@@ -13,4 +13,4 @@ mutation ($username: String!, $password: String!){
 }
 `
 
-export { UserLogin }
+export default UserLogin

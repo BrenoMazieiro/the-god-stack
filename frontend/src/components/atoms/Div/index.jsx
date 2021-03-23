@@ -17,4 +17,4 @@ Div.propTypes = {
   children: PropTypes.any,
 }
 
-export { Div }
+export default Div

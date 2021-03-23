@@ -1,1 +1,1 @@
-export * from './useMyContext'
+export { default as useMyContext } from './useMyContext'

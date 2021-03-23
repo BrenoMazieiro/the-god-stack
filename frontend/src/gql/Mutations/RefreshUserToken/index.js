@@ -11,4 +11,4 @@ mutation ($refreshToken: String!) {
 }
 `
 
-export { RefreshUserToken }
+export default RefreshUserToken

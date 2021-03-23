@@ -1,1 +1,1 @@
-export { CheckLoggedInn } from './CheckLoggedIn'
+export { default as CheckLoggedInn } from './CheckLoggedIn'

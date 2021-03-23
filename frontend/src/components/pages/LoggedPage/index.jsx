@@ -16,4 +16,4 @@ LoggedPage.propTypes = {
   children: PropTypes.any.isRequired,
 }
 
-export { LoggedPage }
+export default LoggedPage
