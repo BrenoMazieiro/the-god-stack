@@ -15,7 +15,7 @@ const Wrapper = styled(Div)`
 const GenericTemplate = ({ children }) => {
   const { theme } = useMyContext()
   return (
-    <Wrapper theme={theme}>
+    <Wrapper theme={theme} id="GenericTemplate">
       {children}
     </Wrapper>
   )

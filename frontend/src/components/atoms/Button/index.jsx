@@ -16,12 +16,13 @@ const ButtonWrapper = styled.button`
   height: 100%;
 `
 
-const Button = ({ type, size = 'lg' }) => {
+const Button = ({ type, size = 'lg', children }) => {
   const { theme } = useMyContext()
-  return <ButtonWrapper type={type} theme={theme} size={size}>Logar</ButtonWrapper>
+  return <ButtonWrapper type={type} theme={theme} size={size}>{children}</ButtonWrapper>
 }
 
 Button.propTypes = {
+  children: PropTypes.any,
   type: PropTypes.string.isRequired,
   size: PropTypes.string,
 }

@@ -9,7 +9,7 @@ const HomePage = () => {
     history.push('/login')
   })
   return (
-    <LoggedPage idPage="Homepage">
+    <LoggedPage id="homepage">
       <MainTemplate
         header={<div>Header</div>}
         footer={<div>Footer</div>}
