@@ -4,7 +4,7 @@ import { HomePage, LoginPage } from 'components'
 
 const Routes = () => {
   return (
-    <Switch>
+    <Switch id="Routes">
       <Route exact path="/">
         <HomePage />
       </Route>
@@ -15,4 +15,4 @@ const Routes = () => {
   )
 }
 
-export { Routes }
+export default Routes
