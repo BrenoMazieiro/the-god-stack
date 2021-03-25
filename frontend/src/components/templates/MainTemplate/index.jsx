@@ -6,7 +6,7 @@ import {
 
 const MainTemplate = ({ header, children, footer }) => {
   return (
-    <Wrapper>
+    <Wrapper id="MainTemplate">
       <HeaderWrapper>
         {header}
       </HeaderWrapper>

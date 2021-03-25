@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import './i18n'
 import { GlobalStyles, ThemeProvider } from 'themes'
 import { client } from './apolloConfig'
-import { App } from './components/App'
+import App from './components/App'
 
 const renderApp = () => {
   return (

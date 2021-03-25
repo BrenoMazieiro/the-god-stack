@@ -32,7 +32,7 @@ const LabeledInput = forwardRef(({
 LabeledInput.propTypes = {
   type: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  label: PropTypes.node.isRequired,
+  label: PropTypes.string.isRequired,
 }
 
 export default LabeledInput

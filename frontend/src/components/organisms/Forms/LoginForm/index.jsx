@@ -18,7 +18,7 @@ const LoginForm = ({
 }) => {
   const { theme } = useMyContext()
   return (
-    <Form handleSubmit={handleSubmit}>
+    <Form handleSubmit={handleSubmit} id="LoginForm">
       <LabeledInput
         type="text"
         id="username"
@@ -33,7 +33,7 @@ const LoginForm = ({
         ref={password}
       />
       <Button type="submit" size="sm">Logar</Button>
-      {errorMessage && <ErrorWrapper theme={theme}>{errorMessage}</ErrorWrapper>}
+      {errorMessage && <ErrorWrapper id="errorMessage" theme={theme}>{errorMessage}</ErrorWrapper>}
     </Form>
   )
 }

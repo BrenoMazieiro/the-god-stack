@@ -1,10 +1,10 @@
 import React from 'react'
-import { Routes } from './Routes'
+import Routes from './Routes'
 
 const App = () => {
   return (
-    <Routes />
+    <Routes id="App" />
   )
 }
 
-export { App }
+export default App

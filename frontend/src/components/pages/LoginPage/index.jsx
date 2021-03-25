@@ -35,7 +35,7 @@ const LoginPage = () => {
   )
 
   return (
-    <GenericTemplate>
+    <GenericTemplate id="LoginPage">
       <LoginForm handleSubmit={handleSubmit} username={username} password={password} errorMessage={errorMessage} />
     </GenericTemplate>
   )
