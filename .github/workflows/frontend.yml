@@ -33,5 +33,7 @@ jobs:
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - run: yarn install
     - run: yarn lint
+    - run: pwd
+    - run: ls -lah
     - run: cp ./frontend/src/environment/index_example.js ./frontend/src/environment/index.js
     - run: yarn test
