@@ -76,7 +76,7 @@ If you don't do that the system will work, but you will not receive an email on 
 Change your **/etc/hosts** file and ADD the lines below:  
 ```
 127.0.0.1   proxy.local.thegodstack.com 
-127.0.0.1   mariadb.local.thegodstack.com
+127.0.0.1   pg.local.thegodstack.com
 127.0.0.1   api.local.thegodstack.com
 127.0.0.1   spa.local.thegodstack.com
 ```
