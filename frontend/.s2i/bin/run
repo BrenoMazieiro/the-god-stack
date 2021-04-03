@@ -7,5 +7,5 @@
 if [ $APP_ENV == 'development' ]; then
   yarn dev
 else
-  serve public
+  serve public -l tcp://0.0.0.0:3000 -s
 fi

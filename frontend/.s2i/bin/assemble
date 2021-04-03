@@ -13,8 +13,11 @@ fi
 
 # echo "### Linting..."
 # yarn lint
-
 node scripts/parseconfig.js
+
+if [ $APP_ENV != 'development' ]; then
+  yarn build
+fi
 
 # When we are local, it is needed to go to deploy
 # but it is not needed when you are in a server like openshift.
