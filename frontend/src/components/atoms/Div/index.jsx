@@ -4,10 +4,9 @@ import styled from 'styled-components'
 
 const DivWrapper = styled.div``
 
-const Div = ({ children, ...props }) => {
+const Div = ({ children, className }) => {
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <DivWrapper {...props}>
+    <DivWrapper className={className}>
       {children}
     </DivWrapper>
   )
@@ -15,6 +14,7 @@ const Div = ({ children, ...props }) => {
 
 Div.propTypes = {
   children: PropTypes.any,
+  className: PropTypes.any,
 }
 
 export default Div
