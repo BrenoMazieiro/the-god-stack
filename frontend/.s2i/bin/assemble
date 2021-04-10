@@ -8,7 +8,7 @@ shopt -s dotglob
 # If there is package.json instal dependencies
 if [ -f package.json ]; then
   echo "### Found package.json, installing the dependencies..."
-  yarn install
+  yarn install --production=false
 fi
 
 # echo "### Linting..."

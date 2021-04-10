@@ -7,5 +7,5 @@
 if [ $APP_ENV == 'development' ]; then
   yarn dev
 else
-  node index.js
+  node src/index.js
 fi

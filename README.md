@@ -86,8 +86,10 @@ Now it will be possible to use a real full address, and not the old (and lame) *
 P.S.: There is an hosts file on windows aswell, but I do not know where, try google! =)
 
 ## Running
-run
-`docker-compose up`
+Run in terminal:  
+
+If first time: `./install`  
+Else: `docker-compose up`
 
 # Utils (not mandatory, just a little help!)
 
@@ -109,8 +111,3 @@ run
 ## RollBack migration
 `docker exec -it api.local.thegodstack.com knex migrate:down --knexfile knexfile.cjs --esm`
 
-## Change file owner
-`sudo chown <USER>:<USER> <FILE>`
-
-## change file permission to executable
-`sudo chmod +x install.sh`

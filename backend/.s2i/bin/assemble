@@ -16,9 +16,10 @@ if [ -f package.json ]; then
     yarn install --production=true
   fi
 fi
-
-echo "### Linting..."
-yarn lint
+if [ $APP_ENV == 'development' ]; then
+  echo "### Linting..."
+  yarn lint
+fi
 
 # if [ $WORKER == 'true' ]; then
   echo "### Runing migrations"

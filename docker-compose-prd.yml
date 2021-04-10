@@ -7,17 +7,18 @@ services:
     image: "traefik:v2.4"
     container_name: "traefik"
     command:
-      #- "--log.level=DEBUG"
       - "--api.insecure=true"
       - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.${ENTRYPOINT}.address=:${HTTP_PROTOCOL_PORT}"
-      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      #- "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
-      - "--certificatesresolvers.myresolver.acme.email=${CERTIFICATE_EMAIL}"
-      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+      - "--entrypoints.http.address=:80"
+      - "--entrypoints.https.address=:443"
+      - "--global.sendAnonymousUsage=false"
+      - "--certificatesresolvers.ssl.acme.httpchallenge=true"
+      - "--certificatesresolvers.ssl.acme.httpchallenge.entrypoint=http"
+      - "--certificatesresolvers.ssl.acme.email=${CERTIFICATE_EMAIL}"
+      - "--certificatesresolvers.ssl.acme.storage=/letsencrypt/acme.json"
     ports:
-      - "${HTTP_PROTOCOL_PORT}:${HTTP_PROTOCOL_PORT}"
+      - "443:443"
+      - "80:80"
       - "8080:8080"
     volumes:
       - "./letsencrypt:/letsencrypt"
@@ -36,20 +37,25 @@ services:
       POSTGRES_PASSWORD: "${DB_PASS}"
     restart: unless-stopped
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.postgres.rule=Host(`${DB_HOST}`)"
-      - "traefik.http.routers.postgres.entrypoints=${ENTRYPOINT}"
-      - "traefik.http.routers.postgres.tls.certresolver=myresolver"
+      traefik.http.routers.pg-web.rule: Host(`${DB_HOST}`)
+      traefik.http.routers.pg-web.entrypoints: http
+      traefik.http.routers.pg-web.middlewares: redirect
+      traefik.http.middlewares.redirect.redirectscheme.scheme: https
+      traefik.http.routers.pg-web-secure.rule: Host(`${DB_HOST}`)
+      traefik.http.routers.pg-web-secure.entrypoints: https
+      traefik.http.routers.pg-web-secure.tls.certresolver: ssl
 
   api:
     container_name: "${API_URL}"
-    build: ./registry/backend/${ENVIRONMENT}/
+    build:
+      context: ./backend
+      dockerfile: ./registry/${ENVIRONMENT}/Dockerfile
     volumes:
       - "./backend:/opt/app-root/src:rw"
     ports:
-      - ${HTTP_PORT}
+      - ${CONTAINERS_PORT}
     environment:
-      PORT: ${HTTP_PORT}
+      PORT: ${CONTAINERS_PORT}
       APP_ENV: "${ENVIRONMENT}"
       NODE_ENV: "${ENVIRONMENT}"
 
@@ -78,30 +84,38 @@ services:
     command: ['./wait-for-it.sh', '-t', '0', '${DB_HOST}:5432', '--', '.s2i/bin/assemble']
     restart: unless-stopped
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.api.rule=Host(`${API_URL}`)"
-      - "traefik.http.routers.api.entrypoints=${ENTRYPOINT}"
-      - "traefik.http.routers.api.tls.certresolver=myresolver"
+      traefik.http.routers.api-web.rule: Host(`${API_URL}`)
+      traefik.http.routers.api-web.entrypoints: http
+      traefik.http.routers.api-web.middlewares: redirect
+      traefik.http.middlewares.redirect.redirectscheme.scheme: https
+      traefik.http.routers.api-web-secure.rule: Host(`${API_URL}`)
+      traefik.http.routers.api-web-secure.entrypoints: https
+      traefik.http.routers.api-web-secure.tls.certresolver: ssl
 
   spa:
     container_name: "${SPA_URL}"
-    build: ./registry/frontend/${ENVIRONMENT}/
+    build:
+      context: ./frontend
+      dockerfile: ./registry/${ENVIRONMENT}/Dockerfile
     volumes:
       - "./frontend:/opt/app-root/src:rw"
     ports:
-      - ${HTTP_PORT}
+      - ${CONTAINERS_PORT}
     environment:
-      PORT: ${HTTP_PORT}
+      PORT: ${CONTAINERS_PORT}
       APP_ENV: "${ENVIRONMENT}"
       NODE_ENV: "${ENVIRONMENT}"
-      HTTP_API_URL: 'http://${API_URL}/'
-      WS_API_URL: 'ws://${API_URL}/graphql'
+      HTTP_API_URL: 'https://${API_URL}/'
+      WS_API_URL: 'wss://${API_URL}/graphql'
       CLIENT: "${CLIENT}"
       DEBUG: "true"
-    command: ['./wait-for-it.sh', '-t', '0', '${API_URL}:${HTTP_PORT}', '--', '.s2i/bin/assemble']
+    command: ['./wait-for-it.sh', '-t', '0', '${API_URL}:${CONTAINERS_PORT}', '--', '.s2i/bin/assemble']
     restart: unless-stopped
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.spa.rule=Host(`${SPA_URL}`)"
-      - "traefik.http.routers.spa.entrypoints=${ENTRYPOINT}"
-      - "traefik.http.routers.spa.tls.certresolver=myresolver"
+      traefik.http.routers.spa-web.rule: Host(`${SPA_URL}`)
+      traefik.http.routers.spa-web.entrypoints: http
+      traefik.http.routers.spa-web.middlewares: redirect
+      traefik.http.middlewares.redirect.redirectscheme.scheme: https
+      traefik.http.routers.spa-web-secure.rule: Host(`${SPA_URL}`)
+      traefik.http.routers.spa-web-secure.entrypoints: https
+      traefik.http.routers.spa-web-secure.tls.certresolver: ssl

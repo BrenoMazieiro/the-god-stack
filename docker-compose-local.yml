@@ -7,13 +7,12 @@ services:
     image: "traefik:v2.4"
     container_name: "traefik"
     command:
-      #- "--log.level=DEBUG"
       - "--api.insecure=true"
       - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.${ENTRYPOINT}.address=:${HTTP_PROTOCOL_PORT}"
+      - "--entrypoints.http.address=:80"
+      - "--global.sendAnonymousUsage=false"
     ports:
-      - "${HTTP_PROTOCOL_PORT}:${HTTP_PROTOCOL_PORT}"
+      - "80:80"
       - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
@@ -31,19 +30,21 @@ services:
       POSTGRES_PASSWORD: "${DB_PASS}"
     restart: unless-stopped
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.postgres.rule=Host(`${DB_HOST}`)"
-      - "traefik.http.routers.postgres.entrypoints=${ENTRYPOINT}"
+      traefik.enable: true
+      traefik.http.routers.pg-web.rule: Host(`${DB_HOST}`)
+      traefik.http.routers.pg-web.entrypoints: http
 
   api:
     container_name: "${API_URL}"
-    build: ./registry/backend/${ENVIRONMENT}/
+    build:
+      context: ./backend
+      dockerfile: ./registry/${ENVIRONMENT}/Dockerfile
     volumes:
       - "./backend:/opt/app-root/src:rw"
     ports:
-      - ${HTTP_PORT}
+      - ${CONTAINERS_PORT}
     environment:
-      PORT: ${HTTP_PORT}
+      PORT: ${CONTAINERS_PORT}
       APP_ENV: "${ENVIRONMENT}"
       NODE_ENV: "${ENVIRONMENT}"
 
@@ -72,28 +73,30 @@ services:
     command: ['./wait-for-it.sh', '-t', '0', '${DB_HOST}:5432', '--', '.s2i/bin/assemble']
     restart: unless-stopped
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.api.rule=Host(`${API_URL}`)"
-      - "traefik.http.routers.api.entrypoints=${ENTRYPOINT}"
+      traefik.enable: true
+      traefik.http.routers.api-web.rule: Host(`${API_URL}`)
+      traefik.http.routers.api-web.entrypoints: http
 
   spa:
     container_name: "${SPA_URL}"
-    build: ./registry/frontend/${ENVIRONMENT}/
+    build:
+      context: ./frontend
+      dockerfile: ./registry/${ENVIRONMENT}/Dockerfile
     volumes:
       - "./frontend:/opt/app-root/src:rw"
     ports:
-      - ${HTTP_PORT}
+      - ${CONTAINERS_PORT}
     environment:
-      PORT: ${HTTP_PORT}
+      PORT: ${CONTAINERS_PORT}
       APP_ENV: "${ENVIRONMENT}"
       NODE_ENV: "${ENVIRONMENT}"
       HTTP_API_URL: 'http://${API_URL}/'
       WS_API_URL: 'ws://${API_URL}/graphql'
       CLIENT: "${CLIENT}"
       DEBUG: "true"
-    command: ['./wait-for-it.sh', '-t', '0', '${API_URL}:${HTTP_PORT}', '--', '.s2i/bin/assemble']
+    command: ['./wait-for-it.sh', '-t', '0', '${API_URL}:${CONTAINERS_PORT}', '--', '.s2i/bin/assemble']
     restart: unless-stopped
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.spa.rule=Host(`${SPA_URL}`)"
-      - "traefik.http.routers.spa.entrypoints=${ENTRYPOINT}"
+      traefik.enable: true
+      traefik.http.routers.spa-web.rule: Host(`${SPA_URL}`)
+      traefik.http.routers.spa-web.entrypoints: http
