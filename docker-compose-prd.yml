@@ -94,22 +94,10 @@ services:
 
   spa:
     container_name: "${SPA_URL}"
-    build:
-      context: ./frontend
-      dockerfile: ./registry/${ENVIRONMENT}/Dockerfile
-    volumes:
-      - "./frontend:/opt/app-root/src:rw"
+    image: thegodstack/frontend
     ports:
       - ${CONTAINERS_PORT}
-    environment:
-      PORT: ${CONTAINERS_PORT}
-      APP_ENV: "${ENVIRONMENT}"
-      NODE_ENV: "${ENVIRONMENT}"
-      HTTP_API_URL: 'https://${API_URL}/'
-      WS_API_URL: 'wss://${API_URL}/graphql'
-      CLIENT: "${CLIENT}"
-      DEBUG: "true"
-    command: ['./wait-for-it.sh', '-t', '0', '${API_URL}:${CONTAINERS_PORT}', '--', '.s2i/bin/assemble']
+      command: ['./wait-for-it.sh', '-t', '0', '${API_URL}:${CONTAINERS_PORT}', '--', './run']
     restart: unless-stopped
     labels:
       traefik.http.routers.spa-web.rule: Host(`${SPA_URL}`)

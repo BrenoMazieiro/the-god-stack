@@ -1,7 +1,10 @@
 FROM node:14.16.0-alpine3.13
 
-RUN apk add --no-cache bash
-RUN yarn global add serve
 WORKDIR /opt/app-root/src
+RUN apk add --no-cache bash
+COPY public public
+COPY wait-for-it.sh .
+COPY run .
+RUN yarn global add serve
 
-CMD [ "node" ]
+CMD serve public -l tcp://0.0.0.0:3000 -s
