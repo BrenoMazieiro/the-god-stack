@@ -8,6 +8,11 @@ on:
     branches: [ 'main' ]
   pull_request:
     branches: [ 'main' ]
+env:
+  HTTP_API_URL: http://api.local.thegodstack.com/
+  WS_API_URL: ws://api.local.thegodstack.com/graphql
+  CLIENT: thegodstack
+  DEBUG: true
 
 jobs:
   build:
@@ -31,23 +36,29 @@ jobs:
       with:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-    - run: echo ${{env.HTTP_API_URL}}
     - run: yarn install
-    - run: yarn lint
-    - run: cp ./src/environment/index_example.js ./src/environment/index.js
-    - run: yarn test
+    # - run: yarn lint
+    # - run: yarn test
     - run: node scripts/parseconfig.js
     - run: yarn build
-    - run: |
-            echo CLIENT="$CLIENT" >> "${BASH_ENV}"
-            echo DEBUG="$DEBUG" >> "${BASH_ENV}"
-            echo HTTP_API_URL="$HTTP_API_URL" >> "${BASH_ENV}"
-            echo WS_API_URL="$WS_API_URL" >> "${BASH_ENV}"
-    - run: |
-        set -x
-        VER="17.12.0-ce"
-        curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
-        tar -xz -C /tmp -f /tmp/docker-$VER.tgz
-        mv /tmp/docker/* /usr/bin
-    - run: docker build -f registry/production/Dockerfile . -t thegodstack/frontend
-    - run: docker push thegodstack/frontend
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+    - name: Set up Docker Buildx
+      id: buildx
+      uses: docker/setup-buildx-action@v1
+    - name: Build and push
+      id: docker_build
+      uses: docker/build-push-action@v2
+      with:
+        context: ./frontend
+        file: ./frontend/registry/production/Dockerfile
+        push: true
+        tags: thegodstack/frontend
+
+    - name: Image digest
+      run: echo ${{ steps.docker_build.outputs.digest }}
