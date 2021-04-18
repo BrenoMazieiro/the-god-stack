@@ -37,9 +37,9 @@ jobs:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - run: yarn install
+    - run: node scripts/parseconfig.js
     - run: yarn lint
     - run: yarn test
-    - run: node scripts/parseconfig.js
     - run: yarn build
 
     - name: Login to Docker Hub
