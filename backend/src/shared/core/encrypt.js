@@ -7,7 +7,7 @@ const encrypt = {
     compare: (plainPass, hash) => bcrypt.compare(plainPass, hash),
   },
   weak: {
-    encrypt: (data) => crypto.createHmac('sha256', process.env.HASH_SECRET || 'vigil').update(data).digest('hex'),
+    encrypt: (data) => crypto.createHmac('sha256', process.env.HASH_SECRET || 'theGodStack').update(data).digest('hex'),
   },
   random: () => crypto.randomInt(999999999999),
   randomDataForRefreshToken: (ctx, userId) => userId + ctx.core.encrypt.random() + Date.now(),

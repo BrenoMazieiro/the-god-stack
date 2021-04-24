@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {context} ctx
+ * @param id
+ * @returns {*}
+ */
 export const permissionsByRoleId = (ctx, id) => {
   const sql = ctx.database.knex('role_permissions as rp')
     .select(

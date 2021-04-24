@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {context} ctx
+ * @param username
+ * @returns {*}
+ */
 export default (ctx, { username }) => {
   const sql = ctx.database.knex('users as u')
     .select(

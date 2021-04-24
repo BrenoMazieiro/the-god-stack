@@ -3,7 +3,7 @@ import hardDeleteUser from './hardDeleteUser.js'
 export default async (ctx, user, approvalToken) => {
   const msg = {
     to: user[0].email,
-    from: process.env.EMAIL_FROM || 'breno.mazieiro@vigil.global',
+    from: process.env.EMAIL_FROM || 'breno.mazieiro@gmail.com',
     subject: ctx.core.email.templates.userRegistrationEmailTemplateSubject(),
     text: ctx.core.email.templates.userRegistrationEmailTemplateText(approvalToken),
     html: ctx.core.email.templates.userRegistrationEmailTemplateHtml(approvalToken),

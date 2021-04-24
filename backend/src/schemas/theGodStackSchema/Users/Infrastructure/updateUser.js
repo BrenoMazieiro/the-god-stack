@@ -1,5 +1,12 @@
 import readUsers from './readUsers.js'
 
+/**
+ *
+ * @param {context} ctx
+ * @param id
+ * @param userData
+ * @returns {*}
+ */
 export default (ctx, id, userData) => (
   ctx.database.knex('users as u')
     .update({

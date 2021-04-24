@@ -1,5 +1,12 @@
 import readUserByUsername from './readUserByUsername.js'
 
+/**
+ *
+ * @param {context} ctx
+ * @param userId
+ * @param type
+ * @returns {Promise<*>}
+ */
 export default async (ctx, userId, type) => {
   const user = await readUserByUsername(ctx, process.env.SYSTEM_USER || 'system')
   return (

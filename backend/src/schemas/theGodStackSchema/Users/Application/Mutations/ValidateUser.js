@@ -3,6 +3,13 @@ import getUserByToken from '../../Infrastructure/getUserByToken.js'
 import deleteRefreshToken from '../../Infrastructure/deleteRefreshToken.js'
 import createRefreshToken from '../../Infrastructure/createRefreshToken.js'
 
+/**
+ *
+ * @param _
+ * @param token
+ * @param {context} ctx
+ * @returns {Promise<{refreshToken: *, token: *}>}
+ */
 export default async (_, { token }, ctx) => {
   const user = await getUserByToken(ctx, token)
   if (!user) {

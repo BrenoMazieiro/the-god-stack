@@ -82,14 +82,10 @@ const email = (emailValue) => {
   }
 
   const domainParts = parts[1].split('.')
-  if (domainParts.some((part) => part.length > 63)) {
-    return true
-  }
-
-  return false
+  return domainParts.some((part) => part.length > 63)
 }
 
-const emailDomain = (userEmail) => [process.env.COMPANY_DOMAIN || 'plathanus.com.br'].includes(userEmail.split('@')[1])
+const emailDomain = (userEmail) => [process.env.COMPANY_DOMAIN || 'thegodstack.com'].includes(userEmail.split('@')[1])
 
 const validationField = (value, test) => test.split('|')
   .map((rule) => rule.trim())
@@ -141,7 +137,7 @@ const getValueObject = (key, value) => {
 /*
 * It will throw an AS.ApolloError if an erron was found
 */
-const validation = (value, rules) => {
+export const validation = (value, rules) => {
   if (rules === undefined) {
     return true
   }
@@ -166,5 +162,3 @@ const validation = (value, rules) => {
 
   return true
 }
-
-export { validation }

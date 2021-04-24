@@ -2,6 +2,14 @@ import getUserByUsername from '../../Infrastructure/getUserByUsername.js'
 import createRefreshToken from '../../Infrastructure/createRefreshToken.js'
 import deleteRefreshToken from '../../Infrastructure/deleteRefreshToken.js'
 
+/**
+ *
+ * @param _
+ * @param username
+ * @param password
+ * @param {context} ctx
+ * @returns {Promise<{refreshToken: *, token: *}>}
+ */
 export default async (_, { username, password }, ctx) => {
   const user = await getUserByUsername(ctx, { username })
   if (!user || !user.id) {
@@ -34,7 +42,7 @@ export default async (_, { username, password }, ctx) => {
           },
           sub: user.id,
           iss: process.env.JWT_ISS || 'nodejsApiBackoffice',
-          aud: process.env.JWT_AUD || 'vigil',
+          aud: process.env.JWT_AUD || 'theGodStack',
         },
       )
     ),

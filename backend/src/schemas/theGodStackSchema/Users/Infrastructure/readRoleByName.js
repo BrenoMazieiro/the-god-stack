@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {context} ctx
+ * @param roleName
+ * @returns {*}
+ */
 export default (ctx, roleName) => {
   const sql = ctx.database.knex('roles as r')
     .select(

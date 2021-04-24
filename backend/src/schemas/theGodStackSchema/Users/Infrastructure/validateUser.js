@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {context} ctx
+ * @param token
+ * @returns {*}
+ */
 export default (ctx, token) => (
   ctx.database.knex('users')
     .update({
@@ -5,10 +11,7 @@ export default (ctx, token) => (
       updated_by: ctx.user.id,
     }, 'id')
     .where('approval_token', '=', token)
-    .then((data) => {
-      if (!data[0]) return false
-      return true
-    })
+    .then((data) => !!data[0])
     .catch((error) => {
       const errorObj = {
         msg: error.message,

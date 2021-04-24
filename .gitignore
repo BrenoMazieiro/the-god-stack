@@ -3,3 +3,4 @@
 letsencrypt
 docker-compose.yml
 yarn-error.log
+.idea

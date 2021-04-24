@@ -2,6 +2,13 @@ import createRefreshToken from '../../Infrastructure/createRefreshToken.js'
 import deleteRefreshToken from '../../Infrastructure/deleteRefreshToken.js'
 import getUserByRefreshToken from '../../Infrastructure/getUserByRefreshToken.js'
 
+/**
+ *
+ * @param _
+ * @param refreshToken
+ * @param {context} ctx
+ * @returns {Promise<{refreshToken: *, token: *}>}
+ */
 export default async (_, { refreshToken }, ctx) => {
   const user = await getUserByRefreshToken(ctx, refreshToken)
   if (!user || !user.id) {
@@ -27,8 +34,8 @@ export default async (_, { refreshToken }, ctx) => {
             ),
           },
           sub: user.id,
-          iss: process.env.JWT_ISS || 'nodejsApiBackoffice',
-          aud: process.env.JWT_AUD || 'vigil',
+          iss: process.env.JWT_ISS || 'nodejsApi',
+          aud: process.env.JWT_AUD || 'theGodStack',
         },
       )
     ),

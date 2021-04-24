@@ -3,6 +3,12 @@ import readUserByUsername from './readUserByUsername.js'
 import readUsers from './readUsers.js'
 import addUserToEmailQueue from './addUserToEmailQueue.js'
 
+/**
+ *
+ * @param {context} ctx
+ * @param userData
+ * @returns {Promise<*>}
+ */
 export default async (ctx, userData) => {
   const role = await readRoleByName(ctx, process.env.SIMPLE_USER || 'Employee')
   const user = await readUserByUsername(ctx, process.env.SYSTEM_USER || 'system')

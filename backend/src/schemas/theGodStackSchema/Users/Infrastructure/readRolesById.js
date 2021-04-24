@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {context} ctx
+ * @param roleId
+ * @returns {*}
+ */
 export const readRolesById = (ctx, roleId) => {
   const sql = ctx.database.knex('roles as r')
     .select(

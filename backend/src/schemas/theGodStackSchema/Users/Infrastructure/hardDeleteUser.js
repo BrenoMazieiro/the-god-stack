@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {context} ctx
+ * @param id
+ * @returns {*}
+ */
 export default (ctx, id) => (
   ctx.database.knex('users as u')
     .where('u.id', '=', id)

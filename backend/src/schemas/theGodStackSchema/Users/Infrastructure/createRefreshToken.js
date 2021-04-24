@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {context} ctx
+ * @param userData
+ * @returns {*}
+ */
 export default (ctx, userData) => (
   ctx.database.knex('tokens')
     .insert({

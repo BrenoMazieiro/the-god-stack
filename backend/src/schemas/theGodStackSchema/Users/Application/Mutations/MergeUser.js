@@ -3,6 +3,15 @@ import updateUser from '../../Infrastructure/updateUser.js'
 import deleteUser from '../../Infrastructure/deleteUser.js'
 import validator from '../_validators/index.js'
 
+/**
+ *
+ * @param _
+ * @param id
+ * @param deleteIt
+ * @param userData
+ * @param {context} ctx
+ * @returns {Promise<*|null>}
+ */
 export default async (_, { id, deleteIt, userData }, ctx) => {
   if (!deleteIt) {
     /** Will update user */

@@ -1,3 +1,11 @@
+/**
+ *
+ * @param {context} ctx
+ * @param id
+ * @param deleted
+ * @param pagination
+ * @returns {*}
+ */
 export default (ctx, { id, deleted, pagination }) => {
   const sql = ctx.database.knex('users as u')
     .select(
