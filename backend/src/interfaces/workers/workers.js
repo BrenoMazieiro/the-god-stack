@@ -3,12 +3,13 @@ import { shared } from '../../shared/index.js'
 import { sendEmailtoNewUser } from './executors/sendEmailtoNewUser.js'
 import { getSystemUserId } from './infrastructure/getSystemUserId.js'
 
+let interval = null
 // Instantiate the worker module object
 export const workers = {}
 
 // Do Something
 workers.sendEmailtoNewUser = (ctx) => {
-  sendEmailtoNewUser(ctx)
+  sendEmailtoNewUser(ctx).then(() => null).catch(() => null)
 }
 
 workers.whenAgain = (minutes, type) => {
@@ -26,10 +27,12 @@ workers.init = async () => {
   // Will sendEmailtoNewUser on start
   workers.sendEmailtoNewUser(ctx)
 
-  // Do export pessoas
-
-  setInterval(() => {
+  interval = setInterval(() => {
     workers.sendEmailtoNewUser(ctx)
     workers.whenAgain(confs.SEND_EMAIL_TO_NEW_USER_TIME, 'something')
   }, 1000 * 60 * confs.SEND_EMAIL_TO_NEW_USER_TIME)
+}
+
+workers.stop = () => {
+  clearInterval(interval)
 }

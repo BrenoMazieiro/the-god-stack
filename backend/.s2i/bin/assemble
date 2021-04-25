@@ -2,10 +2,10 @@
 
 # If there is any error in the building process stop
 set -e
-# Move hidden files aswel
+# Move hidden files as well
 shopt -s dotglob
 
-# If there is package.json instal dependencies
+# If there is package.json install dependencies
 if [ -f package.json ]; then
   echo "### Found package.json, installing the dependencies..."
   if [ $APP_ENV == 'development' ]; then
