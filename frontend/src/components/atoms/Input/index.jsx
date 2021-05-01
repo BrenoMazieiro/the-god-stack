@@ -7,11 +7,12 @@ const InputWrapper = styled.input`
   padding: 10px;
 `
 
-const Input = forwardRef(({ type }, ref) => {
-  return <InputWrapper type={type} ref={ref} />
+const Input = forwardRef(({ id, type }, ref) => {
+  return <InputWrapper id={id} type={type} ref={ref} />
 })
 
 Input.propTypes = {
+  id: PropTypes.string,
   type: PropTypes.string.isRequired,
 }
 

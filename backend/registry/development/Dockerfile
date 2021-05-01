@@ -8,4 +8,4 @@ RUN apk add --no-cache dumb-init
 RUN chown node:node /opt/app-root/src
 USER node
 
-CMD [ "node" ]
+CMD [ "dumb-init", "node" ]

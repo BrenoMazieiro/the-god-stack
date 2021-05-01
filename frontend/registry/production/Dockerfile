@@ -1,7 +1,7 @@
-FROM node:14.16.0-alpine3.13
+FROM node:14.16.1-buster-slim
 
 WORKDIR /opt/app-root/src
-RUN apk add --no-cache bash
+RUN apt install -y bash
 COPY public public
 COPY wait-for-it.sh .
 COPY run .
