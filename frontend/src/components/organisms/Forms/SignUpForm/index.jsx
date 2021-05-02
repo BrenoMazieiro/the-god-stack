@@ -11,7 +11,10 @@ const ErrorWrapper = styled(Div)`
   align-items: center;
   align-self: center;
   color: ${({ theme }) => theme.colors.actions.error};
+  text-transform:capitalize;
+  margin-top: 10px;
 `
+
 const LinkWrapper = styled(Div)`
   display: flex;
   align-items: center;
@@ -20,12 +23,26 @@ const LinkWrapper = styled(Div)`
   color: ${({ theme }) => theme.colors.text[0]};
 `
 
-const LoginForm = ({
-  handleSubmit, username, password, errorMessage,
+const SignUpForm = ({
+  handleSubmit, name, email, username, password, confirmPassword, errorMessage,
 }) => {
   const { theme } = useMyContext()
   return (
-    <Form handleSubmit={handleSubmit} id="LoginForm">
+    <Form handleSubmit={handleSubmit} id="SignUpForm">
+      <LabeledInput
+        type="text"
+        id="name"
+        label="Name"
+        ref={name}
+        placeholder="Name"
+      />
+      <LabeledInput
+        type="text"
+        id="email"
+        label="Email"
+        ref={email}
+        placeholder="Email"
+      />
       <LabeledInput
         type="text"
         id="username"
@@ -39,22 +56,31 @@ const LoginForm = ({
         label="Password"
         ref={password}
       />
-      <Button type="submit" size="sm">Logar</Button>
+      <LabeledInput
+        type="password"
+        id="confirmPassword"
+        label="Confirm Password"
+        ref={confirmPassword}
+      />
+      <Button type="submit" size="sm">Sign Up</Button>
       {errorMessage && <ErrorWrapper id="errorMessage" theme={theme}>{errorMessage}</ErrorWrapper>}
       <LinkWrapper theme={theme}>
-        Not Singed Up?
+        Already Singed Up?
         &nbsp;
-        <A href="/signup">Sign Up</A>
+        <A href="/login">Login</A>
       </LinkWrapper>
     </Form>
   )
 }
 
-LoginForm.propTypes = {
+SignUpForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  name: PropTypes.any.isRequired,
+  email: PropTypes.any.isRequired,
   username: PropTypes.any.isRequired,
   password: PropTypes.any.isRequired,
+  confirmPassword: PropTypes.any.isRequired,
   errorMessage: PropTypes.string,
 }
 
-export default LoginForm
+export default SignUpForm

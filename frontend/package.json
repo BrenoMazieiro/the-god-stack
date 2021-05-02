@@ -11,7 +11,6 @@
     "cy:install": "cypress install",
     "cy:open": "cypress open",
     "cy:run": "cypress run"
-
   },
   "jest": {
     "moduleDirectories": [
@@ -42,7 +41,8 @@
     "react-router-dom": "^5.2.0",
     "source-map": "^0.7.3",
     "style-loader": "^2.0.0",
-    "styled-components": "^5.2.3"
+    "styled-components": "^5.2.3",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",

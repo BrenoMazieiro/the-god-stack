@@ -7,7 +7,6 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
-    'plugin:cypress/recommended',
   ],
   parserOptions: {
     ecmaFeatures: {
