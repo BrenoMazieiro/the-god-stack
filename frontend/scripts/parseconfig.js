@@ -4,6 +4,7 @@ const fs = require('fs')
 
 const projectVars = [
   'HTTP_API_URL',
+  'HTTP_SPA_URL',
   'WS_API_URL',
   'CLIENT',
   'DEBUG',

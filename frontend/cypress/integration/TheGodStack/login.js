@@ -1,6 +1,8 @@
+import { HTTP_SPA_URL } from '../../../src/environment'
+
 context('Login', () => {
   beforeEach(() => {
-    cy.visit('http://spa.local.thegodstack.com/')
+    cy.visit(HTTP_SPA_URL)
   })
   it('will login with valid user', () => {
     cy.get('#username')

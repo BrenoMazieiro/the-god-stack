@@ -91,6 +91,7 @@ services:
       APP_ENV: "${ENVIRONMENT}"
       NODE_ENV: "${ENVIRONMENT}"
       HTTP_API_URL: 'http://${API_URL}/'
+      HTTP_SPA_URL: 'http://${SPA_URL}/'
       WS_API_URL: 'ws://${API_URL}/graphql'
       CLIENT: "${CLIENT}"
       DEBUG: "true"
