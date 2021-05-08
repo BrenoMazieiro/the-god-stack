@@ -3,13 +3,13 @@ import { shallow } from 'enzyme'
 import SignUpForm from '.'
 
 const wrap = ({
-  handleSubmit, username, password, errorMessage, name, email, confirmPassword,
+  handleSubmit, username, password, errorMessages, name, email, confirmPassword,
 }) => shallow(
   <SignUpForm
     handleSubmit={handleSubmit}
     username={username}
     password={password}
-    errorMessage={errorMessage}
+    errorMessages={errorMessages}
     name={name}
     email={email}
     confirmPassword={confirmPassword}
@@ -31,7 +31,7 @@ describe('SignUpForm', () => {
       username: 'username',
       password: 'password',
       confirmPassword: 'password',
-      errorMessage: '',
+      errorMessages: [],
     })
     expect(wrapper.find({ id: 'SignUpForm' })).toHaveLength(1)
   })
@@ -39,14 +39,22 @@ describe('SignUpForm', () => {
   it('will render SignUpForm component with error', () => {
     const wrapper = wrap({
       handleSubmit: () => true,
-      name: 'name',
+      name: '',
       email: 'email@test.com',
       username: 'username',
       password: 'password',
       confirmPassword: 'password',
-      errorMessage: 'error',
+      errorMessages: [{ path: 'name', message: 'errorMessage' }],
     })
-    expect(wrapper.find({ id: 'errorMessage' })).toHaveLength(1)
+    wrapper.update()
+    expect(
+      wrapper
+        .find({ id: 'SignUpForm' })
+        .dive()
+        .find({ id: 'name' })
+        .dive()
+        .find({ id: 'name-error' }),
+    ).toHaveLength(1)
   })
 
   it('will render SignUpForm component without error', () => {
@@ -57,8 +65,8 @@ describe('SignUpForm', () => {
       username: 'username',
       password: 'password',
       confirmPassword: 'password',
-      errorMessage: '',
+      errorMessages: [],
     })
-    expect(wrapper.find({ id: 'errorMessage' })).toHaveLength(0)
+    expect(wrapper.find({ id: 'name-error' })).toHaveLength(0)
   })
 })

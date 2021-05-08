@@ -11,7 +11,7 @@ const LoginPage = () => {
   const [login] = useMutation(UserLogin)
   const username = useRef()
   const password = useRef()
-  const [errorMessage, setErroMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleSubmit = useCallback(
     (e) => {
@@ -29,7 +29,7 @@ const LoginPage = () => {
         localStorage.setItem('refreshToken', refreshToken)
         history.push('/')
       })
-        .catch((e) => setErroMessage(e.graphQLErrors[0].message))
+        .catch((e) => setErrorMessage(e.graphQLErrors[0].message))
     },
     [username, password],
   )

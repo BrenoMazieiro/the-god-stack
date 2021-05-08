@@ -6,15 +6,6 @@ import {
   Form, LabeledInput, Button, Div, A,
 } from 'components'
 
-const ErrorWrapper = styled(Div)`
-  display: flex;
-  align-items: center;
-  align-self: center;
-  color: ${({ theme }) => theme.colors.actions.error};
-  text-transform:capitalize;
-  margin-top: 10px;
-`
-
 const LinkWrapper = styled(Div)`
   display: flex;
   align-items: center;
@@ -24,9 +15,10 @@ const LinkWrapper = styled(Div)`
 `
 
 const SignUpForm = ({
-  handleSubmit, name, email, username, password, confirmPassword, errorMessage,
+  handleSubmit, name, email, username, password, confirmPassword, errorMessages,
 }) => {
   const { theme } = useMyContext()
+
   return (
     <Form handleSubmit={handleSubmit} id="SignUpForm">
       <LabeledInput
@@ -35,6 +27,7 @@ const SignUpForm = ({
         label="Name"
         ref={name}
         placeholder="Name"
+        errorMessages={errorMessages}
       />
       <LabeledInput
         type="text"
@@ -42,6 +35,7 @@ const SignUpForm = ({
         label="Email"
         ref={email}
         placeholder="Email"
+        errorMessages={errorMessages}
       />
       <LabeledInput
         type="text"
@@ -49,21 +43,23 @@ const SignUpForm = ({
         label="Username"
         ref={username}
         placeholder="Username"
+        errorMessages={errorMessages}
       />
       <LabeledInput
         type="password"
         id="password"
         label="Password"
         ref={password}
+        errorMessages={errorMessages}
       />
       <LabeledInput
         type="password"
         id="confirmPassword"
         label="Confirm Password"
         ref={confirmPassword}
+        errorMessages={errorMessages}
       />
       <Button type="submit" size="sm">Sign Up</Button>
-      {errorMessage && <ErrorWrapper id="errorMessage" theme={theme}>{errorMessage}</ErrorWrapper>}
       <LinkWrapper theme={theme}>
         Already Singed Up?
         &nbsp;
@@ -80,7 +76,7 @@ SignUpForm.propTypes = {
   username: PropTypes.any.isRequired,
   password: PropTypes.any.isRequired,
   confirmPassword: PropTypes.any.isRequired,
-  errorMessage: PropTypes.string,
+  errorMessages: PropTypes.array,
 }
 
 export default SignUpForm

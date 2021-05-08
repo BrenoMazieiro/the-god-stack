@@ -8,4 +8,4 @@ USER node
 COPY --chown=node:node . /opt/app-root/src
 RUN yarn install --prodution=true
 
-CMD ["dumb-init", "node", "src/index.js"]
+CMD ["dumb-init", "node", "src/index.jsx"]

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { useMyContext } from 'hooks'
 
 const LabelWrapper = styled.label`
+  color: ${({ theme, hasError }) => { return hasError ? theme.colors.actions.error : null }};
   &::after {
     content: ':';
   }
@@ -14,16 +15,17 @@ const LabelWrapper = styled.label`
   }
 `
 
-const Label = ({ id, children }) => {
+const Label = ({ id, children, hasError }) => {
   const { theme } = useMyContext()
   return (
-    <LabelWrapper htmlFor={id} theme={theme}>{children}</LabelWrapper>
+    <LabelWrapper htmlFor={id} theme={theme} hasError={hasError}>{children}</LabelWrapper>
   )
 }
 
 Label.propTypes = {
   children: PropTypes.node.isRequired,
   id: PropTypes.string.isRequired,
+  hasError: PropTypes.bool,
 }
 
 export default Label

@@ -32,14 +32,16 @@ const LoginForm = ({
         label="Username"
         ref={username}
         placeholder="Username"
+        errorMessages={[]}
       />
       <LabeledInput
         type="password"
         id="password"
         label="Password"
         ref={password}
+        errorMessages={[]}
       />
-      <Button type="submit" size="sm">Logar</Button>
+      <Button type="submit" size="sm">SignIn</Button>
       {errorMessage && <ErrorWrapper id="errorMessage" theme={theme}>{errorMessage}</ErrorWrapper>}
       <LinkWrapper theme={theme}>
         Not Singed Up?
