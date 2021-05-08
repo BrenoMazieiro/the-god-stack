@@ -43,6 +43,7 @@ services:
       - "./backend:/opt/app-root/src:rw"
     ports:
       - ${CONTAINERS_PORT}
+      - "9229:9229"
     environment:
       PORT: ${CONTAINERS_PORT}
       APP_ENV: "${ENVIRONMENT}"
