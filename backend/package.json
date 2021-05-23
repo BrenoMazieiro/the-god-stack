@@ -6,25 +6,25 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon --exec node --inspect=0.0.0.0:9229 ./src/index.js",
-    "lint": "eslint src/** migrations/**",
+    "lint": "eslint src/**",
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest --verbose"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.4.4",
-    "apollo-server": "^2.24.0",
+    "apollo-server": "^2.24.1",
     "bcrypt": "^5.0.1",
     "graphql": "^15.5.0",
-    "graphql-tools": "^7.0.4",
+    "graphql-tools": "^7.0.5",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.95.4",
+    "knex": "^0.95.6",
     "knexnest": "^1.0.0",
     "pg": "^8.6.0"
   },
   "devDependencies": {
     "@types/knex": "^0.16.1",
-    "eslint": "^7.26.0",
+    "eslint": "^7.27.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-import": "^2.23.3",
     "jest": "^26.6.3",
     "nodemon": "2.0.7"
   }
