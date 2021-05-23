@@ -10,6 +10,7 @@ const SignUpPage = () => {
   const [createUser] = useMutation(CreateUser)
   const { history } = useMyContext()
   const [errorMessages, setErroMessages] = useState([])
+  const [serverErrorCode, setServerErroCode] = useState('')
   const name = useRef()
   const email = useRef()
   const username = useRef()
@@ -37,10 +38,10 @@ const SignUpPage = () => {
       },
     )
       .then(() => {
-        history.push('/')
+        history.push('/login', { code: 'user_singup_successfully' })
       })
       .catch((e) => {
-        setErroMessages(e.graphQLErrors[0].message)
+        setServerErroCode(e.graphQLErrors[0].code)
       })
   }
 
@@ -71,6 +72,7 @@ const SignUpPage = () => {
         password={password}
         confirmPassword={confirmPassword}
         errorMessages={errorMessages}
+        serverErrorCode={serverErrorCode}
       />
     </GenericTemplate>
   )

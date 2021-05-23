@@ -44,9 +44,9 @@ const LoginForm = ({
       />
       <Button type="submit" size="sm">{t['organisms:Forms:LoginForm:SignIn']}</Button>
       {errorMessage && (
-      <ErrorWrapper id="errorMessage" theme={theme}>
-        {t[`organisms:Forms:LoginForm:${errorMessage}`]}
-      </ErrorWrapper>
+        <ErrorWrapper id="errorMessage" theme={theme}>
+          {t[`organisms:Forms:LoginForm:${errorMessage}`]}
+        </ErrorWrapper>
       )}
       <LinkWrapper theme={theme}>
         {t['organisms:Forms:LoginForm:notSignedUp']}

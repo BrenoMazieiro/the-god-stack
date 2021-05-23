@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef } from 'react'
 import { useMyContext } from 'hooks'
 import { useMutation } from '@apollo/client'
-import { GenericTemplate, LoginForm } from 'components'
+import { GenericTemplate, LoginForm, Div } from 'components'
 import { UserLogin } from 'gql'
 
 const LoginPage = () => {
@@ -36,6 +36,7 @@ const LoginPage = () => {
 
   return (
     <GenericTemplate id="LoginPage">
+      {history.location?.state?.code === 'user_singup_successfully' && <Div id="register_success">Cadastrado com sucesso!</Div>}
       <LoginForm
         handleSubmit={handleSubmit}
         username={username}

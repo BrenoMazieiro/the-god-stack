@@ -8,7 +8,7 @@ const wrap = () => shallow(
 
 jest.mock('hooks', () => {
   return {
-    useMyContext: () => ({ theme: {} }),
+    useMyContext: () => ({ theme: {}, history: {} }),
   }
 })
 

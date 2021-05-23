@@ -6,6 +6,13 @@ import {
   Form, LabeledInput, Button, Div, A,
 } from 'components'
 
+const ErrorWrapper = styled(Div)`
+  display: flex;
+  align-items: center;
+  align-self: center;
+  color: ${({ theme }) => theme.colors.actions.error};
+`
+
 const LinkWrapper = styled(Div)`
   display: flex;
   align-items: center;
@@ -15,9 +22,16 @@ const LinkWrapper = styled(Div)`
 `
 
 const SignUpForm = ({
-  handleSubmit, name, email, username, password, confirmPassword, errorMessages,
+  handleSubmit,
+  name,
+  email,
+  username,
+  password,
+  confirmPassword,
+  errorMessages,
+  serverErrorCode,
 }) => {
-  const { theme } = useMyContext()
+  const { theme, t } = useMyContext()
 
   return (
     <Form handleSubmit={handleSubmit} id="SignUpForm">
@@ -59,6 +73,11 @@ const SignUpForm = ({
         ref={confirmPassword}
         errorMessages={errorMessages}
       />
+      {serverErrorCode && (
+        <ErrorWrapper id="serverErrorCode" theme={theme}>
+          {t[`organisms:Forms:SignUpForm:${serverErrorCode}`]}
+        </ErrorWrapper>
+      )}
       <Button type="submit" size="sm">Sign Up</Button>
       <LinkWrapper theme={theme}>
         Already Singed Up?
@@ -77,6 +96,7 @@ SignUpForm.propTypes = {
   password: PropTypes.any.isRequired,
   confirmPassword: PropTypes.any.isRequired,
   errorMessages: PropTypes.array,
+  serverErrorCode: PropTypes.string,
 }
 
 export default SignUpForm
