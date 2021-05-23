@@ -1,4 +1,4 @@
-import { HTTP_SPA_URL } from '../../../src/environment'
+import { HTTP_SPA_URL } from '../../../../src/environment'
 
 context('Login', () => {
   beforeEach(() => {
