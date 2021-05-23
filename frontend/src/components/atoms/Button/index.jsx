@@ -12,19 +12,22 @@ const ButtonWrapper = styled.button`
   color: ${({ theme }) => theme.colors.text[0]};  
   font-size: ${({ theme, size }) => theme.sizes.text[size]};
   background-color: ${({ theme }) => theme.colors.primary[0]};
-  width: 100%;
-  height: 100%;
+  width: 98%;
+  height: 98%;
 `
 
-const Button = ({ type, size = 'lg', children }) => {
+const Button = ({
+  type, size = 'lg', children, onClick,
+}) => {
   const { theme } = useMyContext()
-  return <ButtonWrapper type={type} theme={theme} size={size}>{children}</ButtonWrapper>
+  return <ButtonWrapper type={type} theme={theme} size={size} onClick={onClick}>{children}</ButtonWrapper>
 }
 
 Button.propTypes = {
   children: PropTypes.any,
   type: PropTypes.string.isRequired,
   size: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 export default Button

@@ -1,6 +1,8 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { HomePage, LoginPage, SignUpPage } from 'components'
+import {
+  HomePage, LoginPage, SignUpPage, PrivateRoute, Dashboard,
+} from 'components'
 
 const Routes = () => {
   return (
@@ -14,6 +16,7 @@ const Routes = () => {
       <Route exact path="/signup">
         <SignUpPage />
       </Route>
+      <PrivateRoute exact path="/dashboard" component={Dashboard} />
     </Switch>
   )
 }
