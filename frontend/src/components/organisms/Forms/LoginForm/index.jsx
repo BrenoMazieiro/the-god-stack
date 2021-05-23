@@ -23,30 +23,35 @@ const LinkWrapper = styled(Div)`
 const LoginForm = ({
   handleSubmit, username, password, errorMessage,
 }) => {
-  const { theme } = useMyContext()
+  const { theme, t } = useMyContext()
   return (
     <Form handleSubmit={handleSubmit} id="LoginForm">
       <LabeledInput
         type="text"
         id="username"
-        label="Username"
+        label={t['organisms:Forms:LoginForm:Username']}
         ref={username}
-        placeholder="Username"
+        placeholder={t['organisms:Forms:LoginForm:Username']}
         errorMessages={[]}
       />
       <LabeledInput
         type="password"
         id="password"
-        label="Password"
+        label={t['organisms:Forms:LoginForm:Password']}
         ref={password}
+        placeholder={t['organisms:Forms:LoginForm:Password']}
         errorMessages={[]}
       />
-      <Button type="submit" size="sm">SignIn</Button>
-      {errorMessage && <ErrorWrapper id="errorMessage" theme={theme}>{errorMessage}</ErrorWrapper>}
+      <Button type="submit" size="sm">{t['organisms:Forms:LoginForm:SignIn']}</Button>
+      {errorMessage && (
+      <ErrorWrapper id="errorMessage" theme={theme}>
+        {t[`organisms:Forms:LoginForm:${errorMessage}`]}
+      </ErrorWrapper>
+      )}
       <LinkWrapper theme={theme}>
-        Not Singed Up?
+        {t['organisms:Forms:LoginForm:notSignedUp']}
         &nbsp;
-        <A href="/signup">Sign Up</A>
+        <A href="/signup">{t['organisms:Forms:LoginForm:createAnAccount']}</A>
       </LinkWrapper>
     </Form>
   )

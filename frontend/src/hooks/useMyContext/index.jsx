@@ -1,18 +1,19 @@
 import { useContext } from 'react'
-import { useTranslation } from 'react-i18next'
 import { ThemeContext } from 'themes'
 import { useHistory } from 'react-router-dom'
+import { LanguageContext } from '../../i18n'
 
 const useMyContext = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext)
-  const { t, i18n } = useTranslation()
   const history = useHistory()
+  const { changeLanguage, t } = useContext(LanguageContext)
+  const { theme, toggleTheme } = useContext(ThemeContext)
   return {
     theme,
     toggleTheme,
     t,
-    i18n,
+    changeLanguage,
     history,
+    isLoggedIn: () => !!localStorage.getItem('token'), // by Albas
   }
 }
 

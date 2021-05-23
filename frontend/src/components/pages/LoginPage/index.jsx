@@ -29,7 +29,7 @@ const LoginPage = () => {
         localStorage.setItem('refreshToken', refreshToken)
         history.push('/')
       })
-        .catch((e) => setErrorMessage(e.graphQLErrors[0].message))
+        .catch((e) => setErrorMessage(e.graphQLErrors[0].code))
     },
     [username, password],
   )
