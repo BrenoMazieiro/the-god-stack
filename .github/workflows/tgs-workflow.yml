@@ -17,7 +17,7 @@ env:
   DEBUG: true
 
 jobs:
-  test-backend:
+  unity-test-backend:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -41,8 +41,53 @@ jobs:
     - run: yarn lint
     - run: yarn test
   
+  unity-test-frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - uses: actions/cache@v2
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+    - run: yarn install --production=false
+    - run: node scripts/parseconfig.js
+    - run: yarn lint
+    - run: yarn test
+  
+  integration-test-frontend:
+    needs: [unity-test-backend, unity-test-frontend ]
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - uses: actions/cache@v2
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+    - run: echo 'ok'
+
   build-and-push-backend:
-    needs: test-backend
+    needs: integration-test-frontend
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -80,33 +125,10 @@ jobs:
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
     
-  test-frontend:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./frontend
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - uses: actions/cache@v2
-      with:
-        path: '**/node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-    - run: yarn install --production=false
-    - run: node scripts/parseconfig.js
-    - run: yarn lint
-    - run: yarn test
+  
   
   build-and-push-frontend:
-    needs: test-frontend
+    needs: integration-test-frontend
     runs-on: ubuntu-latest
     defaults:
       run:
