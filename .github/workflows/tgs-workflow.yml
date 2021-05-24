@@ -85,6 +85,7 @@ jobs:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - run: ./ci.sh
+    - run: cd frontend && yarn cy:install && yarn cy:run
 
   build-and-push-backend:
     needs: integration-test

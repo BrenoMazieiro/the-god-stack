@@ -26,14 +26,10 @@ SHOW_H1 () {
   printf "\n\n${MESSAGE}### $1${NC}\n"
 }
 
-# echo -e '\n'
-# SHOW_WARNING "
-# Please, add the lines below in your /etc/hosts file (Mac and Linux) (superuser will be necessary):  \n
-# 127.0.0.1   proxy.local.thegodstack.com \n
-# 127.0.0.1   pg.local.thegodstack.com \n
-# 127.0.0.1   api.local.thegodstack.com \n
-# 127.0.0.1   spa.local.thegodstack.com \n
-# "
+echo '127.0.0.1   proxy.local.thegodstack.com' >> /etc/hosts
+echo '127.0.0.1   pg.local.thegodstack.com' >> /etc/hosts
+echo '127.0.0.1   api.local.thegodstack.com' >> /etc/hosts
+echo '127.0.0.1   spa.local.thegodstack.com' >> /etc/hosts
 
 if [ ! -f .env ]; then
   SHOW_H1 "Creating .env file"
