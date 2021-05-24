@@ -88,7 +88,7 @@ jobs:
     - run: docker-compose --version
 
   build-and-push-backend:
-    needs: integration-test-frontend
+    needs: integration-test
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -129,7 +129,7 @@ jobs:
   
   
   build-and-push-frontend:
-    needs: integration-test-frontend
+    needs: integration-test
     runs-on: ubuntu-latest
     defaults:
       run:
