@@ -84,8 +84,7 @@ jobs:
       with:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-    - run: docker --version
-    - run: docker-compose --version
+    - run: ./ci.sh
 
   build-and-push-backend:
     needs: integration-test
