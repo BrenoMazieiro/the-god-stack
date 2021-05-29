@@ -20,48 +20,48 @@ const LinkWrapper = styled(Div)`
   color: ${({ theme }) => theme.colors.text[0]};
 `
 
-const LoginForm = ({
+const SignInForm = ({
   handleSubmit, username, password, errorMessage,
 }) => {
   const { theme, t } = useMyContext()
   return (
-    <Form handleSubmit={handleSubmit} id="LoginForm">
+    <Form handleSubmit={handleSubmit} id="SignInForm">
       <LabeledInput
         type="text"
         id="username"
-        label={t['organisms:Forms:LoginForm:Username']}
+        label={t['organisms:Forms:SignInForm:Username']}
         ref={username}
-        placeholder={t['organisms:Forms:LoginForm:Username']}
+        placeholder={t['organisms:Forms:SignInForm:Username']}
         errorMessages={[]}
       />
       <LabeledInput
         type="password"
         id="password"
-        label={t['organisms:Forms:LoginForm:Password']}
+        label={t['organisms:Forms:SignInForm:Password']}
         ref={password}
-        placeholder={t['organisms:Forms:LoginForm:Password']}
+        placeholder={t['organisms:Forms:SignInForm:Password']}
         errorMessages={[]}
       />
-      <Button type="submit" size="sm">{t['organisms:Forms:LoginForm:SignIn']}</Button>
+      <Button type="submit" size="sm">{t['organisms:Forms:SignInForm:SignIn']}</Button>
       {errorMessage && (
         <ErrorWrapper id="errorMessage" theme={theme}>
-          {t[`organisms:Forms:LoginForm:${errorMessage}`]}
+          {t[`organisms:Forms:SignInForm:${errorMessage}`]}
         </ErrorWrapper>
       )}
       <LinkWrapper theme={theme}>
-        {t['organisms:Forms:LoginForm:notSignedUp']}
+        {t['organisms:Forms:SignInForm:notSignedUp']}
         &nbsp;
-        <A href="/signup">{t['organisms:Forms:LoginForm:createAnAccount']}</A>
+        <A href="/signup">{t['organisms:Forms:SignInForm:createAnAccount']}</A>
       </LinkWrapper>
     </Form>
   )
 }
 
-LoginForm.propTypes = {
+SignInForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   username: PropTypes.any.isRequired,
   password: PropTypes.any.isRequired,
   errorMessage: PropTypes.string,
 }
 
-export default LoginForm
+export default SignInForm

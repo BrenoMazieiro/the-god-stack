@@ -38,7 +38,7 @@ const SignUpPage = () => {
       },
     )
       .then(() => {
-        history.push('/login', { code: 'user_singup_successfully' })
+        history.push('/signin', { code: 'user_singup_successfully' })
       })
       .catch((e) => {
         setServerErroCode(e.graphQLErrors[0].code)

@@ -1,11 +1,11 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import LoginForm from '.'
+import SignInForm from '.'
 
 const wrap = ({
   handleSubmit, username, password, errorMessage,
 }) => shallow(
-  <LoginForm
+  <SignInForm
     handleSubmit={handleSubmit}
     username={username}
     password={password}
@@ -20,22 +20,22 @@ jest.mock('hooks', () => {
   }
 })
 
-describe('LoginForm', () => {
-  it('will render LoginForm component', () => {
+describe('SignInForm', () => {
+  it('will render SignInForm component', () => {
     const wrapper = wrap({
       handleSubmit: () => true, username: 'username', password: 'password', errorMessage: '',
     })
-    expect(wrapper.find({ id: 'LoginForm' })).toHaveLength(1)
+    expect(wrapper.find({ id: 'SignInForm' })).toHaveLength(1)
   })
 
-  it('will render LoginForm component with error', () => {
+  it('will render SignInForm component with error', () => {
     const wrapper = wrap({
       handleSubmit: () => true, username: 'username', password: 'password', errorMessage: 'error',
     })
     expect(wrapper.find({ id: 'errorMessage' })).toHaveLength(1)
   })
 
-  it('will render LoginForm component without error', () => {
+  it('will render SignInForm component without error', () => {
     const wrapper = wrap({
       handleSubmit: () => true, username: 'username', password: 'password', errorMessage: '',
     })

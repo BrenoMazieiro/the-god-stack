@@ -16,6 +16,7 @@ if [ -f package.json ]; then
     yarn install --production=true
   fi
 fi
+
 if [ $APP_ENV == 'development' ]; then
   echo "### Linting..."
   yarn lint

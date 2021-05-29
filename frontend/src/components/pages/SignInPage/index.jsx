@@ -1,14 +1,14 @@
 import React, { useState, useCallback, useRef } from 'react'
 import { useMyContext } from 'hooks'
 import { useMutation } from '@apollo/client'
-import { GenericTemplate, LoginForm, Div } from 'components'
+import { GenericTemplate, SignInForm, Div } from 'components'
 import { UserLogin } from 'gql'
 
-const LoginPage = () => {
+const SignInPage = () => {
   const token = localStorage.getItem('token')
   const { history } = useMyContext()
   if (token) history.push('/')
-  const [login] = useMutation(UserLogin)
+  const [signIn] = useMutation(UserLogin)
   const username = useRef()
   const password = useRef()
   const [errorMessage, setErrorMessage] = useState('')
@@ -16,7 +16,7 @@ const LoginPage = () => {
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault()
-      login(
+      signIn(
         {
           variables: {
             username: username.current.value,
@@ -35,9 +35,9 @@ const LoginPage = () => {
   )
 
   return (
-    <GenericTemplate id="LoginPage">
+    <GenericTemplate id="SignInPage">
       {history.location?.state?.code === 'user_singup_successfully' && <Div id="register_success">Cadastrado com sucesso!</Div>}
-      <LoginForm
+      <SignInForm
         handleSubmit={handleSubmit}
         username={username}
         password={password}
@@ -47,4 +47,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage
+export default SignInPage

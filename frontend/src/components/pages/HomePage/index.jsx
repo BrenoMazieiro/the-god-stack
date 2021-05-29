@@ -6,7 +6,7 @@ const HomePage = () => {
   const { history } = useMyContext()
   const handleLogout = useCallback(() => {
     localStorage.clear()
-    history.push('/login')
+    history.push('/signin')
   })
   return (
     <MainTemplate

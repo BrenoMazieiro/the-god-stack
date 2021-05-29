@@ -20,9 +20,9 @@ jest.mock('@apollo/client', () => {
   }
 })
 
-describe('LoginPage', () => {
-  it('will render LoginPage component', () => {
+describe('SignInPage', () => {
+  it('will render SignInPage component', () => {
     const wrapper = wrap()
-    expect(wrapper.find({ id: 'LoginPage' })).toHaveLength(1)
+    expect(wrapper.find({ id: 'SignInPage' })).toHaveLength(1)
   })
 })

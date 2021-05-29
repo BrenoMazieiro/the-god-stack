@@ -14,7 +14,7 @@ const Dashboard = () => {
         type="button"
         onClick={() => {
           localStorage.clear()
-          history.push('/login')
+          history.push('/signin')
         }}
       >
         Logout

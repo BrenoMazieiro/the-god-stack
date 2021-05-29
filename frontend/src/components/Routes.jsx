@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import {
-  HomePage, LoginPage, SignUpPage, PrivateRoute, Dashboard,
+  HomePage, SignInPage, SignUpPage, PrivateRoute, Dashboard,
 } from 'components'
 
 const Routes = () => {
@@ -10,8 +10,8 @@ const Routes = () => {
       <Route exact path="/">
         <HomePage />
       </Route>
-      <Route exact path="/login">
-        <LoginPage />
+      <Route exact path="/signin">
+        <SignInPage />
       </Route>
       <Route exact path="/signup">
         <SignUpPage />

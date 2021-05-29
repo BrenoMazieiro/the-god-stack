@@ -82,7 +82,7 @@ const SignUpForm = ({
       <LinkWrapper theme={theme}>
         Already Singed Up?
         &nbsp;
-        <A href="/login">Login</A>
+        <A href="/signin">Sign In</A>
       </LinkWrapper>
     </Form>
   )
