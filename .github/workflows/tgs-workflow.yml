@@ -9,8 +9,8 @@ on:
   pull_request:
     branches: [ 'main' ]
 env:
-  APP_ENV: production
-  NODE_ENV: production
+  APP_ENV: prodution
+  NODE_ENV: prodution
   HTTP_API_URL: http://api.local.thegodstack.com/
   WS_API_URL: ws://api.local.thegodstack.com/graphql
   CLIENT: thegodstack
@@ -84,7 +84,11 @@ jobs:
       with:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+    - run: sudo ./addHosts.sh
+    - run: cat /etc/hosts
     - run: ./ci.sh
+    - run: docker logs -f spa.local.thegodstack.com
+    - run: ./frontend/wait-for-it.sh -t 0 spa.local.thegodstack.com:80 -- echo "spa online!"
     - run: cd frontend && yarn cy:install && yarn cy:run
 
   build-and-push-backend:

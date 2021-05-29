@@ -5,6 +5,10 @@ set -e
 # Move hidden files aswel
 shopt -s dotglob
 
+echo "Execution on $APP_ENV environment..."
+whoami
+ls -lah
+pwd
 # If there is package.json instal dependencies
 if [ -f package.json ]; then
   echo "### Found package.json, installing the dependencies..."
