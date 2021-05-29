@@ -87,7 +87,7 @@ jobs:
     - run: sudo ./addHosts.sh
     - run: ./ci.sh
     - run: ./frontend/wait-for-it.sh -t 0 spa.local.thegodstack.com:80 -- echo "spa online!"
-    - run: cd frontend && yarn cy:install && yarn cy:run
+    - run: docker exec -it spa.local.thegodstack.com yarn cy:run
 
   build-and-push-backend:
     needs: integration-test
