@@ -86,7 +86,7 @@ jobs:
     - run: sudo ./addHosts.sh
     - run: ./ci.sh
     - run: docker logs -f ci-cypress
-    - run: docker exec ci-cypress ./.s2i/bin/ci
+    - run: docker exec spa.local.thegodstack.com ./.s2i/bin/ci
 
   build-and-push-backend:
     needs: integration-test
