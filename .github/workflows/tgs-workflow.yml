@@ -84,9 +84,11 @@ jobs:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - run: sudo ./addHosts.sh
+    - run: cat /etc/hosts
     - run: ./ci.sh
+    - run: docker logs -f spa.local.thegodstack.com
     - run: ./frontend/wait-for-it.sh -t 0 spa.local.thegodstack.com:80 -- echo "spa online!"
-    - run: sleep 150
+    # - run: sleep 60
     - run: cd frontend && yarn cy:install && yarn cy:run
 
   build-and-push-backend:
