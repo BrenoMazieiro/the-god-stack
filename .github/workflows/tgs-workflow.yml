@@ -69,6 +69,7 @@ jobs:
   integration-test:
     needs: [unity-test-backend, unity-test-frontend ]
     runs-on: ubuntu-latest
+    container: cypress/browsers:node12.18.3-chrome87-ff82
 
     strategy:
       matrix:
@@ -87,7 +88,7 @@ jobs:
     - run: sudo ./addHosts.sh
     - run: ./ci.sh
     - run: ./frontend/wait-for-it.sh -t 0 spa.local.thegodstack.com:80 -- echo "spa online!"
-    - run: docker exec -it spa.local.thegodstack.com yarn cy:run
+    - run: cd frontend && cypress run
 
   build-and-push-backend:
     needs: integration-test
