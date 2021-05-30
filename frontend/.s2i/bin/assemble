@@ -5,16 +5,14 @@ set -e
 # Move hidden files aswel
 shopt -s dotglob
 
+node scripts/parseconfig.js
+
 echo "Execution on $APP_ENV environment..."
 # If there is package.json instal dependencies
 if [ -f package.json ]; then
   echo "### Found package.json, installing the dependencies..."
   yarn install --production=false
 fi
-
-# echo "### Linting..."
-# yarn lint
-node scripts/parseconfig.js
 
 if [ $APP_ENV != 'development' ]; then
   yarn build
