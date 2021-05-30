@@ -87,7 +87,7 @@ jobs:
     - run: ./ci.sh
     - run: ./frontend/wait-for-it.sh -t 0 spa.local.thegodstack.com:80 -- echo "spa online!"
     - run: sleep 150
-    - run: cd frontend && ./node_modules/.bin/cypress run
+    - run: cd frontend && yarn cy:install && yarn cy:run
 
   build-and-push-backend:
     needs: integration-test
