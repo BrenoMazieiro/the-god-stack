@@ -85,7 +85,8 @@ jobs:
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - run: sudo ./addHosts.sh
     - run: ./ci.sh
-    - run: cd frontend && yarn install --production=false --silent && yarn cy:install && yarn cy:run
+    - run: sleep 240
+    - run: cd frontend && yarn cy:install && yarn cy:run
 
   build-and-push-backend:
     needs: integration-test
