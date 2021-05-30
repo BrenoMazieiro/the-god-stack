@@ -10,6 +10,7 @@ echo "Execution on $APP_ENV environment..."
 if [ -f package.json ]; then
   echo "### Found package.json, installing the dependencies..."
   yarn install --production=false
+  yarn cy:install
 fi
 
 # echo "### Linting..."
