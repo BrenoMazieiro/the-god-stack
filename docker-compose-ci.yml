@@ -110,4 +110,4 @@ services:
       dockerfile: ./registry/${ENVIRONMENT}/Dockerfile
     volumes:
       - "./frontend:/opt/app-root/src:rw"
-    command: ['./wait-for-it.sh', '-t', '0', '${SPA_URL}:${CONTAINERS_PORT}', '--', '.s2i/bin/ci']
+    command: ['./wait-for-it.sh', '-t', '0', '${SPA_URL}:${CONTAINERS_PORT}', '--', 'ok']
