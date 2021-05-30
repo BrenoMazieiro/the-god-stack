@@ -85,7 +85,7 @@ jobs:
       with:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-    - run: sudo ./addHosts.sh
+    - run: ./addHosts.sh
     - run: ./ci.sh
     - run: ./frontend/wait-for-it.sh -t 0 spa.local.thegodstack.com:80 -- echo "spa online!"
     - run: cd frontend && cypress run
