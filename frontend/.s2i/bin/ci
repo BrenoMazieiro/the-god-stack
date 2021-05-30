@@ -1,0 +1,3 @@
+#!/bin/bash
+yarn cy:install
+yarn cy:run

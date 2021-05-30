@@ -5,12 +5,12 @@ name: Test and push TheGodStack Graphql CI
 
 on:
   push:
-    branches: [ 'main' ]
+    branches: [ 'main', 'develop' ]
   pull_request:
-    branches: [ 'main' ]
+    branches: [ 'main', 'develop' ]
 env:
-  APP_ENV: prodution
-  NODE_ENV: prodution
+  APP_ENV: production
+  NODE_ENV: production
   HTTP_API_URL: http://api.local.thegodstack.com/
   WS_API_URL: ws://api.local.thegodstack.com/graphql
   CLIENT: thegodstack
@@ -69,7 +69,6 @@ jobs:
   integration-test:
     needs: [unity-test-backend, unity-test-frontend ]
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [14.x]
@@ -85,11 +84,9 @@ jobs:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - run: sudo ./addHosts.sh
-    - run: cat /etc/hosts
     - run: ./ci.sh
-    - run: docker logs -f spa.local.thegodstack.com
-    - run: ./frontend/wait-for-it.sh -t 0 spa.local.thegodstack.com:80 -- echo "spa online!"
-    - run: cd frontend && yarn cy:install && yarn cy:run
+    - run: docker logs -f ci-cypress
+    - run: docker exec spa.local.thegodstack.com ./.s2i/bin/ci
 
   build-and-push-backend:
     needs: integration-test

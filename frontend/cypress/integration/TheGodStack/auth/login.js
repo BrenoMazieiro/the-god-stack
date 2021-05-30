@@ -1,10 +1,10 @@
 import { HTTP_SPA_URL } from '../../../../src/environment'
 
-context('Login', () => {
+context('signin', () => {
   beforeEach(() => {
-    cy.visit(`${HTTP_SPA_URL}login`)
+    cy.visit(`${HTTP_SPA_URL}signin`)
   })
-  it('will login with valid user', () => {
+  it('will signin with valid user', () => {
     cy
       .get('input#username')
       .type('breno.mazieiro')
@@ -24,7 +24,7 @@ context('Login', () => {
       .click()
   })
 
-  it('will not login with invalid user', () => {
+  it('will not signin with invalid user', () => {
     cy.get('input#username')
       .type('breno.mazieiro')
       .should('have.value', 'breno.mazieiro')
