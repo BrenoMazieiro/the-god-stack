@@ -2,7 +2,7 @@ import { HTTP_SPA_URL } from '../../../../src/environment'
 
 context('signin', () => {
   beforeEach(() => {
-    cy.visit(`${HTTP_SPA_URL}`)
+    cy.visit(`${HTTP_SPA_URL}signin`)
   })
   it('will signin with valid user', () => {
     cy
