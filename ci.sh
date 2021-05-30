@@ -39,7 +39,7 @@ fi
 
 if [ ! -f docker-compose.yml ]; then
   SHOW_H1 "Creating docker-compose.yml file"
-  if (cp docker-compose-local.yml docker-compose.yml) ; then
+  if (cp docker-compose-ci.yml docker-compose.yml) ; then
     SHOW_SUCCESS "docker-compose.yml file successfully created!"
   else
     SHOW_ERROR "I was not able to create the docker-compose.yml file, plese check the errors above!"

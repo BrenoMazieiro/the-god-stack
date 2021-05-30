@@ -1,0 +1,2 @@
+yarn cy:install
+yarn cy:run
