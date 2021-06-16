@@ -10,8 +10,8 @@
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest --verbose"
   },
   "dependencies": {
-    "@sendgrid/mail": "^7.4.4",
-    "apollo-server": "^2.25.0",
+    "@sendgrid/mail": "^7.4.5",
+    "apollo-server": "^2.25.1",
     "bcrypt": "^5.0.1",
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.5",
@@ -22,10 +22,10 @@
   },
   "devDependencies": {
     "@types/knex": "^0.16.1",
-    "eslint": "^7.27.0",
+    "eslint": "^7.28.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
-    "jest": "^27.0.3",
+    "jest": "^27.0.4",
     "nodemon": "2.0.7"
   }
 }
