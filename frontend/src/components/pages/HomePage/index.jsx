@@ -14,7 +14,7 @@ const HomePage = () => {
       footer={<Div>Footer</Div>}
       id="homepage"
     >
-      <Div>
+      <Div id="homepageContent">
         {history.location.state?.type === 'validateUser' && <Div id="validateUser">Usuário Validado com sucesso!</Div>}
         Home
         <Button type="button" onClick={handleLogout}>
