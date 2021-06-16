@@ -28,6 +28,9 @@ SHOW_H1 () {
 
 cd ..
 pwd
+ls -lah
+cp ci/.env_example_ci .env
+ls -lah
 
 if [ ! -f .env ]; then
   SHOW_H1 "Creating .env file"
