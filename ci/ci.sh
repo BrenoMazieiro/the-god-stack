@@ -30,7 +30,7 @@ cd ..
 
 if [ ! -f .env ]; then
   SHOW_H1 "Creating .env file"
-  if (cp ./ci/env_example_ci .env) ; then
+  if (cp ./ci/.env_example_ci .env) ; then
     SHOW_SUCCESS ".env file successfully created!"
   else
     SHOW_ERROR "I was not able to create the .env file, plese check the errors above!"
