@@ -26,12 +26,6 @@ SHOW_H1 () {
   printf "\n\n${MESSAGE}### $1${NC}\n"
 }
 
-cd ..
-pwd
-ls -lah
-cp ci/.env_example_ci .env
-ls -lah
-
 if [ ! -f .env ]; then
   SHOW_H1 "Creating .env file"
   if (cp ci/.env_example_ci .env) ; then
