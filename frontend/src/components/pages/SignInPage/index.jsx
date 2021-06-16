@@ -23,12 +23,13 @@ const SignInPage = () => {
             password: password.current.value,
           },
         },
-      ).then((data) => {
-        const { token, refreshToken } = data.data.UserLogin
-        localStorage.setItem('token', token)
-        localStorage.setItem('refreshToken', refreshToken)
-        history.push(history.location.state?.from?.pathname || '/')
-      })
+      )
+        .then((data) => {
+          const { token, refreshToken } = data.data.UserLogin
+          localStorage.setItem('token', token)
+          localStorage.setItem('refreshToken', refreshToken)
+          history.push(history.location.state?.from?.pathname || '/')
+        })
         .catch((e) => setErrorMessage(e.graphQLErrors[0].code))
     },
     [username, password],

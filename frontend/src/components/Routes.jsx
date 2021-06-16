@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import {
-  HomePage, SignInPage, SignUpPage, PrivateRoute, Dashboard,
+  HomePage, SignInPage, SignUpPage, PrivateRoute, Dashboard, ValidateUserPage,
 } from 'components'
 
 const Routes = () => {
@@ -15,6 +15,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/signup">
         <SignUpPage />
+      </Route>
+      <Route exact path="/validateuser/:token">
+        <ValidateUserPage />
       </Route>
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
     </Switch>

@@ -15,6 +15,7 @@ const HomePage = () => {
       id="homepage"
     >
       <Div>
+        {history.location.state?.type === 'validateUser' && <Div id="validateUser">Usuário Validado com sucesso!</Div>}
         Home
         <Button type="button" onClick={handleLogout}>
           Logout
