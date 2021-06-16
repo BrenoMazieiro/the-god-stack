@@ -27,10 +27,11 @@ SHOW_H1 () {
 }
 
 cd ..
+pwd
 
 if [ ! -f .env ]; then
   SHOW_H1 "Creating .env file"
-  if (cp ./ci/.env_example_ci .env) ; then
+  if (cp ci/.env_example_ci .env) ; then
     SHOW_SUCCESS ".env file successfully created!"
   else
     SHOW_ERROR "I was not able to create the .env file, plese check the errors above!"
@@ -41,7 +42,7 @@ fi
 
 if [ ! -f docker-compose.yml ]; then
   SHOW_H1 "Creating docker-compose.yml file"
-  if (cp ./ci/docker-compose-ci.yml docker-compose.yml) ; then
+  if (cp ci/docker-compose-ci.yml docker-compose.yml) ; then
     SHOW_SUCCESS "docker-compose.yml file successfully created!"
   else
     SHOW_ERROR "I was not able to create the docker-compose.yml file, plese check the errors above!"
