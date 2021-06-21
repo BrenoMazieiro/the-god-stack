@@ -22,21 +22,22 @@ const ValidateUserPage = () => {
 
   if (loading) {
     return (
-      <GenericTemplate id="SignInPage">
+      <GenericTemplate id="ValidateUserPageLoading">
         Loading
       </GenericTemplate>
     )
   }
+
   if (error) {
     return (
-      <GenericTemplate id="SignInPage">
+      <GenericTemplate id="ValidateUserPageError">
         This is not a valid Token!
       </GenericTemplate>
     )
   }
 
   return (
-    <GenericTemplate id="SignInPage">
+    <GenericTemplate id="ValidateUserPage">
       Teste
     </GenericTemplate>
   )
