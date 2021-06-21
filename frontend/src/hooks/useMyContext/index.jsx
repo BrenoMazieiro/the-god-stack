@@ -1,10 +1,11 @@
 import { useContext } from 'react'
 import { ThemeContext } from 'themes'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { LanguageContext } from '../../i18n'
 
 const useMyContext = () => {
   const history = useHistory()
+  const params = useParams()
   const { changeLanguage, t } = useContext(LanguageContext)
   const { theme, toggleTheme } = useContext(ThemeContext)
   return {
@@ -13,7 +14,8 @@ const useMyContext = () => {
     t,
     changeLanguage,
     history,
-    isLoggedIn: () => !!localStorage.getItem('token'), // by Albas
+    params,
+    isLoggedIn: () => !!localStorage.getItem('token'),
   }
 }
 

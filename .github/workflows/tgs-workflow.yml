@@ -11,8 +11,8 @@ on:
 env:
   APP_ENV: production
   NODE_ENV: production
-  HTTP_API_URL: http://api.local.thegodstack.com/
-  WS_API_URL: ws://api.local.thegodstack.com/graphql
+  HTTP_API_URL: http://api.thegodstack.com/
+  WS_API_URL: ws://api.thegodstack.com/graphql
   CLIENT: thegodstack
   DEBUG: true
 
@@ -83,10 +83,10 @@ jobs:
       with:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-    - run: sudo ./addHosts.sh
-    - run: ./ci.sh
+    - run: sudo ./ci/addHosts.sh
+    - run: ./ci/ci.sh
     - run: docker logs -f ci-cypress
-    - run: docker exec spa.local.thegodstack.com ./.s2i/bin/ci
+    - run: docker exec spa.ci.thegodstack.com ./.s2i/bin/cypress
 
   build-and-push-backend:
     needs: integration-test
