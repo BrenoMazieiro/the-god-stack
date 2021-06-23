@@ -102,3 +102,29 @@ services:
       traefik.enable: true
       traefik.http.routers.spa-web.rule: Host(`${SPA_URL}`)
       traefik.http.routers.spa-web.entrypoints: http
+
+  stories:
+    container_name: "${SPA_STORYBOOK_URL}"
+    build:
+      context: ./frontend
+      dockerfile: ./registry/${ENVIRONMENT}/Dockerfile
+    volumes:
+      - "./frontend:/opt/app-root/src:rw"
+    ports:
+      - ${CONTAINERS_PORT}
+    environment:
+      PORT: ${CONTAINERS_PORT}
+      APP_ENV: "${ENVIRONMENT}"
+      NODE_ENV: "${ENVIRONMENT}"
+      HTTP_API_URL: 'http://${API_URL}/'
+      HTTP_SPA_URL: 'http://${SPA_STORYBOOK_URL}/'
+      WS_API_URL: 'ws://${API_URL}/graphql'
+      CLIENT: "${CLIENT}"
+      DEBUG: "true"
+      STORIES: "true"
+    command: ['./wait-for-it.sh', '-t', '0', '${SPA_URL}:${CONTAINERS_PORT}', '--', '.s2i/bin/assemble']
+    restart: unless-stopped
+    labels:
+      traefik.enable: true
+      traefik.http.routers.stories-web.rule: Host(`${SPA_STORYBOOK_URL}`)
+      traefik.http.routers.stories-web.entrypoints: http

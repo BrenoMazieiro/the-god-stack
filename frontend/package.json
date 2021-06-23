@@ -11,7 +11,7 @@
     "cy:install": "cypress install",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -h 0.0.0.0 -p 80",
     "build-storybook": "build-storybook"
   },
   "jest": {
