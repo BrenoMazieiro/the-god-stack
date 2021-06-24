@@ -20,13 +20,14 @@ const Button = ({
   type, size = 'lg', children, onClick,
 }) => {
   const { theme } = useMyContext()
+  console.log({ theme })
   return <ButtonWrapper type={type} theme={theme} size={size} onClick={onClick}>{children}</ButtonWrapper>
 }
 
 Button.propTypes = {
   children: PropTypes.any,
-  type: PropTypes.string.isRequired,
-  size: PropTypes.string,
+  type: PropTypes.oneOf(['submit', 'button']).isRequired,
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   onClick: PropTypes.func,
 }
 

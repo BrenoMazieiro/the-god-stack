@@ -1,9 +1,9 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import LoginPage from '.'
+import SignInPage from '.'
 
 const wrap = () => shallow(
-  <LoginPage />,
+  <SignInPage />,
 )
 
 jest.mock('hooks', () => {

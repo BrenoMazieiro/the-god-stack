@@ -5,7 +5,11 @@
 # even if in the begging of the project both of then are the same.
 
 if [ $APP_ENV == 'development' ]; then
-  yarn dev
+  if [ $STORIES ]; then
+    yarn storybook
+  else
+    yarn dev
+  fi
 else
   serve public -l tcp://0.0.0.0:80 -s
 fi
