@@ -47,6 +47,7 @@ Please, add the lines below in your /etc/hosts file (Mac and Linux) (superuser w
 127.0.0.1   pg.local.thegodstack.com \n
 127.0.0.1   api.local.thegodstack.com \n
 127.0.0.1   spa.local.thegodstack.com \n
+127.0.0.1   stories.local.thegodstack.com \n
 "
 
 if [ ! -f .env ]; then
