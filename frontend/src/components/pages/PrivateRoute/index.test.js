@@ -7,12 +7,6 @@ const wrap = () => shallow(
   <PrivateRoute component={<div>test</div>} />,
 )
 
-jest.mock('hooks', () => {
-  return {
-    useMyContext: () => ({ theme: {} }),
-  }
-})
-
 const { getItemMock } = mockLocalStorage()
 
 describe('PrivateRoute', () => {

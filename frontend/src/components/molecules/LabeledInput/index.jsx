@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import {
   Input, Label, Div, Tooltip,
 } from 'components'
-import { useMyContext } from 'hooks'
 
 const LabeledInputWrapper = styled(Div)`
   display:flex;
@@ -12,7 +11,6 @@ const LabeledInputWrapper = styled(Div)`
   align-items: center;
   justify-content: flex-end;
   font-family: ${({ theme }) => theme.fonts.primary};
-  color: ${({ theme }) => theme.colors.text[0]};
 
   @media only screen and (max-width: ${({ theme }) => theme.sizes.pagesBreakpoints.sm}) {
     flex-direction: column;
@@ -29,7 +27,6 @@ const InputIcon = styled(Div)`
 const LabeledInput = forwardRef(({
   type, id, label, errorMessages,
 }, ref) => {
-  const { theme } = useMyContext()
   const getErrors = (field, errors) => {
     return `${errors.reduce((acc, error) => error.path === field ? `${acc} - ${error.message} <br/>` : acc, '')}`
   }
@@ -41,7 +38,7 @@ const LabeledInput = forwardRef(({
   const thisFieldHasErrors = !!errorMessages.length && !!hasErrors(id, errorMessages)
 
   return (
-    <LabeledInputWrapper theme={theme} id={`${id}${thisFieldHasErrors ? '-error' : ''}`}>
+    <LabeledInputWrapper id={`${id}${thisFieldHasErrors ? '-error' : ''}`}>
       <Label id={id} hasError={thisFieldHasErrors}>{label}</Label>
       <InputIcon>
         <Input id={id} type={type} ref={ref} hasError={thisFieldHasErrors} />

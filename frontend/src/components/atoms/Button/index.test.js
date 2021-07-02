@@ -4,12 +4,6 @@ import Button from '.'
 
 const wrap = ({ type, size, children }) => shallow(<Button type={type} size={size}>{children}</Button>)
 
-jest.mock('hooks', () => {
-  return {
-    useMyContext: () => ({ theme: {} }),
-  }
-})
-
 describe('Button', () => {
   it('will render a Button component', () => {
     const wrapper = wrap({ children: 'Teste', type: 'submit', size: 'lg' })

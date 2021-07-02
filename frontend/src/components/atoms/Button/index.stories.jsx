@@ -15,22 +15,22 @@ export const SmallButton = Template.bind({})
 SmallButton.args = {
   type: 'submit',
   size: 'sm',
-  children: <div>Test</div>,
-  onClick: () => console.log('clicked'),
+  children: 'Small',
+  onClick: () => null,
 }
 
 export const MediumButton = Template.bind({})
 MediumButton.args = {
   type: 'submit',
   size: 'md',
-  children: <div>Test</div>,
-  onClick: () => console.log('clicked'),
+  children: 'Medium',
+  onClick: () => null,
 }
 
 export const LargeButton = Template.bind({})
 LargeButton.args = {
   type: 'submit',
   size: 'lg',
-  children: <div>Test</div>,
-  onClick: () => console.log('clicked'),
+  children: 'Large',
+  onClick: () => null,
 }

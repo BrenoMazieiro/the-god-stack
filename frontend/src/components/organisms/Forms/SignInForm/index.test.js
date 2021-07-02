@@ -16,7 +16,7 @@ const wrap = ({
 jest.mock('hooks', () => {
   const translations = jest.requireActual('i18n/LanguageProvider/locales')
   return {
-    useMyContext: () => ({ theme: {}, t: translations.default['en-US'] }),
+    useMyContext: () => ({ t: translations.default['en-US'] }),
   }
 })
 

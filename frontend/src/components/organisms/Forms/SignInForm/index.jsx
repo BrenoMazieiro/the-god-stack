@@ -10,20 +10,18 @@ const ErrorWrapper = styled(Div)`
   display: flex;
   align-items: center;
   align-self: center;
-  color: ${({ theme }) => theme.colors.actions.error};
 `
 const LinkWrapper = styled(Div)`
   display: flex;
   align-items: center;
   align-self: center;
   margin-top: 20px;
-  color: ${({ theme }) => theme.colors.text[0]};
 `
 
 const SignInForm = ({
   handleSubmit, username, password, errorMessage,
 }) => {
-  const { theme, t } = useMyContext()
+  const { t } = useMyContext()
   return (
     <Form handleSubmit={handleSubmit} id="SignInForm">
       <LabeledInput
@@ -42,13 +40,13 @@ const SignInForm = ({
         placeholder={t['organisms:Forms:SignInForm:Password']}
         errorMessages={[]}
       />
-      <Button type="submit" size="sm">{t['organisms:Forms:SignInForm:SignIn']}</Button>
+      <Button type="submit" size="md" bgColor="blue" color="white">{t['organisms:Forms:SignInForm:SignIn']}</Button>
       {errorMessage && (
-        <ErrorWrapper id="errorMessage" theme={theme}>
+        <ErrorWrapper id="errorMessage">
           {t[`organisms:Forms:SignInForm:${errorMessage}`]}
         </ErrorWrapper>
       )}
-      <LinkWrapper theme={theme}>
+      <LinkWrapper>
         {t['organisms:Forms:SignInForm:notSignedUp']}
         &nbsp;
         <A href="/signup">{t['organisms:Forms:SignInForm:createAnAccount']}</A>

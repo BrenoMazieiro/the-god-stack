@@ -18,7 +18,7 @@ const wrap = ({
 
 jest.mock('hooks', () => {
   return {
-    useMyContext: () => ({ theme: {} }),
+    useMyContext: () => ({ }),
   }
 })
 

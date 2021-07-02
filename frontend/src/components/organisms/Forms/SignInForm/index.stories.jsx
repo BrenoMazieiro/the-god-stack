@@ -7,9 +7,7 @@ export default {
   component: SignInForm,
   decorators: [
     (Story) => (
-      <div style={{ width: 300, height: 300 }}>
-        <Story />
-      </div>
+      <Story />
     ),
   ],
 }

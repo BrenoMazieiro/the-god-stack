@@ -1,10 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { useMyContext } from 'hooks'
 
 const LabelWrapper = styled.label`
-  color: ${({ theme, hasError }) => { return hasError ? theme.colors.actions.error : null }};
   &::after {
     content: ':';
   }
@@ -16,9 +14,8 @@ const LabelWrapper = styled.label`
 `
 
 const Label = ({ id, children, hasError }) => {
-  const { theme } = useMyContext()
   return (
-    <LabelWrapper htmlFor={id} theme={theme} hasError={hasError}>{children}</LabelWrapper>
+    <LabelWrapper htmlFor={id} hasError={hasError}>{children}</LabelWrapper>
   )
 }
 
