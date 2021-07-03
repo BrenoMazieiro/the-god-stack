@@ -25,15 +25,10 @@ const genericDesign = {
 
     },
     maxWidth: '1100px',
-    headerWidth: '1400px',
-    text: {
-      lg: '24px',
-      md: '22px',
-      sm: '19px',
-    },
     button: {
       sm: {
         padding: '8px 16px 8px 16px',
+        justIconPadding: '8px',
         size: '12px',
         radius: '12px',
         width: '67px',
@@ -43,6 +38,7 @@ const genericDesign = {
       },
       md: {
         padding: '16px',
+        justIconPadding: '14px',
         size: '14px',
         radius: '16px',
         width: '86px',
@@ -52,6 +48,7 @@ const genericDesign = {
       },
       lg: {
         padding: '16px 24px 16px 24px',
+        justIconPadding: '18px 26px 18px 26px',
         size: '16px',
         radius: '16px',
         width: '93px',
@@ -59,32 +56,38 @@ const genericDesign = {
         lineHeight: '24px',
         letterSpacing: '0.03em',
       },
-
     },
-    img: {
-      lg: {
-        width: '256px',
-        height: '256px',
-      },
-      md: {
-        width: '128px',
-        height: '128px',
-      },
-      sm: {
-        width: '64px',
-        height: '64px',
-      },
+    icon: {
+      xlg: '3em',
+      lg: '2.5em',
+      md: '2em',
+      sm: '1.5em',
+      xsm: '1em',
     },
+    spacing: [
+      '8px',
+      '16px',
+      '24px',
+      '32px',
+      '40px',
+      '48px',
+      '56px',
+      '64px',
+      '72px',
+      '80px',
+    ],
   },
 }
 
 const darkLight = {
   dark: {
     primary: [3, 6, 9],
+    borders: [3],
     text: [2, 8, 10],
   },
   light: {
     primary: [5, 7, 9],
+    borders: [9],
     text: [0, 6, 10],
   },
 }
