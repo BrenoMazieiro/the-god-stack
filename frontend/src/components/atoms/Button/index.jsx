@@ -28,16 +28,17 @@ const ButtonWrapper = styled.button`
 
   :focus {
     box-sizing: border-box;
-    box-shadow: inset 0px 0px 0px 5px ${({ theme }) => `${theme.colors.blue[theme.primary[0]]}`};
-    background-color: ${({ theme, bgColor }) => bgColor ? theme.colors[bgColor][theme.primary[1]] : 'transparent'};
+    box-shadow: inset 0px 0px 0px ${({ bgColor }) => bgColor ? '5px' : '1px'} ${({ theme, bgColor }) => `${theme.colors[bgColor || 'blue'][theme.borders[0]]}`};
+    background-color: ${({ theme, bgColor }) => bgColor ? theme.colors[bgColor || 'blue'][theme.primary[1]] : 'transparent'};
   }
 `
 
 const Button = ({
-  type, size = 'lg', children, onClick, bgColor, color = 'blue', disabled, fullWidth,
+  className, type, size = 'lg', children, onClick, bgColor, color = 'blue', disabled, fullWidth,
 }) => {
   return (
     <ButtonWrapper
+      className={className}
       type={type}
       size={size}
       onClick={onClick}
@@ -53,6 +54,7 @@ const Button = ({
 }
 
 Button.propTypes = {
+  className: PropTypes.any,
   children: PropTypes.any,
   type: PropTypes.oneOf(['submit', 'button']).isRequired,
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
