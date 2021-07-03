@@ -7,9 +7,8 @@ const useMyContext = () => {
   const history = useHistory()
   const params = useParams()
   const { changeLanguage, t } = useContext(LanguageContext)
-  const { theme, toggleTheme } = useContext(ThemeContext)
+  const { toggleTheme } = useContext(ThemeContext)
   return {
-    theme,
     toggleTheme,
     t,
     changeLanguage,

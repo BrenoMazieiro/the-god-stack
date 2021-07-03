@@ -3,13 +3,11 @@ import React, { useRef } from 'react'
 import SignInForm from '.'
 
 export default {
-  title: 'Organisms/SignInForm',
+  title: 'components/organisms/SignInForm',
   component: SignInForm,
   decorators: [
     (Story) => (
-      <div style={{ width: 300, height: 300 }}>
-        <Story />
-      </div>
+      <Story />
     ),
   ],
 }

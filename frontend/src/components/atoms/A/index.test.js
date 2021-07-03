@@ -4,12 +4,6 @@ import A from '.'
 
 const wrap = ({ id, children }) => shallow(<A id={id}>{children}</A>)
 
-jest.mock('hooks', () => {
-  return {
-    useMyContext: () => ({ theme: {} }),
-  }
-})
-
 describe('Link', () => {
   it('will render a Link component', () => {
     const wrapper = wrap({ children: 'Teste' })

@@ -10,7 +10,6 @@ jest.mock('hooks', () => {
   return {
     useMyContext: () => (
       {
-        theme: {},
         history: { location: { state: { type: 'validateUser' } } },
       }),
   }

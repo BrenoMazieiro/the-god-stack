@@ -2,9 +2,11 @@ import Providers from '../src/Providers'
 
 export const decorators = [
   (Story) => (
-    <Providers >
-      <Story />
-    </Providers>
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
+      <Providers >
+        <Story />
+      </Providers>
+    </div>
   ),
 ];
 

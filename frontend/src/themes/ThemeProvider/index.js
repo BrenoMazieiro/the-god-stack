@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Themes, ThemeContext } from 'themes'
 import { CLIENT } from 'environment'
+import { ThemeProvider as SThemeProvider } from 'styled-components'
 
 const ThemeProvider = ({ children }) => {
   const [themeType, setThemeType] = useState(JSON.parse(localStorage.getItem('theme')) || 'dark')
@@ -12,9 +13,11 @@ const ThemeProvider = ({ children }) => {
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
+    <SThemeProvider theme={theme}>
+      <ThemeContext.Provider value={{ toggleTheme }}>
+        {children}
+      </ThemeContext.Provider>
+    </SThemeProvider>
   )
 }
 

@@ -10,7 +10,6 @@ const ErrorWrapper = styled(Div)`
   display: flex;
   align-items: center;
   align-self: center;
-  color: ${({ theme }) => theme.colors.actions.error};
 `
 
 const LinkWrapper = styled(Div)`
@@ -18,7 +17,6 @@ const LinkWrapper = styled(Div)`
   align-items: center;
   align-self: center;
   margin-top: 20px;
-  color: ${({ theme }) => theme.colors.text[0]};
 `
 
 const SignUpForm = ({
@@ -31,7 +29,7 @@ const SignUpForm = ({
   errorMessages,
   serverErrorCode,
 }) => {
-  const { theme, t } = useMyContext()
+  const { t } = useMyContext()
 
   return (
     <Form handleSubmit={handleSubmit} id="SignUpForm">
@@ -74,12 +72,12 @@ const SignUpForm = ({
         errorMessages={errorMessages}
       />
       {serverErrorCode && (
-        <ErrorWrapper id="serverErrorCode" theme={theme}>
+        <ErrorWrapper id="serverErrorCode">
           {t[`organisms:Forms:SignUpForm:${serverErrorCode}`]}
         </ErrorWrapper>
       )}
-      <Button type="submit" size="sm">Sign Up</Button>
-      <LinkWrapper theme={theme}>
+      <Button type="submit" size="lg" bgColor="blue" color="white">Sign Up</Button>
+      <LinkWrapper>
         Already Singed Up?
         &nbsp;
         <A href="/signin">Sign In</A>

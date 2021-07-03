@@ -4,12 +4,6 @@ import Label from '.'
 
 const wrap = ({ id, children }) => shallow(<Label id={id}>{children}</Label>)
 
-jest.mock('hooks', () => {
-  return {
-    useMyContext: () => ({ theme: {} }),
-  }
-})
-
 describe('Label', () => {
   it('will render a Label component', () => {
     const wrapper = wrap({ children: 'Teste', id: 'LabelId' })

@@ -3,7 +3,7 @@ import React from 'react'
 import Button from '.'
 
 export default {
-  title: 'atoms/Button',
+  title: 'components/atoms/Button',
   component: Button,
 
 }
@@ -15,22 +15,28 @@ export const SmallButton = Template.bind({})
 SmallButton.args = {
   type: 'submit',
   size: 'sm',
-  children: <div>Test</div>,
-  onClick: () => console.log('clicked'),
+  children: 'Small',
+  bgColor: 'blue',
+  color: 'white',
+  onClick: () => null,
 }
 
 export const MediumButton = Template.bind({})
 MediumButton.args = {
   type: 'submit',
   size: 'md',
-  children: <div>Test</div>,
-  onClick: () => console.log('clicked'),
+  children: 'Medium',
+  bgColor: 'blue',
+  color: 'white',
+  onClick: () => null,
 }
 
 export const LargeButton = Template.bind({})
 LargeButton.args = {
   type: 'submit',
   size: 'lg',
-  children: <div>Test</div>,
-  onClick: () => console.log('clicked'),
+  children: 'Large',
+  bgColor: 'blue',
+  color: 'white',
+  onClick: () => null,
 }

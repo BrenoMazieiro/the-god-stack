@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { useMyContext } from 'hooks'
 import { MdError } from 'react-icons/md'
 import { Div } from 'components'
 
@@ -31,15 +30,13 @@ const StyledTooltipText = styled.span`
 `
 
 const ErrorIcon = styled(MdError)`
-  color: ${({ theme }) => theme.colors.actions.error};
 `
 const Tooltip = ({ type, errorMessage }) => {
-  const { theme } = useMyContext()
   return (
-    <WrapperTooltip theme={theme} type={type}>
-      <ErrorIcon theme={theme} size={20} />
+    <WrapperTooltip type={type}>
+      <ErrorIcon size={20} />
       <StyledTooltipText id="tooltiptext">
-        <Div theme={theme} dangerouslySetInnerHTML={{ __html: errorMessage }} />
+        <Div dangerouslySetInnerHTML={{ __html: errorMessage }} />
       </StyledTooltipText>
     </WrapperTooltip>
   )
