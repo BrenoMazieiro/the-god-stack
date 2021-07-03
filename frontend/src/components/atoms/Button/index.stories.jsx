@@ -16,6 +16,8 @@ SmallButton.args = {
   type: 'submit',
   size: 'sm',
   children: 'Small',
+  bgColor: 'blue',
+  color: 'white',
   onClick: () => null,
 }
 
@@ -24,6 +26,8 @@ MediumButton.args = {
   type: 'submit',
   size: 'md',
   children: 'Medium',
+  bgColor: 'blue',
+  color: 'white',
   onClick: () => null,
 }
 
@@ -32,5 +36,7 @@ LargeButton.args = {
   type: 'submit',
   size: 'lg',
   children: 'Large',
+  bgColor: 'blue',
+  color: 'white',
   onClick: () => null,
 }

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const ButtonWrapper = styled.button`
+  width: ${({ fullWidth }) => fullWidth && '100%'};
   padding: ${({ theme, size }) => theme.sizes.button[size].padding};
   border-radius: ${({ theme, size }) => theme.sizes.button[size].radius};
   border: ${({ theme, bgColor }) => bgColor ? '0' : `1px solid ${theme.colors.gray[theme.text[2]]}`};
   align-self: center;
   color: ${({ theme, color }) => theme.colors[color][theme.primary[0]]};
   background-color: ${({ theme, bgColor }) => bgColor ? theme.colors[bgColor][theme.primary[0]] : 'transparent'};
-  font-size: ${({ theme, size }) => theme.sizes.text[size]};
   font-family: ${({ theme }) => theme.fonts.primary};
   font-style: normal;
   font-weight: bold;
@@ -27,12 +27,14 @@ const ButtonWrapper = styled.button`
   }
 
   :focus {
-    border: ${({ theme }) => `4px solid ${theme.colors.blue[theme.primary[1]]}`};
+    box-sizing: border-box;
+    box-shadow: inset 0px 0px 0px 5px ${({ theme }) => `${theme.colors.blue[theme.primary[0]]}`};
+    background-color: ${({ theme, bgColor }) => bgColor ? theme.colors[bgColor][theme.primary[1]] : 'transparent'};
   }
 `
 
 const Button = ({
-  type, size = 'lg', children, onClick, bgColor, color = 'blue', disabled,
+  type, size = 'lg', children, onClick, bgColor, color = 'blue', disabled, fullWidth,
 }) => {
   return (
     <ButtonWrapper
@@ -42,6 +44,8 @@ const Button = ({
       color={color}
       bgColor={bgColor}
       disabled={disabled}
+      fullWidth={fullWidth}
+      onMouseUp={(e) => e.target.blur()}
     >
       {children}
     </ButtonWrapper>
@@ -56,6 +60,7 @@ Button.propTypes = {
   bgColor: PropTypes.oneOf(['black', 'gray', 'blue', 'pink', 'green', 'yellow', 'orange', 'red', 'purple', '']),
   color: PropTypes.oneOf(['white', 'black', 'gray', 'blue', 'pink', 'green', 'yellow', 'orange', 'red', 'purple']),
   disabled: PropTypes.bool,
+  fullWidth: PropTypes.bool,
 }
 
 export default Button

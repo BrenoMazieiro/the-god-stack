@@ -5,7 +5,7 @@ import { CLIENT } from 'environment'
 import { ThemeProvider as SThemeProvider } from 'styled-components'
 
 const ThemeProvider = ({ children }) => {
-  const [themeType, setThemeType] = useState(JSON.parse(localStorage.getItem('theme')) || 'light')
+  const [themeType, setThemeType] = useState(JSON.parse(localStorage.getItem('theme')) || 'dark')
   const theme = Themes[CLIENT] ? Themes[CLIENT][themeType] : Themes.default[themeType]
 
   const toggleTheme = () => {
