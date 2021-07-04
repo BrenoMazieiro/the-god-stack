@@ -9,6 +9,7 @@ const Wrapper = styled(Div)`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  background-color: ${({ theme }) => theme.colors[theme.background.primary.color][theme.background.primary.intensity]};
 `
 
 const GenericTemplate = ({ children }) => {

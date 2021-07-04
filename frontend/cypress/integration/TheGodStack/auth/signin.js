@@ -1,6 +1,6 @@
 import { HTTP_SPA_URL } from '../../../../src/environment'
 
-context('signin', () => {
+context('Sign in a user', () => {
   beforeEach(() => {
     cy.visit(`${HTTP_SPA_URL}signin`)
   })

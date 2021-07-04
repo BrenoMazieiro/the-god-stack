@@ -7,15 +7,16 @@ const FormWrapper = styled.form`
   flex-direction: column;
 `
 
-const Form = ({ handleSubmit, children }) => {
+const Form = ({ handleSubmit, children, className }) => {
   return (
-    <FormWrapper onSubmit={handleSubmit}>
+    <FormWrapper onSubmit={handleSubmit} className={className}>
       {children}
     </FormWrapper>
   )
 }
 
 Form.propTypes = {
+  className: PropTypes.string,
   handleSubmit: PropTypes.func.isRequired,
   children: PropTypes.any.isRequired,
 }

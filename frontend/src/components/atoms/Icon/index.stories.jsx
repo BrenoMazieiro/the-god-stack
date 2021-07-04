@@ -12,6 +12,6 @@ const Template = (args) => <Icon {...args} />
 
 export const SomeIcon = Template.bind({})
 SomeIcon.args = {
-  icon: 'power',
-  size: 'lg',
+  iconname: 'power',
+  iconsize: 'lg',
 }

@@ -23,21 +23,21 @@ jest.mock('hooks', () => {
 describe('SignInForm', () => {
   it('will render SignInForm component', () => {
     const wrapper = wrap({
-      handleSubmit: () => true, username: 'username', password: 'password', errorMessage: '',
+      handleSubmit: () => true, username: () => null, password: () => null, errorMessage: '',
     })
     expect(wrapper.find({ id: 'SignInForm' })).toHaveLength(1)
   })
 
   it('will render SignInForm component with error', () => {
     const wrapper = wrap({
-      handleSubmit: () => true, username: 'username', password: 'password', errorMessage: 'error',
+      handleSubmit: () => true, username: () => null, password: () => null, errorMessage: 'error',
     })
     expect(wrapper.find({ id: 'errorMessage' })).toHaveLength(1)
   })
 
   it('will render SignInForm component without error', () => {
     const wrapper = wrap({
-      handleSubmit: () => true, username: 'username', password: 'password', errorMessage: '',
+      handleSubmit: () => true, username: () => null, password: () => null, errorMessage: '',
     })
     expect(wrapper.find({ id: 'errorMessage' })).toHaveLength(0)
   })
