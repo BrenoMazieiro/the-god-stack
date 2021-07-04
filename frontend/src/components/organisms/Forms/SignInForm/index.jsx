@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useMyContext } from 'hooks'
 import {
-  Form, Button, A, Textfield, Text,
+  Form, A, Textfield, Text, IconButton,
 } from 'components'
 
 const StyledText = styled(Text)`
@@ -17,13 +17,18 @@ const LinkWrapper = styled(Text)`
   align-self: center;
   margin-top: 20px;
 `
+const StyledForm = styled(Form)`
+  padding: ${({ theme }) => theme.sizes.spacing[4]};
+  border-radius: ${({ theme }) => theme.sizes.spacing[3]};
+  background-color: ${({ theme }) => theme.colors[theme.background.secondary.color][theme.background.secondary.intensity]};
+`
 
 const SignInForm = ({
   handleSubmit, username, password, errorMessage,
 }) => {
   const { t } = useMyContext()
   return (
-    <Form handleSubmit={handleSubmit} id="SignInForm">
+    <StyledForm handleSubmit={handleSubmit} id="SignInForm">
       <Textfield
         id="username"
         type="text"
@@ -38,15 +43,17 @@ const SignInForm = ({
         placeholder={t['organisms:Forms:SignInForm:Password']}
         status={errorMessage ? 'error' : null}
       />
-      <Button
+      <IconButton
         type="submit"
         size="md"
         bgColor="blue"
         color="white"
+        iconname="arrowAltCircleRight"
+        iconposition="right"
         fullWidth
       >
         {t['organisms:Forms:SignInForm:SignIn']}
-      </Button>
+      </IconButton>
       {errorMessage && (
         <StyledText color="red">
           {t[`organisms:Forms:SignInForm:${errorMessage}`]}
@@ -57,7 +64,7 @@ const SignInForm = ({
         &nbsp;
         <A href="/signup">{t['organisms:Forms:SignInForm:createAnAccount']}</A>
       </LinkWrapper>
-    </Form>
+    </StyledForm>
   )
 }
 
