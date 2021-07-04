@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const Wrapper = styled.span`
   font-family: ${({ theme }) => theme.fonts.primary};
-  color: ${({ theme, color }) => theme.colors[color || 'gray'][theme.text[0]]};
+  color: ${({ theme, color }) => theme.colors[color || 'gray'][theme.text[1]]};
   font-size: ${({ theme, textsize }) => theme.fonts.size[textsize || 'md']};
   font-weight: ${({ bold }) => bold ? 'bold' : 'normal'};
 `
