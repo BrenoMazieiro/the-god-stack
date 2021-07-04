@@ -10,8 +10,8 @@ const genericDesign = {
     },
   },
   colors: {
-    white: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'],
-    black: ['#000000', '#000000', '#000000', '#000000', '#000000', '#000000', '#000000', '#000000', '#000000', '#000000', '#000000', '#000000'],
+    white: ['#FAFAFA', '#FAFAFA', '#FAFAFA', '#FAFAFA', '#FAFAFA', '#FAFAFA', '#FAFAFA', '#FAFAFA', '#FAFAFA', '#FAFAFA', '#FAFAFA', '#FAFAFA'],
+    black: ['#111122', '#111122', '#111122', '#111122', '#111122', '#111122', '#111122', '#111122', '#111122', '#111122', '#111122', '#111122'],
     gray: ['#0F0D15', '#1D1929', '#34303E', '#4A4754', '#615E69', '#77757F', '#8E8C94', '#A5A3A9', '#BBBABF', '#D2D1D4', '#E8E8EA', '#F9F9F9'],
     blue: ['#0030CC', '#0036E6', '#003CFF', '#1A50FF', '#3363FF', '#4D77FF', '#668AFF', '#809EFF', '#99B1FF', '#B3C5FF', '#CCD8FF', '#e6ecff'],
     pink: ['#C80068', '#E10075', '#FA0082', '#FB1A8F', '#FB339B', '#FC4DA8', '#FC66B4', '#FD80C1', '#FD99CD', '#FEB3DA', '#FECCE6', '#FFE6F3'],
@@ -88,7 +88,7 @@ const darkLight = {
   dark: {
     primary: [3, 6, 9],
     borders: [3],
-    text: [2, 8, 10],
+    text: [11, 6, 10],
     background: {
       primary: { color: 'gray', intensity: 2 },
     },
@@ -131,7 +131,7 @@ const darkLight = {
   light: {
     primary: [5, 7, 9],
     borders: [9],
-    text: [0, 6, 10],
+    text: [2, 8, 10],
     background: {
       primary: { color: 'gray', intensity: 12 },
     },
@@ -146,7 +146,7 @@ const darkLight = {
       {
         primary: {
           color: 'gray',
-          intensity: 3,
+          intensity: 8,
         },
         hover: {
           color: 'blue',
