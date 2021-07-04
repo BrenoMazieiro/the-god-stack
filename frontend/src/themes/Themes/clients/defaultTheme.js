@@ -84,11 +84,81 @@ const darkLight = {
     primary: [3, 6, 9],
     borders: [3],
     text: [2, 8, 10],
+    background: [{ color: 'gray', intensity: 2 }],
+    input:
+    {
+      textcolor: {
+        color: 'gray',
+        intensity: 11,
+      },
+      bordercolors:
+      {
+        primary: {
+          color: 'gray',
+          intensity: 3,
+        },
+        hover: {
+          color: 'blue',
+          intensity: 4,
+        },
+        focus: {
+          color: 'blue',
+          intensity: 4,
+        },
+        error: {
+          color: 'red',
+          intensity: 3,
+        },
+        success: {
+          color: 'green',
+          intensity: 1,
+        },
+        disabled: {
+          color: 'gray',
+          intensity: 3,
+        },
+      },
+    },
   },
   light: {
     primary: [5, 7, 9],
     borders: [9],
     text: [0, 6, 10],
+    background: [{ color: 'white', intensity: 2 }],
+    input:
+    {
+      textcolor: {
+        color: 'gray',
+        intensity: 2,
+      },
+      bordercolors:
+      {
+        primary: {
+          color: 'gray',
+          intensity: 3,
+        },
+        hover: {
+          color: 'blue',
+          intensity: 4,
+        },
+        focus: {
+          color: 'blue',
+          intensity: 4,
+        },
+        error: {
+          color: 'red',
+          intensity: 3,
+        },
+        success: {
+          color: 'green',
+          intensity: 1,
+        },
+        disabled: {
+          color: 'gray',
+          intensity: 3,
+        },
+      },
+    },
   },
 }
 
