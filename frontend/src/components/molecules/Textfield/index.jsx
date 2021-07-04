@@ -28,7 +28,7 @@ const Textfield = ({
 }) => {
   return (
     <Wrapper id={id} className={className} fullWidth={fullWidth}>
-      <Input fullWidth={fullWidth} type={type} required={required} ref={reference} status={status}> </Input>
+      <Input id={id} fullWidth={fullWidth} type={type} required={required} ref={reference} status={status}> </Input>
       <PlaceHolder>{placeholder}</PlaceHolder>
       {helper && <Helper color={{ error: 'red', success: 'green' }[status]}>{helper}</Helper>}
     </Wrapper>

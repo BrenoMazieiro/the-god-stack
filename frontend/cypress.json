@@ -1,6 +1,6 @@
 {
   "testFiles": [
     "TheGodStack/auth/signup.js",
-    "TheGodStack/auth/login.js"
+    "TheGodStack/auth/signin.js"
   ]
 }
