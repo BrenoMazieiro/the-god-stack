@@ -55,7 +55,7 @@ const SignInForm = ({
         {t['organisms:Forms:SignInForm:SignIn']}
       </IconButton>
       {errorMessage && (
-        <StyledText color="red">
+        <StyledText color="red" id="errorMessage">
           {t[`organisms:Forms:SignInForm:${errorMessage}`]}
         </StyledText>
       )}
