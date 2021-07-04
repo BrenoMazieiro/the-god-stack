@@ -53,12 +53,13 @@ const InputWrapper = styled.input`
 `
 
 const Input = forwardRef(({
-  id, type, status, fullWidht,
+  id, className, type, status, fullWidht,
 }, ref) => {
-  return <InputWrapper id={id} type={type} ref={ref} status={status} fullWidht={fullWidht} />
+  return <InputWrapper className={className} id={id} type={type} ref={ref} status={status} fullWidht={fullWidht} />
 })
 
 Input.propTypes = {
+  className: PropTypes.string,
   id: PropTypes.string,
   type: PropTypes.string.isRequired,
   fullWidht: PropTypes.bool,
