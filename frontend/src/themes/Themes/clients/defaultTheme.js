@@ -3,6 +3,11 @@ const genericDesign = {
     primary: 'Nunito Sans, sans-serif',
     pre: 'Consolas, Liberation Mono, Menlo, Courier, monospace',
     quote: 'Georgia, serif',
+    size: {
+      sm: '12px',
+      md: '14px',
+      lg: '16px',
+    },
   },
   colors: {
     white: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'],
