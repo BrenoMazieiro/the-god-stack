@@ -10,7 +10,7 @@ const getColor = ({ theme, status }) => (
 )
 
 const InputWrapper = styled.input`
-  padding: 24px 24px 8px 24px; 
+  padding: 24px 24px 8px 24px;
 
   color: ${(props) => (
     getColor(props) || props.theme.colors[props.theme.input.textcolor.color][props.theme.input.textcolor.intensity]
@@ -19,7 +19,7 @@ const InputWrapper = styled.input`
   font-size: 14px;
   line-height: 112%;
 
-  width: ${({ fullWidht }) => fullWidht ? '100%' : '344px'};
+  width: ${({ fullWidth }) => fullWidth ? '100%' : '344px'};
   height: 56px;
   
   background: ${({ theme }) => theme.colors[theme.input.background.color][theme.input.background.intensity]};
@@ -36,6 +36,7 @@ const InputWrapper = styled.input`
     border: 1px solid ${({ theme }) => theme.colors[theme.input.bordercolors.hover.color][theme.input.bordercolors.hover.intensity]};
   }
   :focus {
+    padding-left: ${({ theme }) => `calc(${theme.sizes.spacing[2]} - 1px)`};
     outline: none;
     border-radius: 18px;
     border: 2px solid ${({ theme }) => theme.colors[theme.input.bordercolors.focus.color][theme.input.bordercolors.focus.intensity]};
@@ -53,17 +54,29 @@ const InputWrapper = styled.input`
 `
 
 const Input = forwardRef(({
-  id, className, type, status, fullWidht,
+  id, className, type, status, fullWidth, required,
 }, ref) => {
-  return <InputWrapper className={className} id={id} type={type} ref={ref} status={status} fullWidht={fullWidht} />
+  return (
+    <InputWrapper
+      className={className}
+      id={id}
+      type={type}
+      ref={ref}
+      status={status}
+      fullWidth={fullWidth}
+      required={required}
+      placeholder=" "
+    />
+  )
 })
 
 Input.propTypes = {
-  className: PropTypes.string,
   id: PropTypes.string,
+  className: PropTypes.string,
   type: PropTypes.string.isRequired,
-  fullWidht: PropTypes.bool,
+  fullWidth: PropTypes.bool,
   status: PropTypes.oneOf(['error', 'success']),
+  required: PropTypes.bool,
 }
 
 export default Input
