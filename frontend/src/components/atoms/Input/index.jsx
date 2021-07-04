@@ -2,18 +2,19 @@ import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+const getColor = ({ theme, status }) => (
+  {
+    error: theme.colors[theme.input.bordercolors.error.color][theme.input.bordercolors.error.intensity],
+    success: theme.colors[theme.input.bordercolors.success.color][theme.input.bordercolors.success.intensity],
+  }[status]
+)
+
 const InputWrapper = styled.input`
   padding: 24px 24px 8px 24px; 
 
-  color: ${
-  ({ theme, status }) => (
-    {
-      none: theme.colors[theme.input.textcolor.color][theme.input.textcolor.intensity],
-      error: theme.colors[theme.input.bordercolors.error.color][theme.input.bordercolors.error.intensity],
-      success: theme.colors[theme.input.bordercolors.success.color][theme.input.bordercolors.success.intensity],
-    }[status] || theme.colors[theme.input.textcolor.color][theme.input.textcolor.intensity]
-  )
-};
+  color: ${(props) => (
+    getColor(props) || props.theme.colors[props.theme.input.textcolor.color][props.theme.input.textcolor.intensity]
+  )};
   font-weight: bold;
   font-size: 14px;
   line-height: 112%;
@@ -21,16 +22,12 @@ const InputWrapper = styled.input`
   width: ${({ fullWidht }) => fullWidht ? '100%' : '344px'};
   height: 56px;
   
-  background: ${({ theme }) => theme.colors[theme.background[0].color][theme.background[0].intensity]};
-  border: 1px solid ${
-  ({ theme, status }) => (
-    {
-      none: theme.colors[theme.input.bordercolors.primary.color][theme.input.bordercolors.primary.intensity],
-      error: theme.colors[theme.input.bordercolors.error.color][theme.input.bordercolors.error.intensity],
-      success: theme.colors[theme.input.bordercolors.success.color][theme.input.bordercolors.success.intensity],
-    }[status]
-  )
-};
+  background: ${({ theme }) => theme.colors[theme.input.background.color][theme.input.background.intensity]};
+  border: 1px solid ${(props) => (
+    getColor(props)
+    || props.theme.colors[props.theme.input.bordercolors.primary.color][props.theme.input.bordercolors.primary.intensity]
+  )};
+  
   box-sizing: border-box;
   border-radius: 18px;
   margin: 8px 0px;
@@ -43,6 +40,16 @@ const InputWrapper = styled.input`
     border-radius: 18px;
     border: 2px solid ${({ theme }) => theme.colors[theme.input.bordercolors.focus.color][theme.input.bordercolors.focus.intensity]};
   }
+
+  :-webkit-autofill,
+  :-webkit-autofill:hover,
+  :-webkit-autofill:focus,
+  :-webkit-autofill:active {
+      transition: background-color 5000s ease-in-out 0s;
+  }
+  -webkit-text-fill-color: ${(props) => (
+    getColor(props) || props.theme.colors[props.theme.input.textcolor.color][props.theme.input.textcolor.intensity]
+  )} !important;
 `
 
 const Input = forwardRef(({
@@ -55,7 +62,7 @@ Input.propTypes = {
   id: PropTypes.string,
   type: PropTypes.string.isRequired,
   fullWidht: PropTypes.bool,
-  status: PropTypes.oneOf(['none', 'error', 'success']).isRequired,
+  status: PropTypes.oneOf(['error', 'success']),
 }
 
 export default Input
