@@ -27,7 +27,7 @@ const Textfield = ({
   id, className, type, placeholder, helper, fullWidth, required, reference, status,
 }) => {
   return (
-    <Wrapper id={id} className={className} fullWidth={fullWidth}>
+    <Wrapper className={className} fullWidth={fullWidth}>
       <Input id={id} fullWidth={fullWidth} type={type} required={required} ref={reference} status={status}> </Input>
       <PlaceHolder>{placeholder}</PlaceHolder>
       {helper && <Helper color={{ error: 'red', success: 'green' }[status]}>{helper}</Helper>}
