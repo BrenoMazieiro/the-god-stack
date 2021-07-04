@@ -90,7 +90,8 @@ const darkLight = {
     borders: [3],
     text: [11, 6, 10],
     background: {
-      primary: { color: 'gray', intensity: 2 },
+      primary: { color: 'black', intensity: 0 },
+      secondary: { color: 'gray', intensity: 2 },
     },
     input:
     {
@@ -134,6 +135,7 @@ const darkLight = {
     text: [2, 8, 10],
     background: {
       primary: { color: 'gray', intensity: 12 },
+      secondary: { color: 'white', intensity: 1 },
     },
     input:
     {
