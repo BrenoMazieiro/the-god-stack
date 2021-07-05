@@ -20,10 +20,11 @@ const StyledButton = styled(Button)`
 `
 
 const IconButton = ({
-  children, iconname, iconsize, iconposition, type, size, onClick, bgColor, color, disabled, fullWidth,
+  id, children, iconname, iconsize, iconposition, type, size, onClick, bgColor, color, disabled, fullWidth,
 }) => {
   return (
     <StyledButton
+      id={id}
       type={type}
       size={size}
       onClick={onClick}
@@ -33,7 +34,7 @@ const IconButton = ({
       fullWidth={fullWidth}
       hasChildren={!!children}
     >
-      <Wrapper iconposition={iconposition}>
+      <Wrapper iconposition={iconposition} onMouseUp={(e) => e.currentTarget.parentElement.blur()}>
         <Icon iconname={iconname} iconsize={iconsize} />
         {children && <ChildrenWrapper>{children}</ChildrenWrapper>}
       </Wrapper>
