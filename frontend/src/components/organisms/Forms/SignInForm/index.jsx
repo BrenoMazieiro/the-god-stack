@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useMyContext } from 'hooks'
 import {
-  Form, A, Textfield, Text, IconButton,
+  Form, A, Textfield, Span, IconButton,
 } from 'components'
 
-const StyledText = styled(Text)`
+const StyledText = styled(Span)`
   display: flex;
   align-items: center;
   align-self: center;
 `
-const LinkWrapper = styled(Text)`
+const LinkWrapper = styled(Span)`
   display: flex;
   align-items: center;
   align-self: center;

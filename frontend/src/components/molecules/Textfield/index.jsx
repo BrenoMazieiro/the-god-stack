@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Div, Input, Text } from 'components'
+import { Div, Input, Span } from 'components'
 
 const Wrapper = styled(Div)`
   position: relative;
@@ -15,13 +15,13 @@ const Wrapper = styled(Div)`
     top: 16px;
   }
 `
-const PlaceHolder = styled(Text)`
+const PlaceHolder = styled(Span)`
   position: absolute;
   padding-left: ${({ theme }) => theme.sizes.spacing[2]};
   top: 30px;
   transition: 0.2s ease all;
 `
-const Helper = styled(Text)``
+const Helper = styled(Span)``
 
 const Textfield = ({
   id, className, type, placeholder, helper, fullWidth, required, reference, status,
