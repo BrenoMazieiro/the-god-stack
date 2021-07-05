@@ -9,13 +9,23 @@ const Wrapper = styled.span`
   font-weight: ${({ bold }) => bold ? 'bold' : 'normal'};
 `
 
-const Text = ({
+const Span = ({
   id, children, className, textsize, bold, color,
 }) => {
-  return <Wrapper id={id} className={className} textsize={textsize} bold={bold} color={color}>{children}</Wrapper>
+  return (
+    <Wrapper
+      id={id}
+      className={className}
+      textsize={textsize}
+      bold={bold}
+      color={color}
+    >
+      {children}
+    </Wrapper>
+  )
 }
 
-Text.propTypes = {
+Span.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.any,
@@ -24,4 +34,4 @@ Text.propTypes = {
   color: PropTypes.oneOf(['white', 'black', 'gray', 'blue', 'pink', 'green', 'yellow', 'orange', 'red', 'purple']),
 }
 
-export default Text
+export default Span
