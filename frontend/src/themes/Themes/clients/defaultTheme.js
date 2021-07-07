@@ -70,6 +70,7 @@ const genericDesign = {
       xsm: '1em',
     },
     spacing: [
+      '0px',
       '8px',
       '16px',
       '24px',
