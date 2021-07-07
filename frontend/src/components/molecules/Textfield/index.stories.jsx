@@ -20,4 +20,7 @@ TextfieldExample.args = {
   type: 'text',
   helper: 'This a helper example',
   required: true,
+  leftIconName: 'anchor',
+  rightIconName: 'power',
+  onRightIconClick: () => true,
 }

@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Div, Input, Span } from 'components'
+import {
+  Div, Input, Span, Icon,
+} from 'components'
 
 const Wrapper = styled(Div)`
   position: relative;
@@ -17,20 +19,68 @@ const Wrapper = styled(Div)`
 `
 const PlaceHolder = styled(Span)`
   position: absolute;
-  padding-left: ${({ theme }) => theme.sizes.spacing[2]};
+  padding-left: ${({ theme }) => theme.sizes.spacing[3]};
   top: 30px;
+  ${({ theme, hasLeftIcon }) => hasLeftIcon && `left: ${theme.sizes.spacing[3]};`}
   transition: 0.2s ease all;
 `
+const StyledInput = styled(Input)`
+  padding: 24px ${({ hasRightIcon }) => hasRightIcon ? '48px' : '24px'} 8px ${({ hasLeftIcon }) => hasLeftIcon ? '48px' : '24px'};
+  :focus {
+    ${({ theme, hasLeftIcon }) => hasLeftIcon && `padding-left: calc(${theme.sizes.spacing[6]} - 1px)`};
+  }
+`
+const StyledLeftIcon = styled(Icon)`
+  background-color: 'red';
+  position: absolute;
+  top: ${({ theme }) => theme.sizes.spacing[3]};
+  left: ${({ theme }) => `calc(${theme.sizes.spacing[2]} - 1px)`};
+`
+
+const StyledRightIcon = styled(Icon)`
+  background-color: 'red';
+  position: absolute;
+  top: ${({ theme }) => theme.sizes.spacing[3]};
+  right: ${({ theme }) => `calc(${theme.sizes.spacing[2]} - 1px)`};
+`
+
 const Helper = styled(Span)``
 
 const Textfield = ({
-  id, className, type, placeholder, helper, fullWidth, required, reference, status,
+  id,
+  className,
+  type,
+  placeholder,
+  helper,
+  fullWidth,
+  required,
+  reference,
+  status,
+  leftIconName,
+  maxLength,
+  rightIconName,
+  onRightIconClick,
 }) => {
+  const hasLeftIcon = !!leftIconName
+  const hasRightIcon = !!rightIconName
+  const statusColor = { error: 'red', success: 'green' }[status]
   return (
     <Wrapper className={className} fullWidth={fullWidth}>
-      <Input id={id} fullWidth={fullWidth} type={type} required={required} ref={reference} status={status}> </Input>
-      <PlaceHolder>{placeholder}</PlaceHolder>
-      {helper && <Helper color={{ error: 'red', success: 'green' }[status]}>{helper}</Helper>}
+      <StyledInput
+        id={id}
+        fullWidth={fullWidth}
+        type={type}
+        required={required}
+        ref={reference}
+        status={status}
+        hasLeftIcon={hasLeftIcon}
+        hasRightIcon={hasRightIcon}
+        maxLength={maxLength}
+      />
+      <PlaceHolder hasLeftIcon={hasLeftIcon}>{placeholder}</PlaceHolder>
+      {leftIconName && <Span color={statusColor}><StyledLeftIcon iconname={leftIconName} iconsize="sm" /></Span>}
+      {helper && <Helper color={statusColor}>{helper}</Helper>}
+      {rightIconName && <Span color={statusColor} onClick={onRightIconClick}><StyledRightIcon iconname={rightIconName} iconsize="sm" /></Span>}
     </Wrapper>
   )
 }
@@ -48,6 +98,10 @@ Textfield.propTypes = {
     PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   ]).isRequired,
   status: PropTypes.oneOf(['error', 'success']),
+  leftIconName: Icon.propTypes.iconname,
+  rightIconName: Icon.propTypes.iconname,
+  onRightIconClick: PropTypes.func,
+  maxLength: PropTypes.number,
 }
 
 export default Textfield
