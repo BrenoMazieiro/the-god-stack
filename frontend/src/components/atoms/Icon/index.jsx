@@ -13,22 +13,23 @@ const StyledFaPowerOff = styled(FaPowerOff)`${genericDesing}`
 const StyledFaAnchor = styled(FaAnchor)`${genericDesing}`
 const StyledFaArrowAltCircleRight = styled(FaArrowAltCircleRight)`${genericDesing}`
 
-const Div = ({
-  iconname, iconsize,
+const Icon = ({
+  iconname, iconsize, className,
 }) => {
   return (
     {
-      power: <StyledFaPowerOff id="icon" iconsize={iconsize} />,
-      anchor: <StyledFaAnchor id="icon" iconsize={iconsize} />,
-      arrowAltCircleRight: <StyledFaArrowAltCircleRight id="icon" iconsize={iconsize} />,
+      power: <StyledFaPowerOff id="icon" className={className} iconsize={iconsize} />,
+      anchor: <StyledFaAnchor id="icon" className={className} iconsize={iconsize} />,
+      arrowAltCircleRight: <StyledFaArrowAltCircleRight id="icon" className={className} iconsize={iconsize} />,
     }[iconname] || <div />
   )
 }
 
-Div.propTypes = {
+Icon.propTypes = {
+  className: PropTypes.string,
   iconname: PropTypes.oneOf(['power', 'anchor', 'arrowAltCircleRight']),
   iconsize: PropTypes.oneOf(['xsm', 'sm', 'md', 'lg', 'xlg']),
   // type: PropTypes.oneOf(['stroke', 'fill', 'doutone']),
 }
 
-export default Div
+export default Icon
