@@ -11,8 +11,8 @@ const Wrapper = styled(Div)`
 `
 
 const ChildrenWrapper = styled(Div)`
-  padding-left: ${({ theme, iconposition }) => iconposition !== 'left' && theme.sizes.spacing[0]};
-  padding-right: ${({ theme, iconposition }) => iconposition !== 'left' && theme.sizes.spacing[0]};
+  padding-left: ${({ theme, iconposition }) => iconposition !== 'left' && theme.sizes.spacing[1]};
+  padding-right: ${({ theme, iconposition }) => iconposition !== 'left' && theme.sizes.spacing[1]};
 `
 
 const StyledButton = styled(Button)`
