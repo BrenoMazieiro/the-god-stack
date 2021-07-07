@@ -10,7 +10,7 @@ const Wrapper = styled.span`
 `
 
 const Span = ({
-  id, children, className, textsize, bold, color,
+  id, children, className, textsize, bold, color, onClick,
 }) => {
   return (
     <Wrapper
@@ -19,6 +19,7 @@ const Span = ({
       textsize={textsize}
       bold={bold}
       color={color}
+      onClick={onClick}
     >
       {children}
     </Wrapper>
@@ -32,6 +33,7 @@ Span.propTypes = {
   textsize: PropTypes.oneOf(['sm', 'md', 'lg']),
   bold: PropTypes.bool,
   color: PropTypes.oneOf(['white', 'black', 'gray', 'blue', 'pink', 'green', 'yellow', 'orange', 'red', 'purple']),
+  onClick: PropTypes.func,
 }
 
 export default Span
