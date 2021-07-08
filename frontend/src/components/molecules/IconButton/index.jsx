@@ -20,11 +20,12 @@ const StyledButton = styled(Button)`
 `
 
 const IconButton = ({
-  id, children, iconname, iconsize, iconposition, type, size, onClick, bgColor, color, disabled, fullWidth,
+  id, children, className, iconname, iconsize, iconposition, type, size, onClick, bgColor, color, disabled, fullWidth,
 }) => {
   return (
     <StyledButton
       id={id}
+      className={className}
       type={type}
       size={size}
       onClick={onClick}
