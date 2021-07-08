@@ -79,6 +79,7 @@ Change your **/etc/hosts** file and ADD the lines below:
 127.0.0.1   pg.local.thegodstack.com
 127.0.0.1   api.local.thegodstack.com
 127.0.0.1   spa.local.thegodstack.com
+127.0.0.1   stories.local.thegodstack.com
 ```
 
 Now it will be possible to use a real full address, and not the old (and lame) **'localhost:port'**
