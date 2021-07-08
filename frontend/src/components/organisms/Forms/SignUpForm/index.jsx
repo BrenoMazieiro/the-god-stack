@@ -3,20 +3,28 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useMyContext } from 'hooks'
 import {
-  Form, LabeledInput, Button, Div, A,
+  Form, Textfield, IconButton, A, Span,
 } from 'components'
 
-const ErrorWrapper = styled(Div)`
+const StyledText = styled(Span)`
   display: flex;
   align-items: center;
   align-self: center;
 `
 
-const LinkWrapper = styled(Div)`
+const LinkWrapper = styled(Span)`
   display: flex;
   align-items: center;
   align-self: center;
   margin-top: 20px;
+`
+const StyledForm = styled(Form)`
+  padding: ${({ theme }) => theme.sizes.spacing[5]};
+  border-radius: ${({ theme }) => theme.sizes.spacing[4]};
+  background-color: ${({ theme }) => theme.colors[theme.background.secondary.color][theme.background.secondary.intensity]};
+`
+const StyledIconButton = styled(IconButton)`
+  margin-top: ${({ theme }) => theme.sizes.spacing[4]};
 `
 
 const SignUpForm = ({
@@ -31,58 +39,83 @@ const SignUpForm = ({
 }) => {
   const { t } = useMyContext()
 
+  const getErrors = (field, errors) => {
+    return `${errors.reduce((acc, error) => error.path === field ? `${acc} - ${error.message} <br/>` : acc, '')}`
+  }
+
+  const hasErrors = (field, errors) => {
+    return errors.find((error) => error.path === field)
+  }
+
   return (
-    <Form handleSubmit={handleSubmit} id="SignUpForm">
-      <LabeledInput
-        type="text"
+    <StyledForm handleSubmit={handleSubmit} id="SignUpForm">
+      <Textfield
         id="name"
-        label="Name"
-        ref={name}
-        placeholder="Name"
-        errorMessages={errorMessages}
-      />
-      <LabeledInput
         type="text"
+        reference={name}
+        placeholder={t['organisms:Forms:SignUpForm:Name']}
+        leftIconName="userCircle"
+        helper={getErrors('name', errorMessages)}
+        status={hasErrors('name', errorMessages) ? 'error' : null}
+      />
+      <Textfield
         id="email"
-        label="Email"
-        ref={email}
-        placeholder="Email"
-        errorMessages={errorMessages}
-      />
-      <LabeledInput
         type="text"
+        reference={email}
+        placeholder={t['organisms:Forms:SignUpForm:Email']}
+        leftIconName="mail"
+        helper={getErrors('email', errorMessages)}
+        status={hasErrors('email', errorMessages) ? 'error' : null}
+      />
+      <Textfield
         id="username"
-        label="Username"
-        ref={username}
-        placeholder="Username"
-        errorMessages={errorMessages}
+        type="text"
+        reference={username}
+        placeholder={t['organisms:Forms:SignUpForm:Username']}
+        leftIconName="id"
+        helper={getErrors('username', errorMessages)}
+        status={hasErrors('username', errorMessages) ? 'error' : null}
       />
-      <LabeledInput
-        type="password"
+      <Textfield
         id="password"
-        label="Password"
-        ref={password}
-        errorMessages={errorMessages}
-      />
-      <LabeledInput
         type="password"
+        reference={password}
+        placeholder={t['organisms:Forms:SignUpForm:Password']}
+        leftIconName="lock"
+        helper={getErrors('password', errorMessages)}
+        status={hasErrors('password', errorMessages) ? 'error' : null}
+      />
+      <Textfield
         id="confirmPassword"
-        label="Confirm Password"
-        ref={confirmPassword}
-        errorMessages={errorMessages}
+        type="password"
+        reference={confirmPassword}
+        placeholder={t['organisms:Forms:SignUpForm:ConfirmPassword']}
+        leftIconName="lock"
+        helper={getErrors('confirmPassword', errorMessages)}
+        status={hasErrors('confirmPassword', errorMessages) ? 'error' : null}
       />
       {serverErrorCode && (
-        <ErrorWrapper id="serverErrorCode">
+        <StyledText color="red" id="serverErrorCode">
           {t[`organisms:Forms:SignUpForm:${serverErrorCode}`]}
-        </ErrorWrapper>
+        </StyledText>
       )}
-      <Button type="submit" size="lg" bgColor="blue" color="white">Sign Up</Button>
+      <StyledIconButton
+        type="submit"
+        size="md"
+        bgColor="blue"
+        color="white"
+        iconname="arrowAltCircleRight"
+        iconposition="right"
+        fullWidth
+      >
+        {t['organisms:Forms:SignUpForm:SignUp']}
+      </StyledIconButton>
       <LinkWrapper>
-        Already Singed Up?
+        {t['organisms:Forms:SignUpForm:AlreadySignUp']}
         &nbsp;
-        <A href="/signin">Sign In</A>
+        <A href="/signin">{t['organisms:Forms:SignUpForm:SignIn']}</A>
       </LinkWrapper>
-    </Form>
+    </StyledForm>
   )
 }
 
