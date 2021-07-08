@@ -16,6 +16,7 @@ const ButtonWrapper = styled.button`
   font-size: ${({ theme, size }) => theme.sizes.button[size].size};
   line-height: ${({ theme, size }) => theme.sizes.button[size].lineHeight};
   letter-spacing: ${({ theme, size }) => theme.sizes.button[size].letterSpacing};
+  cursor: pointer;
   
   :hover {
     border: ${({ theme, bgColor }) => bgColor ? '0' : `1px solid ${theme.colors.blue[theme.primary[1]]}`};
