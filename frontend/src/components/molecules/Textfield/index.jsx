@@ -20,7 +20,7 @@ const Wrapper = styled(Div)`
 const PlaceHolder = styled(Span)`
   position: absolute;
   padding-left: ${({ theme }) => theme.sizes.spacing[3]};
-  top: 30px;
+  top: ${({ theme }) => `calc(${theme.sizes.spacing[3]} + 3px)`};
   ${({ theme, hasLeftIcon }) => hasLeftIcon && `left: ${theme.sizes.spacing[3]};`}
   transition: 0.2s ease all;
 `
@@ -79,7 +79,7 @@ const Textfield = ({
       />
       <PlaceHolder hasLeftIcon={hasLeftIcon}>{placeholder}</PlaceHolder>
       {leftIconName && <Span color={statusColor}><StyledLeftIcon iconname={leftIconName} iconsize="sm" /></Span>}
-      {helper && <Helper color={statusColor}>{helper}</Helper>}
+      {helper && <Helper color={statusColor}><Div dangerouslySetInnerHTML={{ __html: helper }} /></Helper>}
       {rightIconName && <Span color={statusColor} onClick={onRightIconClick}><StyledRightIcon iconname={rightIconName} iconsize="sm" /></Span>}
     </Wrapper>
   )
