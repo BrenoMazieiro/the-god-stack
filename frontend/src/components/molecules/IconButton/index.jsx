@@ -11,8 +11,8 @@ const Wrapper = styled(Div)`
 `
 
 const ChildrenWrapper = styled(Div)`
-  padding-left: ${({ theme, iconposition }) => iconposition !== 'left' && theme.sizes.spacing[0]};
-  padding-right: ${({ theme, iconposition }) => iconposition !== 'left' && theme.sizes.spacing[0]};
+  padding-left: ${({ theme, iconposition }) => iconposition !== 'left' && theme.sizes.spacing[1]};
+  padding-right: ${({ theme, iconposition }) => iconposition !== 'left' && theme.sizes.spacing[1]};
 `
 
 const StyledButton = styled(Button)`
@@ -20,10 +20,12 @@ const StyledButton = styled(Button)`
 `
 
 const IconButton = ({
-  children, iconname, iconsize, iconposition, type, size, onClick, bgColor, color, disabled, fullWidth,
+  id, children, className, iconname, iconsize, iconposition, type, size, onClick, bgColor, color, disabled, fullWidth,
 }) => {
   return (
     <StyledButton
+      id={id}
+      className={className}
       type={type}
       size={size}
       onClick={onClick}
@@ -33,7 +35,7 @@ const IconButton = ({
       fullWidth={fullWidth}
       hasChildren={!!children}
     >
-      <Wrapper iconposition={iconposition}>
+      <Wrapper iconposition={iconposition} onMouseUp={(e) => e.currentTarget.parentElement.blur()}>
         <Icon iconname={iconname} iconsize={iconsize} />
         {children && <ChildrenWrapper>{children}</ChildrenWrapper>}
       </Wrapper>

@@ -16,6 +16,7 @@ const ButtonWrapper = styled.button`
   font-size: ${({ theme, size }) => theme.sizes.button[size].size};
   line-height: ${({ theme, size }) => theme.sizes.button[size].lineHeight};
   letter-spacing: ${({ theme, size }) => theme.sizes.button[size].letterSpacing};
+  cursor: pointer;
   
   :hover {
     border: ${({ theme, bgColor }) => bgColor ? '0' : `1px solid ${theme.colors.blue[theme.primary[1]]}`};
@@ -25,7 +26,6 @@ const ButtonWrapper = styled.button`
     color: ${({ theme }) => theme.colors.gray[theme.text[1]]};  
     background-color: ${({ theme, bgColor }) => bgColor ? theme.colors[bgColor][theme.primary[2]] : 'transparent'};
   }
-
   :focus {
     box-sizing: border-box;
     box-shadow: inset 0px 0px 0px ${({ bgColor }) => bgColor ? '5px' : '1px'} ${({ theme, bgColor }) => `${theme.colors[bgColor || 'blue'][theme.borders[0]]}`};
@@ -34,10 +34,11 @@ const ButtonWrapper = styled.button`
 `
 
 const Button = ({
-  className, type, size = 'lg', children, onClick, bgColor, color = 'blue', disabled, fullWidth,
+  id, className, type, size = 'lg', children, onClick, bgColor, color = 'blue', disabled, fullWidth,
 }) => {
   return (
     <ButtonWrapper
+      id={id}
       className={className}
       type={type}
       size={size}
@@ -54,6 +55,7 @@ const Button = ({
 }
 
 Button.propTypes = {
+  id: PropTypes.string,
   className: PropTypes.any,
   children: PropTypes.any,
   type: PropTypes.oneOf(['submit', 'button']).isRequired,

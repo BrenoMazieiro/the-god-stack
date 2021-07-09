@@ -3,23 +3,23 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useMyContext } from 'hooks'
 import {
-  Form, A, Textfield, Text, IconButton,
+  Form, A, Textfield, Span, IconButton,
 } from 'components'
 
-const StyledText = styled(Text)`
+const StyledText = styled(Span)`
   display: flex;
   align-items: center;
   align-self: center;
 `
-const LinkWrapper = styled(Text)`
+const LinkWrapper = styled(Span)`
   display: flex;
   align-items: center;
   align-self: center;
   margin-top: 20px;
 `
 const StyledForm = styled(Form)`
-  padding: ${({ theme }) => theme.sizes.spacing[4]};
-  border-radius: ${({ theme }) => theme.sizes.spacing[3]};
+  padding: ${({ theme }) => theme.sizes.spacing[5]};
+  border-radius: ${({ theme }) => theme.sizes.spacing[4]};
   background-color: ${({ theme }) => theme.colors[theme.background.secondary.color][theme.background.secondary.intensity]};
 `
 

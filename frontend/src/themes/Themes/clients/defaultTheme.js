@@ -30,6 +30,11 @@ const genericDesign = {
 
     },
     maxWidth: '1100px',
+    title: {
+      size: ['', '60px', '48px', '34px', '24px', '18px'],
+      lineHeight: ['', '72px', '56px', '40px', '32px', '32px'],
+      weight: ['', 'bold', 'bold', '800', '800', 'bold'],
+    },
     button: {
       sm: {
         padding: '8px 16px 8px 16px',
@@ -70,6 +75,7 @@ const genericDesign = {
       xsm: '1em',
     },
     spacing: [
+      '0px',
       '8px',
       '16px',
       '24px',
@@ -89,12 +95,14 @@ const darkLight = {
     primary: [3, 6, 9],
     borders: [3],
     text: [11, 6, 10],
+    defaulTextColor: 'white',
     background: {
       primary: { color: 'black', intensity: 0 },
       secondary: { color: 'gray', intensity: 2 },
     },
     input:
     {
+      placeholder: { color: 'gray', intensity: 6 },
       background: { color: 'gray', intensity: 2 },
       textcolor: {
         color: 'gray',
@@ -116,7 +124,7 @@ const darkLight = {
         },
         error: {
           color: 'red',
-          intensity: 3,
+          intensity: 2,
         },
         success: {
           color: 'green',
@@ -133,12 +141,14 @@ const darkLight = {
     primary: [5, 7, 9],
     borders: [9],
     text: [2, 8, 10],
+    defaulTextColor: 'black',
     background: {
       primary: { color: 'gray', intensity: 12 },
       secondary: { color: 'white', intensity: 1 },
     },
     input:
     {
+      placeholder: { color: 'gray', intensity: 6 },
       background: { color: 'white', intensity: 2 },
       textcolor: {
         color: 'gray',
@@ -160,7 +170,7 @@ const darkLight = {
         },
         error: {
           color: 'red',
-          intensity: 3,
+          intensity: 2,
         },
         success: {
           color: 'green',

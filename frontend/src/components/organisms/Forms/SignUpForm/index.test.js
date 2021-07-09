@@ -2,35 +2,36 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import SignUpForm from '.'
 
+jest.mock('react', () => ({
+  ...jest.requireActual('react'),
+  useContext: () => 'context_value',
+}))
+
+jest.mock('hooks', () => {
+  const translations = jest.requireActual('i18n/LanguageProvider/locales')
+  return {
+    useMyContext: () => ({ t: translations.default['en-US'] }),
+  }
+})
+
 const wrap = ({
-  handleSubmit, username, password, errorMessages, name, email, confirmPassword,
+  handleSubmit, errorMessages,
 }) => shallow(
   <SignUpForm
     handleSubmit={handleSubmit}
-    username={username}
-    password={password}
+    name={() => true}
+    email={() => true}
+    username={() => true}
+    password={() => true}
+    confirmPassword={() => true}
     errorMessages={errorMessages}
-    name={name}
-    email={email}
-    confirmPassword={confirmPassword}
   />,
 )
-
-jest.mock('hooks', () => {
-  return {
-    useMyContext: () => ({ }),
-  }
-})
 
 describe('SignUpForm', () => {
   it('will render SignUpForm component', () => {
     const wrapper = wrap({
       handleSubmit: () => true,
-      name: 'name',
-      email: 'email@test.com',
-      username: 'username',
-      password: 'password',
-      confirmPassword: 'password',
       errorMessages: [],
     })
     expect(wrapper.find({ id: 'SignUpForm' })).toHaveLength(1)
@@ -39,34 +40,28 @@ describe('SignUpForm', () => {
   it('will render SignUpForm component with error', () => {
     const wrapper = wrap({
       handleSubmit: () => true,
-      name: '',
-      email: 'email@test.com',
-      username: 'username',
-      password: 'password',
-      confirmPassword: 'password',
       errorMessages: [{ path: 'name', message: 'errorMessage' }],
     })
-    wrapper.update()
     expect(
       wrapper
         .find({ id: 'SignUpForm' })
-        .dive()
         .find({ id: 'name' })
         .dive()
-        .find({ id: 'name-error' }),
+        .find({ id: 'name-helper' }),
     ).toHaveLength(1)
   })
 
-  it('will render SignUpForm component without error', () => {
+  it('will render SignUpForm component with error', () => {
     const wrapper = wrap({
       handleSubmit: () => true,
-      name: 'name',
-      email: 'email@test.com',
-      username: 'username',
-      password: 'password',
-      confirmPassword: 'password',
       errorMessages: [],
     })
-    expect(wrapper.find({ id: 'name-error' })).toHaveLength(0)
+    expect(
+      wrapper
+        .find({ id: 'SignUpForm' })
+        .find({ id: 'name' })
+        .dive()
+        .find({ id: 'name-helper' }),
+    ).toHaveLength(0)
   })
 })

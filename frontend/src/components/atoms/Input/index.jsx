@@ -36,7 +36,7 @@ const InputWrapper = styled.input`
     border: 1px solid ${({ theme }) => theme.colors[theme.input.bordercolors.hover.color][theme.input.bordercolors.hover.intensity]};
   }
   :focus {
-    padding-left: ${({ theme }) => `calc(${theme.sizes.spacing[2]} - 1px)`};
+    padding-left: ${({ theme }) => `calc(${theme.sizes.spacing[3]} - 1px)`};
     outline: none;
     border-radius: 18px;
     border: 2px solid ${({ theme }) => theme.colors[theme.input.bordercolors.focus.color][theme.input.bordercolors.focus.intensity]};
@@ -54,7 +54,7 @@ const InputWrapper = styled.input`
 `
 
 const Input = forwardRef(({
-  id, className, type, status, fullWidth, required,
+  id, className, type, status, fullWidth, required, maxLength,
 }, ref) => {
   return (
     <InputWrapper
@@ -66,6 +66,7 @@ const Input = forwardRef(({
       fullWidth={fullWidth}
       required={required}
       placeholder=" "
+      maxLength={maxLength}
     />
   )
 })
@@ -77,6 +78,7 @@ Input.propTypes = {
   fullWidth: PropTypes.bool,
   status: PropTypes.oneOf(['error', 'success']),
   required: PropTypes.bool,
+  maxLength: PropTypes.number,
 }
 
 export default Input
