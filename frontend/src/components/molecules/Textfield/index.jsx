@@ -16,6 +16,7 @@ const Wrapper = styled(Div)`
   input:not(:placeholder-shown):valid + span {
     top: 16px;
   }
+  margin-bottom: ${({ theme }) => theme.sizes.spacing[1]};
 `
 const PlaceHolder = styled(Span)`
   position: absolute;
@@ -33,14 +34,14 @@ const StyledInput = styled(Input)`
 const StyledLeftIcon = styled(Icon)`
   background-color: 'red';
   position: absolute;
-  top: ${({ theme }) => theme.sizes.spacing[3]};
+  top: ${({ theme }) => `calc(${theme.sizes.spacing[3]} + 5px)`};
   left: ${({ theme }) => `calc(${theme.sizes.spacing[2]} - 1px)`};
 `
 
 const StyledRightIcon = styled(Icon)`
   background-color: 'red';
   position: absolute;
-  top: ${({ theme }) => theme.sizes.spacing[3]};
+  top: ${({ theme }) => `calc(${theme.sizes.spacing[3]} + 5px)`};
   right: ${({ theme }) => `calc(${theme.sizes.spacing[2]} - 1px)`};
 `
 
@@ -78,9 +79,9 @@ const Textfield = ({
         maxLength={maxLength}
       />
       <PlaceHolder hasLeftIcon={hasLeftIcon}>{placeholder}</PlaceHolder>
-      {leftIconName && <Span color={statusColor}><StyledLeftIcon iconname={leftIconName} iconsize="sm" /></Span>}
+      {leftIconName && <Span color={statusColor || 'white'}><StyledLeftIcon iconname={leftIconName} iconsize="xsm" /></Span>}
       {helper && <Helper id={`${id}-helper`} color={statusColor}><Div dangerouslySetInnerHTML={{ __html: helper }} /></Helper>}
-      {rightIconName && <Span color={statusColor} onClick={onRightIconClick}><StyledRightIcon iconname={rightIconName} iconsize="sm" /></Span>}
+      {rightIconName && <Span color={statusColor} onClick={onRightIconClick}><StyledRightIcon iconname={rightIconName} iconsize="xsm" /></Span>}
     </Wrapper>
   )
 }
