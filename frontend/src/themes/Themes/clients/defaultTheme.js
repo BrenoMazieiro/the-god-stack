@@ -30,6 +30,11 @@ const genericDesign = {
 
     },
     maxWidth: '1100px',
+    title: {
+      size: ['', '60px', '48px', '34px', '24px', '18px'],
+      lineHeight: ['', '72px', '56px', '40px', '32px', '32px'],
+      weight: ['', 'bold', 'bold', '800', '800', 'bold'],
+    },
     button: {
       sm: {
         padding: '8px 16px 8px 16px',
