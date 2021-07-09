@@ -65,7 +65,7 @@ const Textfield = ({
   const hasRightIcon = !!rightIconName
   const statusColor = { error: 'red', success: 'green' }[status]
   return (
-    <Wrapper className={className} fullWidth={fullWidth}>
+    <Wrapper id={`textfieldwrapper-${id}`} className={className} fullWidth={fullWidth}>
       <StyledInput
         id={id}
         fullWidth={fullWidth}
@@ -79,7 +79,7 @@ const Textfield = ({
       />
       <PlaceHolder hasLeftIcon={hasLeftIcon}>{placeholder}</PlaceHolder>
       {leftIconName && <Span color={statusColor}><StyledLeftIcon iconname={leftIconName} iconsize="sm" /></Span>}
-      {helper && <Helper color={statusColor}><Div dangerouslySetInnerHTML={{ __html: helper }} /></Helper>}
+      {helper && <Helper id={`${id}-helper`} color={statusColor}><Div dangerouslySetInnerHTML={{ __html: helper }} /></Helper>}
       {rightIconName && <Span color={statusColor} onClick={onRightIconClick}><StyledRightIcon iconname={rightIconName} iconsize="sm" /></Span>}
     </Wrapper>
   )
