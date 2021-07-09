@@ -55,8 +55,12 @@ const SignUpForm = ({
   return (
     <StyledForm handleSubmit={handleSubmit} id="SignUpForm">
       <HeaderWrapper>
-        <Title size={4}>Create an account</Title>
-        <Span>Give us some of your information to get free access</Span>
+        <Title size={4}>
+          {t['organisms:Forms:SignUpForm:HeaderCreate']}
+        </Title>
+        <Span>
+          {t['organisms:Forms:SignUpForm:HeaderInfo']}
+        </Span>
       </HeaderWrapper>
       <Textfield
         id="name"

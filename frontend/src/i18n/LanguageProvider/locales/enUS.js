@@ -6,6 +6,8 @@ const enUS = {
   'organisms:Forms:SignInForm:createAnAccount': 'Create an account',
   'organisms:Forms:SignInForm:invalid_username_or_password': 'Invalid username or password',
 
+  'organisms:Forms:SignUpForm:HeaderCreate': 'Create an account',
+  'organisms:Forms:SignUpForm:HeaderInfo': 'Give us some of your information to get free access',
   'organisms:Forms:SignUpForm:users_username_unique': 'Username already exists',
   'organisms:Forms:SignUpForm:users_email_unique': 'Email already exists',
   'organisms:Forms:SignUpForm:SignUp': 'Sign Up',
