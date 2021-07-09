@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useMyContext } from 'hooks'
 import {
-  Form, Textfield, A, Span, IconButton,
+  Form, Textfield, A, Span, IconButton, Title, Div,
 } from 'components'
 
 const StyledText = styled(Span)`
@@ -22,6 +22,13 @@ const StyledForm = styled(Form)`
   padding: ${({ theme }) => theme.sizes.spacing[5]};
   border-radius: ${({ theme }) => theme.sizes.spacing[4]};
   background-color: ${({ theme }) => theme.colors[theme.background.secondary.color][theme.background.secondary.intensity]};
+`
+const HeaderWrapper = styled(Div)`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: ${({ theme }) => theme.sizes.spacing[3]};
 `
 
 const SignUpForm = ({
@@ -46,6 +53,10 @@ const SignUpForm = ({
 
   return (
     <StyledForm handleSubmit={handleSubmit} id="SignUpForm">
+      <HeaderWrapper>
+        <Title size={4} color="white">Create an account</Title>
+        <Span>Give us some of your information to get free access</Span>
+      </HeaderWrapper>
       <Textfield
         id="name"
         type="text"
@@ -98,10 +109,11 @@ const SignUpForm = ({
       )}
       <IconButton
         type="submit"
-        size="md"
+        size="lg"
         bgColor="blue"
         color="white"
-        iconname="arrowAltCircleRight"
+        iconname="arrowRight"
+        iconsize="md"
         iconposition="right"
         fullWidth
       >
