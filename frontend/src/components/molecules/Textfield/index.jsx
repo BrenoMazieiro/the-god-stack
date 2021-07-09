@@ -19,6 +19,7 @@ const Wrapper = styled(Div)`
   margin-bottom: ${({ theme }) => theme.sizes.spacing[1]};
 `
 const PlaceHolder = styled(Span)`
+  color: ${({ theme }) => theme.colors[theme.input.placeholder.color][theme.input.placeholder.intensity]};
   position: absolute;
   padding-left: ${({ theme }) => theme.sizes.spacing[3]};
   top: ${({ theme }) => `calc(${theme.sizes.spacing[3]} + 3px)`};
@@ -44,8 +45,6 @@ const StyledRightIcon = styled(Icon)`
   top: ${({ theme }) => `calc(${theme.sizes.spacing[3]} + 5px)`};
   right: ${({ theme }) => `calc(${theme.sizes.spacing[2]} - 1px)`};
 `
-
-const Helper = styled(Span)``
 
 const Textfield = ({
   id,
@@ -79,9 +78,9 @@ const Textfield = ({
         maxLength={maxLength}
       />
       <PlaceHolder hasLeftIcon={hasLeftIcon}>{placeholder}</PlaceHolder>
-      {leftIconName && <Span color={statusColor}><StyledLeftIcon iconname={leftIconName} iconsize="xsm" /></Span>}
-      {helper && <Helper id={`${id}-helper`} color={statusColor}><Div dangerouslySetInnerHTML={{ __html: helper }} /></Helper>}
-      {rightIconName && <Span color={statusColor} onClick={onRightIconClick}><StyledRightIcon iconname={rightIconName} iconsize="xsm" /></Span>}
+      {leftIconName && <Span color={statusColor} error={status === 'error'}><StyledLeftIcon iconname={leftIconName} iconsize="xsm" /></Span>}
+      {helper && <Span id={`${id}-helper`} color={statusColor} error={status === 'error'}><Div dangerouslySetInnerHTML={{ __html: helper }} /></Span>}
+      {rightIconName && <Span color={statusColor} error={status === 'error'} onClick={onRightIconClick}><StyledRightIcon iconname={rightIconName} iconsize="xsm" /></Span>}
     </Wrapper>
   )
 }

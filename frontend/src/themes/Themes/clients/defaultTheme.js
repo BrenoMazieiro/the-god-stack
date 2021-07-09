@@ -102,6 +102,7 @@ const darkLight = {
     },
     input:
     {
+      placeholder: { color: 'gray', intensity: 6 },
       background: { color: 'gray', intensity: 2 },
       textcolor: {
         color: 'gray',
@@ -123,7 +124,7 @@ const darkLight = {
         },
         error: {
           color: 'red',
-          intensity: 3,
+          intensity: 2,
         },
         success: {
           color: 'green',
@@ -147,6 +148,7 @@ const darkLight = {
     },
     input:
     {
+      placeholder: { color: 'gray', intensity: 6 },
       background: { color: 'white', intensity: 2 },
       textcolor: {
         color: 'gray',
@@ -168,7 +170,7 @@ const darkLight = {
         },
         error: {
           color: 'red',
-          intensity: 3,
+          intensity: 2,
         },
         success: {
           color: 'green',
