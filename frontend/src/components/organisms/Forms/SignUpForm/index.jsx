@@ -22,6 +22,7 @@ const StyledForm = styled(Form)`
   padding: ${({ theme }) => theme.sizes.spacing[5]};
   border-radius: ${({ theme }) => theme.sizes.spacing[4]};
   background-color: ${({ theme }) => theme.colors[theme.background.secondary.color][theme.background.secondary.intensity]};
+  box-shadow: 0px 12px 16px rgba(0, 0, 0, 0.08), 0px 4px 56px rgba(0, 0, 0, 0.08);
 `
 const HeaderWrapper = styled(Div)`
   display: flex;
@@ -54,7 +55,7 @@ const SignUpForm = ({
   return (
     <StyledForm handleSubmit={handleSubmit} id="SignUpForm">
       <HeaderWrapper>
-        <Title size={4} color="white">Create an account</Title>
+        <Title size={4}>Create an account</Title>
         <Span>Give us some of your information to get free access</Span>
       </HeaderWrapper>
       <Textfield

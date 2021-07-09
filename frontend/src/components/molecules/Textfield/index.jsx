@@ -79,7 +79,7 @@ const Textfield = ({
         maxLength={maxLength}
       />
       <PlaceHolder hasLeftIcon={hasLeftIcon}>{placeholder}</PlaceHolder>
-      {leftIconName && <Span color={statusColor || 'white'}><StyledLeftIcon iconname={leftIconName} iconsize="xsm" /></Span>}
+      {leftIconName && <Span color={statusColor}><StyledLeftIcon iconname={leftIconName} iconsize="xsm" /></Span>}
       {helper && <Helper id={`${id}-helper`} color={statusColor}><Div dangerouslySetInnerHTML={{ __html: helper }} /></Helper>}
       {rightIconName && <Span color={statusColor} onClick={onRightIconClick}><StyledRightIcon iconname={rightIconName} iconsize="xsm" /></Span>}
     </Wrapper>

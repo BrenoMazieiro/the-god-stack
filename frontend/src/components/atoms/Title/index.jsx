@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Wrapper = styled.span`
-  color: ${({ theme, color }) => theme.colors[color || 'gray'][theme.text[1]]};
+  color: ${({ theme, color }) => theme.colors[color || theme.defaulTextColor][theme.text[1]]};
   font-family: ${({ theme }) => theme.fonts.primary};
   font-size: ${({ theme, size }) => theme.sizes.title.size[size]};
   line-height: ${({ theme, size }) => theme.sizes.title.lineHeight[size]};

@@ -95,6 +95,7 @@ const darkLight = {
     primary: [3, 6, 9],
     borders: [3],
     text: [11, 6, 10],
+    defaulTextColor: 'white',
     background: {
       primary: { color: 'black', intensity: 0 },
       secondary: { color: 'gray', intensity: 2 },
@@ -139,6 +140,7 @@ const darkLight = {
     primary: [5, 7, 9],
     borders: [9],
     text: [2, 8, 10],
+    defaulTextColor: 'black',
     background: {
       primary: { color: 'gray', intensity: 12 },
       secondary: { color: 'white', intensity: 1 },
