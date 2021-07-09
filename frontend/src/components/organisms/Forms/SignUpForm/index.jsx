@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useMyContext } from 'hooks'
 import {
-  Form, Textfield, IconButton, A, Span,
+  Form, Textfield, A, Span, IconButton,
 } from 'components'
 
 const StyledText = styled(Span)`
@@ -22,9 +22,6 @@ const StyledForm = styled(Form)`
   padding: ${({ theme }) => theme.sizes.spacing[5]};
   border-radius: ${({ theme }) => theme.sizes.spacing[4]};
   background-color: ${({ theme }) => theme.colors[theme.background.secondary.color][theme.background.secondary.intensity]};
-`
-const StyledIconButton = styled(IconButton)`
-  margin-top: ${({ theme }) => theme.sizes.spacing[4]};
 `
 
 const SignUpForm = ({
@@ -99,7 +96,7 @@ const SignUpForm = ({
           {t[`organisms:Forms:SignUpForm:${serverErrorCode}`]}
         </StyledText>
       )}
-      <StyledIconButton
+      <IconButton
         type="submit"
         size="md"
         bgColor="blue"
@@ -109,7 +106,7 @@ const SignUpForm = ({
         fullWidth
       >
         {t['organisms:Forms:SignUpForm:SignUp']}
-      </StyledIconButton>
+      </IconButton>
       <LinkWrapper>
         {t['organisms:Forms:SignUpForm:AlreadySignUp']}
         &nbsp;
