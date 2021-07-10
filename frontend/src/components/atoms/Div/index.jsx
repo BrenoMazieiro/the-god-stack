@@ -6,7 +6,7 @@ const DivWrapper = styled.div`
 `
 
 const Div = ({
-  children, className, id, dangerouslySetInnerHTML, onMouseUp,
+  children, className, id, dangerouslySetInnerHTML, onMouseUp, onClick,
 }) => {
   return (
     <DivWrapper
@@ -14,6 +14,7 @@ const Div = ({
       id={id}
       dangerouslySetInnerHTML={dangerouslySetInnerHTML}
       onMouseUp={onMouseUp}
+      onClick={onClick}
     >
       {children}
     </DivWrapper>
@@ -26,6 +27,7 @@ Div.propTypes = {
   className: PropTypes.any,
   dangerouslySetInnerHTML: PropTypes.object,
   onMouseUp: PropTypes.func,
+  onClick: PropTypes.func,
 }
 
 export default Div

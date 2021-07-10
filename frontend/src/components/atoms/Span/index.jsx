@@ -31,10 +31,10 @@ Span.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.any,
+  onClick: PropTypes.func,
   textsize: PropTypes.oneOf(['sm', 'md', 'lg']),
   bold: PropTypes.bool,
   color: PropTypes.oneOf(['white', 'black', 'gray', 'blue', 'pink', 'green', 'yellow', 'orange', 'red', 'purple']),
-  onClick: PropTypes.func,
   error: PropTypes.bool,
 }
 
