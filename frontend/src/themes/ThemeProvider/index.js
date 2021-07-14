@@ -5,7 +5,7 @@ import { CLIENT } from 'environment'
 import { ThemeProvider as SThemeProvider } from 'styled-components'
 
 const ThemeProvider = ({ children }) => {
-  const [themeType, setThemeType] = useState(JSON.parse(localStorage.getItem('theme')) || 'light')
+  const [themeType, setThemeType] = useState(JSON.parse(localStorage.getItem('theme')) || 'dark')
   const theme = Themes[CLIENT] ? Themes[CLIENT][themeType] : Themes.default[themeType]
 
   const toggleTheme = () => {
@@ -14,7 +14,7 @@ const ThemeProvider = ({ children }) => {
 
   return (
     <SThemeProvider theme={theme}>
-      <ThemeContext.Provider value={{ toggleTheme }}>
+      <ThemeContext.Provider value={{ toggleTheme, themeType }}>
         {children}
       </ThemeContext.Provider>
     </SThemeProvider>
