@@ -1,6 +1,6 @@
-import React, { useRef } from 'react'
+import React from 'react'
 
-import SignUpForm from '.'
+import SignUpForm from './index'
 
 export default {
   title: 'components/organisms/SignUpForm',
@@ -14,17 +14,26 @@ export default {
 
 // eslint-disable-next-line react/jsx-props-no-spreading
 const Template = (args) => {
-  const name = useRef()
-  const email = useRef()
-  const username = useRef()
-  const password = useRef()
-  const confirmPassword = useRef()
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return <SignUpForm name={name} email={email} username={username} password={password} confirmPassword={confirmPassword} {...args} />
+  const name = () => true
+  const email = () => true
+  const username = () => true
+  const password = () => true
+  const confirmPassword = () => true
+  return (
+    <SignUpForm
+      name={name}
+      email={email}
+      username={username}
+      password={password}
+      confirmPassword={confirmPassword}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...args}
+    />
+  )
 }
 
-export const Form = Template.bind({})
-Form.args = {
+export const FormSignUp = Template.bind({})
+FormSignUp.args = {
   handleSubmit: () => true,
   errorMessages: [
     { path: 'name', message: 'There is an error on name' },
