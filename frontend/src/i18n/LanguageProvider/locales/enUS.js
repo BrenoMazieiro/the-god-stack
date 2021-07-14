@@ -18,6 +18,7 @@ const enUS = {
   'organisms:Forms:SignUpForm:Username': 'Username',
   'organisms:Forms:SignUpForm:Password': 'Password',
   'organisms:Forms:SignUpForm:ConfirmPassword': 'Confirm password',
+  'organisms:Forms:SignUpForm:TermsAndPrivacy': 'By creating an account you agree to the Terms of Use and Privacy policy',
 }
 
 export default enUS

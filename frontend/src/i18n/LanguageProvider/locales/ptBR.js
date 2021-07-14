@@ -18,6 +18,7 @@ const ptBR = {
   'organisms:Forms:SignUpForm:Username': 'Usuário',
   'organisms:Forms:SignUpForm:Password': 'Senha',
   'organisms:Forms:SignUpForm:ConfirmPassword': 'Confirme a senha',
+  'organisms:Forms:SignUpForm:TermsAndPrivacy': 'Ao criar uma conta, você aceita os Termos de uso e a Política de privacidade.',
 }
 
 export default ptBR
