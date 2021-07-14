@@ -3,15 +3,17 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useMyContext } from 'hooks'
 import {
-  Form, Textfield, A, Span, IconButton, Title, Div,
-} from 'components'
+  Form, A, Span, Title, Div,
+} from 'components/atoms'
+import {
+  Textfield, IconButton, CheckboxLabel, SignInUPHeader,
+} from 'components/molecules'
 
 const StyledText = styled(Span)`
   display: flex;
   align-items: center;
   align-self: center;
 `
-
 const LinkWrapper = styled(Span)`
   display: flex;
   align-items: center;
@@ -31,6 +33,13 @@ const HeaderWrapper = styled(Div)`
   flex-direction: column;
   margin-bottom: ${({ theme }) => theme.sizes.spacing[3]};
 `
+const StyledIconButton = styled(IconButton)`
+  margin-top: ${({ theme }) => theme.sizes.spacing[4]};
+`
+const StyledCheckboxLabel = styled(CheckboxLabel)`
+  margin-top: ${({ theme }) => theme.sizes.spacing[4]};
+  max-width: 340px;
+`
 
 const SignUpForm = ({
   handleSubmit,
@@ -42,7 +51,9 @@ const SignUpForm = ({
   errorMessages,
   serverErrorCode,
 }) => {
-  const { t } = useMyContext()
+  const {
+    t,
+  } = useMyContext()
 
   const getErrors = (field, errors) => {
     return `${errors.reduce((acc, error) => error.path === field ? `${acc} - ${error.message} <br/>` : acc, '')}`
@@ -54,6 +65,7 @@ const SignUpForm = ({
 
   return (
     <StyledForm handleSubmit={handleSubmit} id="SignUpForm">
+      <SignInUPHeader />
       <HeaderWrapper>
         <Title size={4}>
           {t['organisms:Forms:SignUpForm:HeaderCreate']}
@@ -112,7 +124,13 @@ const SignUpForm = ({
           {t[`organisms:Forms:SignUpForm:${serverErrorCode}`]}
         </StyledText>
       )}
-      <IconButton
+      <StyledCheckboxLabel
+        id="acceptance"
+        reference={() => true}
+        size="lg"
+        label={t['organisms:Forms:SignUpForm:TermsAndPrivacy']}
+      />
+      <StyledIconButton
         type="submit"
         size="lg"
         bgColor="blue"
@@ -123,7 +141,7 @@ const SignUpForm = ({
         fullWidth
       >
         {t['organisms:Forms:SignUpForm:SignUp']}
-      </IconButton>
+      </StyledIconButton>
       <LinkWrapper>
         {t['organisms:Forms:SignUpForm:AlreadySignUp']}
         &nbsp;
