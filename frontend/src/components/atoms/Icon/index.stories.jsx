@@ -10,8 +10,7 @@ export default {
 // eslint-disable-next-line react/jsx-props-no-spreading
 const Template = (args) => <Icon {...args} />
 
-export const SomeIcon = Template.bind({})
-SomeIcon.args = {
+export const SIcon = Template.bind({})
+SIcon.args = {
   iconname: 'power',
-  iconsize: 'lg',
 }

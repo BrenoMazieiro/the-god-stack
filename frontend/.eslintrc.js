@@ -29,7 +29,6 @@ module.exports = {
   rules: {
     semi: [2, 'never'],
     'comma-dangle': [2, 'always-multiline'],
-    'import/no-cycle': 0,
     'max-len': 0,
     'no-shadow': 0,
     'arrow-body-style': 0,

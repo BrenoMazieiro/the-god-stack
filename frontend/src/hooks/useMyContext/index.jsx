@@ -7,7 +7,7 @@ const useMyContext = () => {
   const history = useHistory()
   const params = useParams()
   const { changeLanguage, t } = useContext(LanguageContext)
-  const { toggleTheme } = useContext(ThemeContext)
+  const { toggleTheme, themeType } = useContext(ThemeContext)
   return {
     toggleTheme,
     t,
@@ -15,6 +15,7 @@ const useMyContext = () => {
     history,
     params,
     isLoggedIn: () => !!localStorage.getItem('token'),
+    themeType,
   }
 }
 
