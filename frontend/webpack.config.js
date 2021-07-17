@@ -15,7 +15,7 @@ module.exports = {
   },
   devtool: 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     modules: [].concat('src', ['node_modules']),
   },
   module: {
@@ -25,6 +25,21 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', { useBuiltIns: 'usage', corejs: 3 }],
+              '@babel/typescript',
+              '@babel/react',
+            ],
+            plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-proposal-class-properties'],
+          },
         },
       },
       {
