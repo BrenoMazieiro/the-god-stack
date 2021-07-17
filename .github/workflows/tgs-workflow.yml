@@ -5,9 +5,9 @@ name: Test and push TheGodStack Graphql CI
 
 on:
   push:
-    branches: [ 'main', 'develop' ]
+    branches: [ 'main', 'development' ]
   pull_request:
-    branches: [ 'main', 'develop' ]
+    branches: [ 'main', 'development' ]
 env:
   APP_ENV: production
   NODE_ENV: production
