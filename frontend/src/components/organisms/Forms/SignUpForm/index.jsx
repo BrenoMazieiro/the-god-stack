@@ -64,7 +64,7 @@ const SignUpForm = ({
   }
 
   return (
-    <StyledForm handleSubmit={handleSubmit} id="SignUpForm">
+    <StyledForm handleSubmit={handleSubmit} dataTestid="SignUpForm">
       <SignInUPHeader />
       <HeaderWrapper>
         <Title size={4}>

@@ -60,6 +60,7 @@ const Input = forwardRef(({
     <InputWrapper
       className={className}
       id={id}
+      data-testid={id}
       type={type}
       ref={ref}
       status={status}

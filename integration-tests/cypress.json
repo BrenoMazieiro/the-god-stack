@@ -2,5 +2,7 @@
   "testFiles": [
     "TheGodStack/auth/signup.js",
     "TheGodStack/auth/signin.js"
-  ]
+  ],
+  "video": false,
+  "screenshotOnRunFailure": false
 }
