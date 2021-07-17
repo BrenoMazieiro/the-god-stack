@@ -112,4 +112,3 @@ Else: `docker-compose up`
 
 ## RollBack migration
 `docker exec -it api.local.thegodstack.com knex migrate:down --knexfile knexfile.cjs --esm`
-
