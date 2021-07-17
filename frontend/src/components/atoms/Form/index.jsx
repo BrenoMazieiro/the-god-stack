@@ -8,10 +8,10 @@ const FormWrapper = styled.form`
 `
 
 const Form = ({
-  id, children, className, handleSubmit,
+  id, children, className, handleSubmit, dataTestid,
 }) => {
   return (
-    <FormWrapper id={id} onSubmit={handleSubmit} className={className}>
+    <FormWrapper id={id} onSubmit={handleSubmit} className={className} data-testid={dataTestid}>
       {children}
     </FormWrapper>
   )
@@ -22,6 +22,7 @@ Form.propTypes = {
   className: PropTypes.string,
   handleSubmit: PropTypes.func.isRequired,
   children: PropTypes.any.isRequired,
+  dataTestid: PropTypes.string,
 }
 
 export default Form

@@ -8,5 +8,8 @@
       "/*": ["src/*"],
     }
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "typeAcquisition": {
+    "include": ["jest"]
+  }
 }
