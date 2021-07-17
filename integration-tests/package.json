@@ -1,0 +1,13 @@
+{
+  "name": "cypress",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "cy:install": "cypress install",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
+  },
+  "devDependencies": {
+    "cypress": "^7.7.0"
+  }
+}
