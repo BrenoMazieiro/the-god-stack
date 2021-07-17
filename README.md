@@ -74,6 +74,7 @@ If you don't do that the system will work, but you will not receive an email on 
 ## hosts file (Mandatory)
 
 Change your **/etc/hosts** file and ADD the lines below:  
+
 ```
 127.0.0.1   proxy.local.thegodstack.com 
 127.0.0.1   pg.local.thegodstack.com
