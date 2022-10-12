@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@sendgrid/mail": "^7.4.5",
-    "apollo-server": "^2.25.1",
+    "apollo-server": "^2.25.4",
     "bcrypt": "^5.0.1",
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.5",
